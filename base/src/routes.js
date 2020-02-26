@@ -3,6 +3,7 @@
 import {wrap} from 'svelte-spa-router'
 
 // Components
+import Button from './routes/Button.svelte'
 import Home from './routes/Home.svelte'
 import Name from './routes/Name.svelte'
 import Wild from './routes/Wild.svelte'
@@ -22,6 +23,7 @@ if (!urlParams.has('routemap')) {
     // The path is passed to regexparam that does some transformations allowing the use of params and wildcards
     routes = {
         // Exact path
+        '/button': Button,
         '/': Home,
 
         // Allow children to also signal link activation
