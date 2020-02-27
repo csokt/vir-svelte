@@ -4,6 +4,7 @@ import {wrap} from 'svelte-spa-router'
 
 // Components
 import Button from './routes/Button.svelte'
+import Input from './routes/Input.svelte'
 import Home from './routes/Home.svelte'
 import Name from './routes/Name.svelte'
 import Wild from './routes/Wild.svelte'
@@ -24,6 +25,7 @@ if (!urlParams.has('routemap')) {
     routes = {
         // Exact path
         '/button': Button,
+        '/input': Input,
         '/': Home,
 
         // Allow children to also signal link activation

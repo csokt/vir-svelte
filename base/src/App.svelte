@@ -3,6 +3,7 @@
     <!-- Also, use the "active" action to add the "active" CSS class when the URL matches -->
     <ul class="navigation-links">
         <li><a href="/button" use:link use:active>Button</a></li>
+        <li><a href="/input" use:link use:active>Input</a></li>
         <li><a href="/" use:link use:active>Home</a></li>
         <li><a href="/brand" use:link><b>Brand</b></a></li>
         <li><a href="/hello/svelte" use:link use:active={{path: '/hello/*', className: 'active'}}>Say hi!</a></li>
