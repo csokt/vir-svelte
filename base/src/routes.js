@@ -1,6 +1,6 @@
 // Import the "wrap" function
 // Normally, this would be import: `import {wrap} from 'svelte-spa-router'`
-import {wrap} from 'svelte-spa-router'
+import { wrap } from 'svelte-spa-router'
 
 // Components
 import Button from './routes/Button.svelte'
@@ -37,13 +37,13 @@ if (!urlParams.has('routemap')) {
         // Wildcard parameter
         '/wild': Wild,
         // Special route that has custom data that will be passed to the `routeLoaded` event
-        '/wild/data': wrap(Wild, {hello: 'world'}),
+        '/wild/data': wrap(Wild, { hello: 'world' }),
         '/wild/*': Wild,
 
         // This route has a pre-condition function that lets people in only 50% of times, and a second pre-condition that is always true
         // The second argument is a custom data object that will be passed to the `conditionsFailed` event if the pre-conditions fail
         '/lucky': wrap(Lucky,
-            {foo: 'bar'},
+            { foo: 'bar' },
             (detail) => {
                 // If there's a querystring parameter, override the random choice (tests need to be deterministic)
                 if (detail.querystring == 'pass=1') {
@@ -89,13 +89,13 @@ else {
     // Wildcard parameter
     routes.set('/wild', Wild)
     // Special route that has custom data that will be passed to the `routeLoaded` event
-    routes.set('/wild/data', wrap(Wild, {hello: 'world'}))
+    routes.set('/wild/data', wrap(Wild, { hello: 'world' }))
     routes.set('/wild/*', Wild)
 
     // This route has a pre-condition function that lets people in only 50% of times (and a second pre-condition that is always true)
     // The second argument is a custom data object that will be passed to the `conditionsFailed` event if the pre-conditions fail
     routes.set('/lucky', wrap(Lucky,
-        {foo: 'bar'},
+        { foo: 'bar' },
         (detail) => {
             return (Math.random() > 0.5)
         },
