@@ -61,63 +61,22 @@
   <!-- Also, use the "active" action to add the "active" CSS class when the URL matches -->
   <ul class="navigation-links">
     <li>
+      <a href="/form/form1" use:link use:active>Form1</a>
+    </li>
+    <li>
+      <a href="/form/form2" use:link use:active>Form2</a>
+    </li>
+    <li>
       <a href="/button" use:link use:active>Button</a>
     </li>
     <li>
       <a href="/input" use:link use:active>Input</a>
     </li>
-    <li>
-      <a href="/" use:link use:active>Home</a>
-    </li>
-    <li>
-      <a href="/brand" use:link>
-        <b>Brand</b>
-      </a>
-    </li>
-    <li>
-      <a href="/hello/svelte" use:link use:active={{ path: '/hello/*', className: 'active' }}>Say hi!</a>
-    </li>
-    <li>
-      <a href="/does/not/exist" use:link>Not found</a>
-    </li>
   </ul>
-
-  <!-- Navigate with buttons -->
-  <p class="navigation-buttons">
-    <button on:click={() => push('/wild/something')}>Visit /wild/something</button>
-    <button on:click={() => pop()}>Go back</button>
-    <button on:click={() => replace('/wild/replaced')}>Replace current page</button>
-  </p>
-
-  <!-- Query string -->
-  <a href="/hello/svelte?quantity=100" use:link use:active={'/hello/*'}>Querystring args</a>
-
-  <!-- Show the current path -->
-  <p>
-    Current path:
-    <code id="currentpath">{$location}</code>
-    <br />
-    Querystring:
-    <code id="currentqs">{$querystring}</code>
-  </p>
 
   <hr />
   <!-- Show the router -->
   <Router {routes} on:conditionsFailed={conditionsFailed} on:routeLoaded={routeLoaded} />
   <hr />
 
-  <!-- Testing dynamic list of links -->
-  <h2>Dynamic links</h2>
-  <ul class="navigation-dynamic-links">
-    {#each dynamicLinks as dl (dl.id)}
-      <li>
-        <a id="dynamic-link-{dl.id}" href={dl.link} use:link use:active>Dynamic Link {dl.id}</a>
-        -
-        <i id="delete-link-{dl.id}" on:click={() => (dynamicLinks = dynamicLinks.filter(e => e.id != dl.id))}>delete link</i>
-      </li>
-    {/each}
-  </ul>
-
-  <!-- Used for testing -->
-  <pre id="logbox">{logbox}</pre>
 </main>
