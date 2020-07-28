@@ -4,6 +4,7 @@
 
   export let params = {}
 
+  let form = config.forms[params.id]
   let fields = config.forms[params.id].fields
   let data = config.forms[params.id].data
   // console.log(params)
@@ -13,5 +14,5 @@
 <main>
   <p class="bg-black text-white">Form components</p>
 
-  <Form {fields} {data} />
+  <Form {form} />
 </main>
