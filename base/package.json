@@ -21,6 +21,8 @@
     "tailwindcss": "^1.5.2"
   },
   "dependencies": {
+    "apisauce": "^1.1.1",
+    "axios": "^0.19.2",
     "sirv-cli": "^0.4.6",
     "svelte-spa-router": "^2.2.0"
   }

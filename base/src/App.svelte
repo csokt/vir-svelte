@@ -67,6 +67,12 @@
       <a href="/form/form2" use:link use:active>Form2</a>
     </li>
     <li>
+      <a href="/list/list1" use:link use:active>List1</a>
+    </li>
+    <li>
+      <a href="/list/list2" use:link use:active>List2</a>
+    </li>
+    <li>
       <a href="/button" use:link use:active>Button</a>
     </li>
     <li>

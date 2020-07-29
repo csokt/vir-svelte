@@ -4,6 +4,7 @@ import { wrap } from 'svelte-spa-router'
 
 // Components
 import FormTest from './routes/FormTest.svelte'
+import ListTest from './routes/ListTest.svelte'
 import Button from './routes/Button.svelte'
 import Input from './routes/Input.svelte'
 import Home from './routes/Home.svelte'
@@ -26,6 +27,7 @@ if (!urlParams.has('routemap')) {
     routes = {
         // Exact path
         '/form/:id': FormTest,
+        '/list/:id': ListTest,
         '/button': Button,
         '/input': Input,
         '/': Home,
