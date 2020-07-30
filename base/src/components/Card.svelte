@@ -1,4 +1,6 @@
 <script>
+  import {push, pop, replace} from 'svelte-spa-router'
+
   export let card
   let disableFields = false
 
@@ -22,6 +24,19 @@
   {card.name}
 	{#each card.elements as element}
     <div>
+      {#if element.type === "menu"}
+        <div on:click={() => push(element.path)}>
+          {element.name}
+        </div>
+        <hr />
+      {/if}
+      {#if element.type === "list"}
+        {#each card.data[element.id] as row}
+          <div> {row[element.labelid]} </div>
+          <div> {row[element.valueid]} </div>
+          <hr />
+        {/each}
+      {/if}
       {#if element.type === "text"}
         {element.label || element.name}
         <input type=text
@@ -46,14 +61,6 @@
           {element.label || element.name}
         </button>
       {/if}
-      {#if element.type === "list"}
-        {#each card.data[element.id] as row}
-          <div> {row[element.labelid]} </div>
-          <div> {row[element.valueid]} </div>
-          <hr />
-        {/each}
-      {/if}
-
     </div>
 	{/each}
 </main>

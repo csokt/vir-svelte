@@ -1,12 +1,10 @@
 import apisauce from 'apisauce'
 
 const API = apisauce.create({
+  // baseURL: '/api2/',
   baseURL: 'http://api2.szefo.local:34000/api2/',
   timeout: 5000
 })
-
-let formdata = {field1: '', field2: -1}
-let list2_data = []
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -19,6 +17,18 @@ const config = {
       id: 'card1',
       name: 'Card 1',
       elements: [
+        {
+          id: 'menu1',
+          name: 'Go to the Button page',
+          type: 'menu',
+          path: '/button',
+        },
+        {
+          id: 'menu2',
+          name: 'Go to the Input page',
+          type: 'menu',
+          path: '/input',
+        },
         {
           id: 'field1a',
           name: 'Field 1a',
