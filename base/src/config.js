@@ -13,32 +13,12 @@ function delay(ms) {
 }
 
 const config = {
-  version: '18.10.21',
-  lists:{
-    list1: {
-      id: 'list1',
-      name: 'List 1',
-      labelid: 'field1',
-      valueid: 'field2',
-      data: [
-        {field1: 'alma', field2: 'jonatán'},
-        {field1: 'korte', field2: 'vilmos'},
-        {field1: 'szilva', field2: 'ringló'}
-      ]
-    },
-    list2: {
-      id: 'list2',
-      name: 'List 2',
-      labelid: 'repo_name',
-      valueid: 'name',
-      data: []
-    }
-  },
-  forms: {
-    form1: {
-      id: 'form1',
-      name: 'Form 1',
-      fields: [
+  version: '20.08.01',
+  cards: {
+    card1: {
+      id: 'card1',
+      name: 'Card 1',
+      elements: [
         {
           id: 'field1a',
           name: 'Field 1a',
@@ -72,37 +52,49 @@ const config = {
           onclick: (form) => {alert(JSON.stringify(form.data))},
         },
         {
-          id: 'button2',
-          name: 'Button 2',
-          type: 'button',
-          label: 'Teszt',
-          // label: 'Alaphelyzet',
-          // onclick: async (form) => {await(delay(3000)); form.data.field2=1; return 'success'},
-          onclick: async (form) => { const response = await API.get('/teszt'); config.lists.list2.data = response.data; return 'loaded'},
+          id: 'list1',
+          name: 'List 1',
+          type: 'list',
+          // labelid: 'repo_name',
+          // valueid: 'name',
+          labelid: 'field1',
+          valueid: 'field2',
         }
       ],
-      data: formdata
+      data: {
+        field1: '',
+        field2: -1,
+        list1: [
+          {field1: 'alma', field2: 'jonatán'},
+          {field1: 'korte', field2: 'vilmos'},
+          {field1: 'szilva', field2: 'ringló'}
+        ]
+      }
     },
-    form2: {
-      id: 'form2',
-      name: 'Form 2',
-      fields: [
+    card2: {
+      id: 'card2',
+      name: 'Card 2',
+      elements: [
         {
-          id: 'field1',
-          name: 'Field 1',
-          type: 'text',
-          attributes: {placeholder: 'Field 1'}
+          id: 'button1',
+          name: 'Button 1',
+          type: 'button',
+          label: 'Load data',
+          onclick: async (card) => { const response = await API.get('/teszt'); card.data.list1 = response.data; return 'loaded'},
         },
         {
-          id: 'field2',
-          name: 'Field 2',
-          type: 'number',
-          attributes: {placeholder: 'Field 2'}
+          id: 'list1',
+          name: 'List 1',
+          type: 'list',
+          labelid: 'repo_name',
+          valueid: 'name',
         }
       ],
-      data: formdata
+      data: {
+        list1: []
+      }
     },
-  }
+  },
 }
 
 export default config

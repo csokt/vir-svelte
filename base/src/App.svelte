@@ -61,16 +61,10 @@
   <!-- Also, use the "active" action to add the "active" CSS class when the URL matches -->
   <ul class="navigation-links">
     <li>
-      <a href="/form/form1" use:link use:active>Form1</a>
+      <a href="/card/card1" use:link use:active>Card1</a>
     </li>
     <li>
-      <a href="/form/form2" use:link use:active>Form2</a>
-    </li>
-    <li>
-      <a href="/list/list1" use:link use:active>List1</a>
-    </li>
-    <li>
-      <a href="/list/list2" use:link use:active>List2</a>
+      <a href="/card/card2" use:link use:active>Card2</a>
     </li>
     <li>
       <a href="/button" use:link use:active>Button</a>
