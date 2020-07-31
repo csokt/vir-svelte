@@ -2,20 +2,21 @@
   import {push, pop, replace} from 'svelte-spa-router'
 
   export let card
+  export let data
+
   let disableFields = false
 
   function exec_function(func) {
     disableFields = true
-    const func_returned = func(card)
-    if (Promise.resolve(func_returned) == func_returned) {
-      console.log('promise')
-    } else {
-      console.log('not promise')
-    }
+    const func_returned = func(data)
+    // if (Promise.resolve(func_returned) == func_returned) {
+    //   console.log('promise')
+    // } else {
+    //   console.log('not promise')
+    // }
     Promise.resolve(func_returned).then(result => console.log(result))
     .catch(error => console.log(error))
-    .finally(() => {disableFields = false; card.data = card.data})
-    // card.data = card.data
+    .finally(() => {disableFields = false; data = data})
   }
 
 </script>
@@ -31,7 +32,7 @@
         <hr />
       {/if}
       {#if element.type === "list"}
-        {#each card.data[element.id] as row}
+        {#each data[element.id] as row}
           <div> {row[element.labelid]} </div>
           <div> {row[element.valueid]} </div>
           <hr />
@@ -40,7 +41,7 @@
       {#if element.type === "text"}
         {element.label || element.name}
         <input type=text
-          bind:value={card.data[element.valueid || element.id]}
+          bind:value={data[element.valueid || element.id]}
           disabled={disableFields}
           {...element.attributes}
         >
@@ -48,7 +49,7 @@
       {#if element.type === "number"}
         {element.label || element.name}
         <input type=number
-          bind:value={card.data[element.valueid || element.id]}
+          bind:value={data[element.valueid || element.id]}
           disabled={disableFields}
           {...element.attributes}
         >
@@ -56,7 +57,7 @@
       {#if element.type === "button"}
         <button type="button"
           on:click={exec_function(element.onclick)}
-          disabled={disableFields || element.disabled && element.disabled(card)}
+          disabled={disableFields || element.disabled && element.disabled(data)}
         >
           {element.label || element.name}
         </button>

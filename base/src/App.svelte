@@ -47,6 +47,9 @@
   <!-- Also, use the "active" action to add the "active" CSS class when the URL matches -->
   <ul class="navigation-links">
     <li>
+      <a href="/page/page1" use:link use:active>Page1</a>
+    </li>
+    <li>
       <a href="/card/card1" use:link use:active>Card1</a>
     </li>
     <li>

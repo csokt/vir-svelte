@@ -12,6 +12,20 @@ function delay(ms) {
 
 const config = {
   version: '20.08.01',
+  pages: {
+    page1: {
+      id: 'page1',
+      name: 'Page 1',
+      cards: [
+        { cardid: 'card1' },
+        { cardid: 'card2' }
+      ],
+      data: {
+        card1_list1: [],
+        card2_list1: []
+      }
+    }
+  },
   cards: {
     card1: {
       id: 'card1',
@@ -57,12 +71,12 @@ const config = {
           id: 'button1',
           name: 'Button 1',
           type: 'button',
-          label: 'Nyomógomb',
-          disabled: (form) => {return !form.data.field2},
-          onclick: (form) => {alert(JSON.stringify(form.data))},
+          label: 'Alert data',
+          // disabled: (data) => {return !data.field2},
+          onclick: (data) => {alert(JSON.stringify(data))},
         },
         {
-          id: 'list1',
+          id: 'card1_list1',
           name: 'List 1',
           type: 'list',
           // labelid: 'repo_name',
@@ -74,7 +88,7 @@ const config = {
       data: {
         field1: '',
         field2: -1,
-        list1: [
+        card1_list1: [
           {field1: 'alma', field2: 'jonatán'},
           {field1: 'korte', field2: 'vilmos'},
           {field1: 'szilva', field2: 'ringló'}
@@ -90,10 +104,10 @@ const config = {
           name: 'Button 1',
           type: 'button',
           label: 'Load data',
-          onclick: async (card) => { const response = await API.get('/teszt'); card.data.list1 = response.data; return 'loaded'},
+          onclick: async (data) => { const response = await API.get('/teszt'); data.card2_list1 = response.data; return 'loaded'},
         },
         {
-          id: 'list1',
+          id: 'card2_list1',
           name: 'List 1',
           type: 'list',
           labelid: 'repo_name',
@@ -101,7 +115,7 @@ const config = {
         }
       ],
       data: {
-        list1: []
+        card2_list1: []
       }
     },
   },

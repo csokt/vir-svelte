@@ -11,5 +11,5 @@
 <main>
   <p class="bg-black text-white">Card components</p>
 
-  <Card {card} />
+  <Card {card} data={card.data} />
 </main>
