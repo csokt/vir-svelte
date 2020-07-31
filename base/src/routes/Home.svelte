@@ -1,3 +1,8 @@
-<h2 class="routetitle">Home!</h2>
+<script>
+  import config from '../config'
+  import Page from '../components/Page.svelte'
+</script>
 
-<p>Welcome to this sample code!</p>
+<main>
+  <Page page={config.pages.home} />
+</main>

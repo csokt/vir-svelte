@@ -11,6 +11,24 @@ function delay(ms) {
 }
 
 const elements = {
+  page1_menu: {
+    id: 'page1_menu',
+    name: 'Page 1',
+    type: 'menu',
+    path: '/page/page1',
+  },
+  card1_menu: {
+    id: 'card1_menu',
+    name: 'Card 1',
+    type: 'menu',
+    path: '/card/card1',
+  },
+  card2_menu: {
+    id: 'card2_menu',
+    name: 'Card 2',
+    type: 'menu',
+    path: '/card/card2',
+  },
   button_menu: {
     id: 'button_menu',
     name: 'Go to the Button page',
@@ -46,6 +64,14 @@ const elements = {
 const config = {
   version: '20.08.01',
   pages: {
+    home: {
+      id: 'home',
+      name: 'Home!',
+      cards: [
+        { cardid: 'home' },
+      ],
+      data: {}
+    },
     page1: {
       id: 'page1',
       name: 'Page 1',
@@ -60,12 +86,23 @@ const config = {
     }
   },
   cards: {
+    home: {
+      id: 'home',
+      // name: 'Home Card',
+      name: '',
+      elements: [
+        elements.page1_menu,
+        elements.card1_menu,
+        elements.card2_menu,
+        elements.button_menu,
+        elements.input_menu,
+      ],
+      data: {}
+    },
     card1: {
       id: 'card1',
       name: 'Card 1',
       elements: [
-        elements.button_menu,
-        elements.input_menu,
         elements.text_field,
         {
           id: 'field1a',
@@ -117,6 +154,7 @@ const config = {
           onclick: async (data) => { const response = await API.get('/teszt/'+data.cikkszam); data.card2_list1 = response.data; return 'loaded'},
           // onclick: async (data) => { const response = await API.get('/teszt/'+data.text_field); data.card2_list1 = response.data; return 'loaded'},
         },
+        elements.alert_data_button,
         {
           id: 'card2_list1',
           name: 'List 1',

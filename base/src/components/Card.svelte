@@ -22,6 +22,7 @@
 </script>
 
 <main>
+  <hr />
   {card.name}
 	{#each card.elements as element}
     <div>
