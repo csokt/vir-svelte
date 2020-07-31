@@ -10,6 +10,39 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+const elements = {
+  button_menu: {
+    id: 'button_menu',
+    name: 'Go to the Button page',
+    type: 'menu',
+    path: '/button',
+  },
+  input_menu: {
+    id: 'input_menu',
+    name: 'Go to the Input page',
+    type: 'menu',
+    path: '/input',
+  },
+  text_field: {
+    id: 'text_field',
+    name: 'Text field',
+    type: 'text',
+    attributes: {placeholder: 'Text field'}
+  },
+  number_field: {
+    id: 'number_field',
+    name: 'Number field',
+    type: 'number',
+    attributes: {placeholder: 'Number field'}
+  },
+  alert_data_button: {
+    id: 'alert_data_button',
+    name: 'Alert data',
+    type: 'button',
+    onclick: (data) => {alert(JSON.stringify(data))},
+  },
+}
+
 const config = {
   version: '20.08.01',
   pages: {
@@ -31,18 +64,9 @@ const config = {
       id: 'card1',
       name: 'Card 1',
       elements: [
-        {
-          id: 'menu1',
-          name: 'Go to the Button page',
-          type: 'menu',
-          path: '/button',
-        },
-        {
-          id: 'menu2',
-          name: 'Go to the Input page',
-          type: 'menu',
-          path: '/input',
-        },
+        elements.button_menu,
+        elements.input_menu,
+        elements.text_field,
         {
           id: 'field1a',
           name: 'Field 1a',
@@ -59,35 +83,16 @@ const config = {
           label: 'Első b',
           attributes: {placeholder: 'readonly', readonly:true}
         },
-        {
-          id: 'field2',
-          name: 'Field 2',
-          type: 'number',
-          valueid: 'field2',
-          label: 'Második',
-          attributes: {placeholder: 'Field 2'}
-        },
-        {
-          id: 'button1',
-          name: 'Button 1',
-          type: 'button',
-          label: 'Alert data',
-          // disabled: (data) => {return !data.field2},
-          onclick: (data) => {alert(JSON.stringify(data))},
-        },
+        elements.alert_data_button,
         {
           id: 'card1_list1',
-          name: 'List 1',
+          name: 'Gyümölcsök',
           type: 'list',
-          // labelid: 'repo_name',
-          // valueid: 'name',
           labelid: 'field1',
           valueid: 'field2',
         }
       ],
       data: {
-        field1: '',
-        field2: -1,
         card1_list1: [
           {field1: 'alma', field2: 'jonatán'},
           {field1: 'korte', field2: 'vilmos'},
@@ -100,11 +105,17 @@ const config = {
       name: 'Card 2',
       elements: [
         {
+          id: 'cikkszam',
+          name: 'Cikkszám',
+          type: 'text',
+          attributes: {placeholder: 'Cikkszám'}
+        },
+        {
           id: 'button1',
-          name: 'Button 1',
+          name: 'Keres',
           type: 'button',
-          label: 'Load data',
-          onclick: async (data) => { const response = await API.get('/teszt'); data.card2_list1 = response.data; return 'loaded'},
+          onclick: async (data) => { const response = await API.get('/teszt/'+data.cikkszam); data.card2_list1 = response.data; return 'loaded'},
+          // onclick: async (data) => { const response = await API.get('/teszt/'+data.text_field); data.card2_list1 = response.data; return 'loaded'},
         },
         {
           id: 'card2_list1',
@@ -115,6 +126,7 @@ const config = {
         }
       ],
       data: {
+        cikkszam: '25162',
         card2_list1: []
       }
     },
