@@ -57,6 +57,7 @@ const elements = {
     id: 'alert_data_button',
     name: 'Alert data',
     type: 'button',
+    attributes: {danger: true},
     onclick: (data) => {alert(JSON.stringify(data))},
   },
 }
@@ -104,6 +105,7 @@ const config = {
       name: 'Card 1',
       elements: [
         elements.text_field,
+        elements.number_field,
         {
           id: 'field1a',
           name: 'Field 1a',
