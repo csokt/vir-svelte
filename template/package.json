@@ -16,6 +16,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "apisauce": "^1.1.2",
     "sirv-cli": "^1.0.0",
     "smelte": "^1.0.15",
     "svelte-spa-router": "^2.2.0"

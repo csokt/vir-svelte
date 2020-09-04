@@ -1,8 +1,8 @@
 <script>
+  import config from '../config'
+  import Page from '../components/Page.svelte'
 </script>
 
-<h2>Hello World!</h2>
-<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-
-<style>
-</style>
+<main>
+  <Page page={config.pages.home} />
+</main>
