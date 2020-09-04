@@ -1,6 +1,7 @@
 <script>
   import {push, pop, replace} from 'svelte-spa-router'
-  import { Button, TextField } from 'attractions'
+  // import { Button, TextField } from 'attractions'
+  import Button from "smelte/src/components/Button"
 
   export let card
   export let data
@@ -33,6 +34,7 @@
         </div>
         <hr />
       {/if}
+
       {#if element.type === "list"}
         {#each data[element.id] as row}
           <div> {row[element.labelid]} </div>
@@ -40,7 +42,8 @@
           <hr />
         {/each}
       {/if}
-      {#if element.type === "Xtext"}
+
+      {#if element.type === "text"}
         {element.label || element.name}
         <input type=text
           bind:value={data[element.valueid || element.id]}
@@ -48,7 +51,7 @@
           {...element.attributes}
         >
       {/if}
-
+<!--
       {#if element.type === "text"}
         <TextField
           outline
@@ -58,8 +61,8 @@
           {...element.attributes}
         />
       {/if}
-
-      {#if element.type === "Xnumber"}
+ -->
+      {#if element.type === "number"}
         {element.label || element.name}
         <input type=number
           bind:value={data[element.valueid || element.id]}
@@ -67,7 +70,7 @@
           {...element.attributes}
         >
       {/if}
-
+<!--
       {#if element.type === "number"}
         <TextField
           type=number
@@ -78,7 +81,7 @@
           {...element.attributes}
         />
       {/if}
-
+ -->
       {#if element.type === "Xbutton"}
         <button type="button"
           on:click={exec_function(element.onclick)}
@@ -87,7 +90,7 @@
           {element.label || element.name}
         </button>
       {/if}
-
+<!--
       {#if element.type === "button"}
         <Button
           filled
@@ -97,6 +100,10 @@
         >
           {element.label || element.name}
         </Button>
+      {/if}
+ -->
+      {#if element.type === "button"}
+        <Button>Button</Button>
       {/if}
     </div>
 	{/each}

@@ -1,4 +1,5 @@
 <script>
+  import "smelte/src/tailwind.css"
   import Tailwindcss from './Tailwindcss.svelte'
   // Import the router component
   // Normally, this would be import: `import Router from 'svelte-spa-router'`
