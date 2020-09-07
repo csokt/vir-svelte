@@ -2,6 +2,8 @@
   import {push, pop, replace} from 'svelte-spa-router'
   // import { Button, TextField } from 'attractions'
   import Button from 'smelte/src/components/Button'
+  import TextField from "smelte/src/components/TextField"
+  import Select from 'smelte/src/components/Select'
 
   export let card
   export let data
@@ -9,7 +11,9 @@
   let disableFields = false
 
   function exec_function(func) {
+    console.log('disableFields =', disableFields)
     disableFields = true
+    console.log('disableFields =', disableFields)
     const func_returned = func(data)
     // if (Promise.resolve(func_returned) == func_returned) {
     //   console.log('promise')
@@ -18,7 +22,7 @@
     // }
     Promise.resolve(func_returned).then(result => console.log(result))
     .catch(error => console.log(error))
-    .finally(() => {disableFields = false; data = data})
+    .finally(() => {console.log('finally'); disableFields = false; console.log('disableFields =', disableFields); data = data})
   }
 
 </script>
@@ -43,54 +47,37 @@
         {/each}
       {/if}
 
-      {#if element.type === "text"}
-        {element.label || element.name}
-        <input type=text
-          bind:value={data[element.valueid || element.id]}
-          disabled={disableFields}
-          {...element.attributes}
-        >
-      {/if}
-<!--
-      {#if element.type === "text"}
-        <TextField
-          outline
-          label={element.label || element.name}
-          bind:value={data[element.valueid || element.id]}
-          disabled={disableFields}
-          {...element.attributes}
-        />
-      {/if}
- -->
-      {#if element.type === "number"}
-        {element.label || element.name}
-        <input type=number
-          bind:value={data[element.valueid || element.id]}
-          disabled={disableFields}
-          {...element.attributes}
-        >
-      {/if}
-<!--
-      {#if element.type === "number"}
-        <TextField
-          type=number
-          outline
-          label={element.label || element.name}
-          bind:value={data[element.valueid || element.id]}
-          disabled={disableFields}
-          {...element.attributes}
-        />
-      {/if}
- -->
       {#if element.type === "button"}
         <Button
           on:click={exec_function(element.onclick)}
-          disabled={disableFields || element.disabled && element.disabled(data)}
+          disabled={disableFields}
           {...element.attributes}
         >
-          {element.label || element.name}
+          {element.name}
         </Button>
+      {/if}
+
+      {#if element.type === "text"}
+        <TextField
+          label={element.name}
+          bind:value={data[element.id]}
+          disabled={disableFields}
+          {...element.attributes}
+        />
+      {/if}
+
+      {#if element.type === "select"}
+        <Select
+          label={element.name}
+          bind:value={data[element.id].value}
+          items={data[element.id].items}
+          append=""
+          disabled={disableFields}
+          {...element.attributes}
+        />
       {/if}
     </div>
 	{/each}
 </main>
+          <!-- disabled={disableFields || data['text_field']} -->
+          <!-- disabled={disableFields || element.disabled && element.disabled(data)} -->
