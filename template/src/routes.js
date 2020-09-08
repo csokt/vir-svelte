@@ -9,7 +9,7 @@ const routes = {
   '/': Home,
   '/page/:id': Page,
   '/card/:id': Card,
-  '/page1': Page1,
+  '/page1/:page': Page1,
   '/page2': Page2,
   '*': NotFound,
   }

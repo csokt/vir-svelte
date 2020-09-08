@@ -40,7 +40,7 @@
       {/if}
 
       {#if element.type === "list"}
-        {#each data[element.id] as row}
+        {#each data[element.id].value as row}
           <div> {row[element.labelid]} </div>
           <div> {row[element.valueid]} </div>
           <hr />
@@ -60,7 +60,7 @@
       {#if element.type === "text"}
         <TextField
           label={element.name}
-          bind:value={data[element.id]}
+          bind:value={data[element.id].value}
           disabled={disableFields}
           {...element.attributes}
         />
