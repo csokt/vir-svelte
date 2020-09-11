@@ -11,9 +11,7 @@
   let disableFields = false
 
   function exec_function(func) {
-    console.log('disableFields =', disableFields)
     disableFields = true
-    console.log('disableFields =', disableFields)
     const func_returned = func(data)
     // if (Promise.resolve(func_returned) == func_returned) {
     //   console.log('promise')
@@ -22,7 +20,7 @@
     // }
     Promise.resolve(func_returned).then(result => console.log(result))
     .catch(error => console.log(error))
-    .finally(() => {console.log('finally'); disableFields = false; console.log('disableFields =', disableFields); data = data})
+    .finally(() => { disableFields = false; data = data })
   }
 
 </script>
