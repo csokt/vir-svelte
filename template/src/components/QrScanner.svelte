@@ -5,7 +5,7 @@
 	import Button from 'smelte/src/components/Button'
 
   export let title = 'Scan QR Code from Video Camera'
-  export let showDialog = false
+  export let showDialog = true
 
   export let facing = 'environment'
   let qrcode = ''
@@ -17,6 +17,19 @@
     .then((videoInputDevices) => {
       devices = videoInputDevices
       console.log(devices)
+      let deviceId = ''
+      qrcode = ''
+      if (facing === 'environment' && devices.length > 1) {
+        deviceId = devices[1].deviceId
+      }
+      codeReader.decodeOnceFromVideoDevice(deviceId, 'video').then((result) => {
+        qrcode = result.text
+        codeReader.reset()
+      }).catch((err) => {
+        qrcode = err
+        console.error(err)
+      })
+
     })
     .catch((err) => {
       console.error(err)

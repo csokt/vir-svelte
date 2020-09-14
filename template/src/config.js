@@ -78,6 +78,12 @@ const config = {
           type: 'menu',
           path: '/card/card2',
         },
+        {
+          id: 'qr_menu',
+          name: 'QR reader teszt',
+          type: 'menu',
+          path: '/qr',
+        },
       ],
     },
     card1: {

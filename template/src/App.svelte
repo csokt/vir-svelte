@@ -16,3 +16,9 @@
   <Button color='dark'      on:click={() => push('/')}>Home dark</Button>
   <Router {routes}/>
 </main>
+
+<style>
+  :global(i) {
+    font-style: normal
+  }
+</style>
