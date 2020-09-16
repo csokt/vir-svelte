@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import {push, pop, replace} from 'svelte-spa-router'
+  import Card from 'smelte/src/components/Card'
   import Button from 'smelte/src/components/Button'
   import TextField from "smelte/src/components/TextField"
   import Select from 'smelte/src/components/Select'
@@ -32,10 +33,9 @@
 
 </script>
 
-<main>
-  <hr />
-  {card.name}
-	{#each card.elements as element}
+<div class="inline-flex flex-col">
+  <div>{card.name}</div>
+  {#each card.elements as element}
     <div>
       {#if element.type === "menu"}
         <div on:click={() => push(element.path)}>
@@ -93,5 +93,5 @@
         />
       {/if}
     </div>
-	{/each}
-</main>
+  {/each}
+</div>

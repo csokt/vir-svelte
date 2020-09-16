@@ -5,11 +5,13 @@
   export let page
 </script>
 
-<main>
+<div>
   {page.name}
+</div>
+<div class="flex flex-row">
 	{#each page.cards as card}
     <div>
       <Card card={config.cards[card.cardid]} />
     </div>
 	{/each}
-</main>
+</div>

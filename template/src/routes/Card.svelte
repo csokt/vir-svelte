@@ -9,7 +9,5 @@
 </script>
 
 <main>
-  <p class="bg-black text-white">Card components</p>
-
   <Card {card} />
 </main>

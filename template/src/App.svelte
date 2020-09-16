@@ -7,15 +7,10 @@
 </script>
 
 <main>
-<!--
-  <Button color='primary'   on:click={() => push('/')}>Home primary</Button>
-  <Button color='secondary' on:click={() => push('/page1')}>Page 1 secondary</Button>
-  <Button color='error'     on:click={() => push('/page2')}>Page 2 error</Button>
-  <Button color='success'   on:click={() => push('/')}>Home success</Button>
-  <Button color='alert'     on:click={() => push('/page1')}>Page 1 alert</Button>
-  <Button color='blue'      on:click={() => push('/page2')}>Page 2 blue</Button>
-  <Button color='dark'      on:click={() => push('/')}>Home dark</Button>
- -->
+  <div class="bg-primary-400 text-white p-1">
+    <span class="text-xl" on:click={() => pop()}>&#11013;</span>
+    <span class="text-lg pl-2">Svelte teszt projekt</span>
+  </div>
   <Router {routes}/>
 </main>
 

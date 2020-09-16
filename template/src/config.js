@@ -105,10 +105,16 @@ const config = {
           value: '',
           items: [],
           onMount: (fields) => {fields.select1.items = [
+              { value: 0, text: "Zero" },
               { value: 1, text: "One" },
               { value: 2, text: "Two" },
               { value: 3, text: "Three" },
               { value: 4, text: "Four" },
+              { value: 5, text: "Five" },
+              { value: 6, text: "Six" },
+              { value: 7, text: "Seven" },
+              { value: 8, text: "Eight" },
+              { value: 9, text: "Nine" },
           ]},
         },
         {
@@ -122,19 +128,19 @@ const config = {
               { value: 3, text: "Három" },
           ]},
         },
-        common_elements.alert_fields_button,
-        {
-          id: 'card1_list1',
-          name: 'Gyümölcsök',
-          type: 'list',
-          value: [
-            {field1: 'alma', field2: 'jonatán'},
-            {field1: 'korte', field2: 'vilmos'},
-            {field1: 'szilva', field2: 'ringló'}
-          ],
-          labelid: 'field1',
-          valueid: 'field2',
-        }
+        // common_elements.alert_fields_button,
+        // {
+        //   id: 'card1_list1',
+        //   name: 'Gyümölcsök',
+        //   type: 'list',
+        //   value: [
+        //     {field1: 'alma', field2: 'jonatán'},
+        //     {field1: 'korte', field2: 'vilmos'},
+        //     {field1: 'szilva', field2: 'ringló'}
+        //   ],
+        //   labelid: 'field1',
+        //   valueid: 'field2',
+        // }
       ],
     },
     card2: {
@@ -155,7 +161,7 @@ const config = {
           value: null,
           onClick: async (fields) => { const response = await API.get('/teszt/'+fields.cikkszam.value); fields.card2_list1.value = response.data; return 'loaded'},
         },
-        common_elements.alert_fields_button,
+        // common_elements.alert_fields_button,
         {
           id: 'card2_list1',
           name: 'List 1',

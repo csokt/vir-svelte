@@ -9,6 +9,5 @@
 </script>
 
 <main>
-  <p class="bg-black text-white">Page components</p>
   <Page {page} />
 </main>
