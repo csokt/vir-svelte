@@ -32,13 +32,13 @@ const common_elements = {
     value: '',
     attributes: {type: 'number', placeholder: 'Number field'}
   },
-  alert_data_button: {
-    id: 'alert_data_button',
+  alert_fields_button: {
+    id: 'alert_fields_button',
     name: 'Alert fields',
     type: 'button',
     value: null,
     attributes: {color: 'alert'},
-    onclick: (fields) => {alert(JSON.stringify(fields))},
+    onClick: (fields) => {alert(JSON.stringify(fields))},
   },
 }
 
@@ -92,32 +92,37 @@ const config = {
       name: 'Card 1',
       elements: [
         { ...common_elements.text_field },
-        { ...common_elements.qrtext_field },
-        { ...common_elements.number_field },
+        { ...common_elements.qrtext_field,
+          onChange: (fields) => {fields.text_field = fields.qrtext_field}
+        },
+        { ...common_elements.number_field,
+          onChange: (fields) => {fields.text_field = fields.number_field}
+        },
         {
           id: 'select1',
           type: 'select',
           name: 'Select 1',
           value: '',
-          items: [
+          items: [],
+          onMount: (fields) => {fields.select1.items = [
               { value: 1, text: "One" },
               { value: 2, text: "Two" },
               { value: 3, text: "Three" },
               { value: 4, text: "Four" },
-          ],
+          ]},
         },
         {
           id: 'select_button',
           name: 'Modify select items',
           type: 'button',
           value: null,
-          onclick: (fields) => {fields.select1.items = [
+          onClick: (fields) => {fields.select1.items = [
               { value: 1, text: "Egy" },
               { value: 2, text: "Kettő" },
               { value: 3, text: "Három" },
           ]},
         },
-        common_elements.alert_data_button,
+        common_elements.alert_fields_button,
         {
           id: 'card1_list1',
           name: 'Gyümölcsök',
@@ -148,9 +153,9 @@ const config = {
           name: 'Keres',
           type: 'button',
           value: null,
-          onclick: async (fields) => { const response = await API.get('/teszt/'+fields.cikkszam.value); fields.card2_list1.value = response.data; return 'loaded'},
+          onClick: async (fields) => { const response = await API.get('/teszt/'+fields.cikkszam.value); fields.card2_list1.value = response.data; return 'loaded'},
         },
-        common_elements.alert_data_button,
+        common_elements.alert_fields_button,
         {
           id: 'card2_list1',
           name: 'List 1',

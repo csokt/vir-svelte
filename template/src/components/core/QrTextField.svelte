@@ -1,7 +1,10 @@
 <script>
+  import { createEventDispatcher } from 'svelte'
   import TextField from "smelte/src/components/TextField"
 	import Dialog from 'smelte/src/components/Dialog'
   import QrScanner from './QrScanner.svelte'
+
+  const dispatch = createEventDispatcher()
 
   export let title = 'Scan QR'
   export let showDialog = false
@@ -13,6 +16,7 @@
 
   function onScanned(event) {
     value = event.detail
+    dispatch('change', value)
     showDialog = false
   }
 
@@ -38,4 +42,5 @@
   append=&#9778;
   {...attributes}
   on:click-append={() => showDialog = true}
+  on:change
 />

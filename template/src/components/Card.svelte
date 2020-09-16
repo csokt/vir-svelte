@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte'
   import {push, pop, replace} from 'svelte-spa-router'
   import Button from 'smelte/src/components/Button'
   import TextField from "smelte/src/components/TextField"
@@ -6,22 +7,28 @@
   import QrTextField from './core/QrTextField.svelte'
 
   export let card
-  export let fields
-
+  let fields = card.fields
   let disableFields = false
 
   function exec_function(func) {
+    if (!func) return
     disableFields = true
     const func_returned = func(fields)
-    // if (Promise.resolve(func_returned) == func_returned) {
-    //   console.log('promise')
-    // } else {
-    //   console.log('not promise')
-    // }
-    Promise.resolve(func_returned).then(result => console.log(result))
+    Promise.resolve(func_returned).then(result => {})
     .catch(error => console.log(error))
     .finally(() => { disableFields = false; fields = fields })
   }
+
+	onMount(() => {
+    for (const key in fields) {
+      if (fields.hasOwnProperty(key)) {
+        const field = fields[key]
+        if (field.hasOwnProperty('onMount')) {
+          exec_function(field.onMount)
+        }
+      }
+    }
+	})
 
 </script>
 
@@ -47,9 +54,9 @@
 
       {#if element.type === "button"}
         <Button
-          on:click={exec_function(element.onclick)}
           disabled={disableFields}
           {...element.attributes}
+          on:click={exec_function(element.onClick)}
         >
           {element.name}
         </Button>
@@ -61,6 +68,7 @@
           bind:value={fields[element.id].value}
           disabled={disableFields}
           {...element.attributes}
+          on:change={exec_function(element.onChange)}
         />
       {/if}
 
@@ -70,6 +78,7 @@
           bind:value={fields[element.id].value}
           disabled={disableFields}
           attributes={element.attributes}
+          on:change={exec_function(element.onChange)}
         />
       {/if}
 

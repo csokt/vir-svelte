@@ -9,7 +9,7 @@
   {page.name}
 	{#each page.cards as card}
     <div>
-      <Card card={config.cards[card.cardid]} fields={config.cards[card.cardid].fields} />
+      <Card card={config.cards[card.cardid]} />
     </div>
 	{/each}
 </main>
