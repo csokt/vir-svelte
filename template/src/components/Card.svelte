@@ -1,18 +1,18 @@
 <script>
   import {push, pop, replace} from 'svelte-spa-router'
-  // import { Button, TextField } from 'attractions'
   import Button from 'smelte/src/components/Button'
   import TextField from "smelte/src/components/TextField"
   import Select from 'smelte/src/components/Select'
+  import QrTextField from './core/QrTextField.svelte'
 
   export let card
-  export let data
+  export let fields
 
   let disableFields = false
 
   function exec_function(func) {
     disableFields = true
-    const func_returned = func(data)
+    const func_returned = func(fields)
     // if (Promise.resolve(func_returned) == func_returned) {
     //   console.log('promise')
     // } else {
@@ -20,7 +20,7 @@
     // }
     Promise.resolve(func_returned).then(result => console.log(result))
     .catch(error => console.log(error))
-    .finally(() => { disableFields = false; data = data })
+    .finally(() => { disableFields = false; fields = fields })
   }
 
 </script>
@@ -38,7 +38,7 @@
       {/if}
 
       {#if element.type === "list"}
-        {#each data[element.id].value as row}
+        {#each fields[element.id].value as row}
           <div> {row[element.labelid]} </div>
           <div> {row[element.valueid]} </div>
           <hr />
@@ -58,17 +58,26 @@
       {#if element.type === "text"}
         <TextField
           label={element.name}
-          bind:value={data[element.id].value}
+          bind:value={fields[element.id].value}
           disabled={disableFields}
           {...element.attributes}
+        />
+      {/if}
+
+      {#if element.type === "qrtext"}
+        <QrTextField
+          label={element.name}
+          bind:value={fields[element.id].value}
+          disabled={disableFields}
+          attributes={element.attributes}
         />
       {/if}
 
       {#if element.type === "select"}
         <Select
           label={element.name}
-          bind:value={data[element.id].value}
-          items={data[element.id].items}
+          bind:value={fields[element.id].value}
+          items={fields[element.id].items}
           append=""
           disabled={disableFields}
           {...element.attributes}
@@ -77,5 +86,3 @@
     </div>
 	{/each}
 </main>
-          <!-- disabled={disableFields || data['text_field']} -->
-          <!-- disabled={disableFields || element.disabled && element.disabled(data)} -->

@@ -1,10 +1,9 @@
 <script>
-  import Button from 'smelte/src/components/Button'
   import TextField from "smelte/src/components/TextField"
 	import Dialog from 'smelte/src/components/Dialog'
   import QrScanner from './QrScanner.svelte'
 
-  export let title = 'Scan QR Code from Video Camera'
+  export let title = 'Scan QR'
   export let showDialog = false
 
   export let value = ''
@@ -17,26 +16,19 @@
     showDialog = false
   }
 
-  function onError(event) {
-    value = event.detail
-    showDialog = false
-  }
-
 </script>
 
-<Dialog bind:value={showDialog}>
-  <h6 slot="title">{title}</h6>
+<Dialog bind:value={showDialog} persistent>
+  <div slot="title">
+    <span on:click={() => showDialog = false}>&#11013;</span>
+    {title}
+  </div>
 
   {#if showDialog}
     <QrScanner
       on:scanned={onScanned}
-      on:error={onError}
     />
   {/if}
-
-  <div slot="actions">
-    <Button on:click={() => showDialog = false}>Exit</Button>
-  </div>
 </Dialog>
 
 <TextField
@@ -47,4 +39,3 @@
   {...attributes}
   on:click-append={() => showDialog = true}
 />
-  <!-- append=&#9635;&#9638;QR -->

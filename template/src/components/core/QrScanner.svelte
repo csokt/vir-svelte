@@ -8,19 +8,18 @@
   export let width = 340
   export let height = 340
   let codeReader
+  let message = ''
 
 	onMount(async () => {
     codeReader = new BrowserQRCodeReader()
     let devices = []
     let deviceId = ''
     let result = {}
-    let message = ''
 
     try {
       devices = await codeReader.getVideoInputDevices()
       if (!devices.length) {
         message = 'Nincs kamera!'
-        dispatch('error', message)
         console.log(message)
         return
       }
@@ -35,18 +34,17 @@
 
     } catch (error) {
       message = 'A kamera nem elérhető!'
-      dispatch('error', message)
       console.error(error)
     }
 	})
 
   onDestroy(() => {
-    console.log('QrScanner onDestroy')
     codeReader.reset()
   })
 </script>
 
 <div>
+  {message}
   <video id="qr-scan-video" {width} {height}>
     <track kind="captions" label="Video stream">
   </video>

@@ -18,6 +18,13 @@ const common_elements = {
     value: '',
     // attributes: {placeholder: 'Text field'}
   },
+  qrtext_field: {
+    id: 'qrtext_field',
+    name: 'QR text field',
+    type: 'qrtext',
+    value: '',
+    // attributes: {placeholder: 'QR text field'}
+  },
   number_field: {
     id: 'number_field',
     name: 'Number field',
@@ -27,11 +34,11 @@ const common_elements = {
   },
   alert_data_button: {
     id: 'alert_data_button',
-    name: 'Alert data',
+    name: 'Alert fields',
     type: 'button',
     value: null,
     attributes: {color: 'alert'},
-    onclick: (data) => {alert(JSON.stringify(data))},
+    onclick: (fields) => {alert(JSON.stringify(fields))},
   },
 }
 
@@ -78,12 +85,6 @@ const config = {
           type: 'menu',
           path: '/card/card2',
         },
-        {
-          id: 'qr_menu',
-          name: 'QR reader teszt',
-          type: 'menu',
-          path: '/qr',
-        },
       ],
     },
     card1: {
@@ -91,6 +92,7 @@ const config = {
       name: 'Card 1',
       elements: [
         { ...common_elements.text_field },
+        { ...common_elements.qrtext_field },
         { ...common_elements.number_field },
         {
           id: 'select1',
@@ -109,7 +111,7 @@ const config = {
           name: 'Modify select items',
           type: 'button',
           value: null,
-          onclick: (data) => {data.select1.items = [
+          onclick: (fields) => {fields.select1.items = [
               { value: 1, text: "Egy" },
               { value: 2, text: "Kettő" },
               { value: 3, text: "Három" },
@@ -138,7 +140,7 @@ const config = {
           id: 'cikkszam',
           name: 'Cikkszám',
           type: 'text',
-          value: '25529',
+          value: '25383',
           attributes: {placeholder: 'Cikkszám'}
         },
         {
@@ -146,7 +148,7 @@ const config = {
           name: 'Keres',
           type: 'button',
           value: null,
-          onclick: async (data) => { const response = await API.get('/teszt/'+data.cikkszam.value); data.card2_list1.value = response.data; return 'loaded'},
+          onclick: async (fields) => { const response = await API.get('/teszt/'+fields.cikkszam.value); fields.card2_list1.value = response.data; return 'loaded'},
         },
         common_elements.alert_data_button,
         {
@@ -189,9 +191,9 @@ for (const key in config.cards) {
     const card = config.cards[key]
     checkProp('name', card)
     checkProp('elements', card)
-    card.data = {}
+    card.fields = {}
     for (const element of card.elements) {
-      card.data[element.id] = element
+      card.fields[element.id] = element
       checkProp('name', card, element)
       checkProp('type', card, element)
       if (!['menu'].includes(element.type)) {
