@@ -18,8 +18,12 @@
     <span class="text-xl" on:click={() => pop()}>&#11013;</span>
     <span class="text-lg pl-2">{title}</span>
   </div>
-  <Router {routes}/>
+  <div class="App flex justify-center container p-2 mx-auto">
+    <Router {routes}/>
+  </div>
 </main>
+  <!-- <div class="App container p-2"> -->
+  <!-- <div class="App container flex flex-row flex-wrap justify-evenly"> -->
 
 <style>
   :global(i) {

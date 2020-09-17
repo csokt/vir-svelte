@@ -8,6 +8,4 @@
 
 </script>
 
-<main>
-  <Page {page} />
-</main>
+<Page {page} />

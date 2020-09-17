@@ -8,6 +8,4 @@
 
 </script>
 
-<main>
-  <Card {card} />
-</main>
+<Card {card} />

@@ -5,7 +5,7 @@ export default {
   home: {
     id: 'home',
     // name: 'Home Card',
-    name: '',
+    name: 'Home',
     elements: [
       {
         id: 'page1_menu',

@@ -33,7 +33,8 @@
 
 </script>
 
-<div class="inline-flex flex-col">
+<!-- <div class="max-w-sm"> -->
+<div class="Card w-full max-w-sm p-2 mb-6 border shadow-xl">
   <div>{card.name}</div>
   {#each card.elements as element}
     <div>

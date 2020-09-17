@@ -11,10 +11,8 @@
 	})
 </script>
 
-<div class="flex flex-row">
+<div class="Page w-full flex flex-row flex-wrap justify-evenly">
 	{#each page.cards as card}
-    <div>
-      <Card card={config.cards[card.cardid]} />
-    </div>
+    <Card card={config.cards[card.cardid]} />
 	{/each}
 </div>
