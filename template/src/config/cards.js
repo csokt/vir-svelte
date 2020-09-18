@@ -1,4 +1,4 @@
-import API from './api'
+import api from './api'
 import common_elements from './common'
 
 export default {
@@ -86,19 +86,6 @@ export default {
             { value: 3, text: "Három" },
         ]},
       },
-      // common_elements.alert_fields_button,
-      // {
-      //   id: 'card1_list1',
-      //   name: 'Gyümölcsök',
-      //   type: 'list',
-      //   value: [
-      //     {field1: 'alma', field2: 'jonatán'},
-      //     {field1: 'korte', field2: 'vilmos'},
-      //     {field1: 'szilva', field2: 'ringló'}
-      //   ],
-      //   labelid: 'field1',
-      //   valueid: 'field2',
-      // }
     ],
   },
   card2: {
@@ -117,7 +104,7 @@ export default {
         name: 'Keres',
         type: 'button',
         value: null,
-        onClick: async (fields) => { const response = await API.get('/teszt/'+fields.cikkszam.value); fields.card2_list1.value = response.data; return 'loaded'},
+        onClick: async (fields) => { fields.card2_list1.value = await api.get({url: '/local/seafile/search/'+fields.cikkszam.value})},
       },
       // common_elements.alert_fields_button,
       {
