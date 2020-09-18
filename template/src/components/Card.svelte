@@ -33,13 +33,15 @@
 
 </script>
 
-<!-- <div class="max-w-sm"> -->
 <div class="Card w-full max-w-sm p-2 mb-6 border shadow-xl">
-  <div>{card.name}</div>
+  {#if card.name}
+    <div class="text-gray-500 text-lg py-1">{card.name}</div>
+    <hr />
+  {/if}
   {#each card.elements as element}
     <div>
       {#if element.type === "menu"}
-        <div on:click={() => push(element.path)}>
+        <div class="text-primary-600 text-lg py-1" on:click={() => push(element.path)}>
           {element.name}
         </div>
         <hr />

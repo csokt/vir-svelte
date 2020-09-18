@@ -5,13 +5,25 @@ export default {
   home: {
     id: 'home',
     // name: 'Home Card',
-    name: 'Home',
+    name: 'Főmenü',
     elements: [
       {
         id: 'page1_menu',
         name: 'Page 1',
         type: 'menu',
         path: '/page/page1',
+      },
+      {
+        id: 'page2_menu',
+        name: 'Page 2',
+        type: 'menu',
+        path: '/page/page2',
+      },
+      {
+        id: 'page3_menu',
+        name: 'Page 3',
+        type: 'menu',
+        path: '/page/page3',
       },
       {
         id: 'card1_menu',
@@ -24,6 +36,12 @@ export default {
         name: 'Card 2',
         type: 'menu',
         path: '/card/card2',
+      },
+      {
+        id: 'card3_menu',
+        name: 'Card 3',
+        type: 'menu',
+        path: '/card/card3',
       },
     ],
   },
@@ -109,6 +127,27 @@ export default {
         value: [],
         labelid: 'repo_name',
         valueid: 'name',
+      }
+    ],
+  },
+  card3: {
+    id: 'card3',
+    name: 'Card 3',
+    elements: [
+      { ...common_elements.text_field },
+      { ...common_elements.qrtext_field },
+      common_elements.alert_fields_button,
+      {
+        id: 'card3_list1',
+        name: 'Gyümölcsök',
+        type: 'list',
+        value: [
+          {field1: 'alma', field2: 'jonatán'},
+          {field1: 'korte', field2: 'vilmos'},
+          {field1: 'szilva', field2: 'ringló'}
+        ],
+        labelid: 'field1',
+        valueid: 'field2',
       }
     ],
   },

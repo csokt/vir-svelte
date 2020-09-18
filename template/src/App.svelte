@@ -14,11 +14,11 @@
 </script>
 
 <main>
-  <div class="bg-primary-400 text-white p-1">
-    <span class="text-xl" on:click={() => pop()}>&#11013;</span>
-    <span class="text-lg pl-2">{title}</span>
+  <div class="bg-primary-400 text-white py-0">
+    <span class="text-2xl px-2" on:click={() => pop()}>&#9668;</span>
+    <span class="text-xl">{title}</span>
   </div>
-  <div class="App flex justify-center container p-2 mx-auto">
+  <div class="App flex justify-center py-2">
     <Router {routes}/>
   </div>
 </main>
