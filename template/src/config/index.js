@@ -1,5 +1,5 @@
 import pages from './pages'
-import cards from './cards'
+import cards from './cards/index'
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
