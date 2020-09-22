@@ -24,7 +24,7 @@
 
 <Dialog bind:value={showDialog} persistent>
   <div slot="title">
-    <span on:click={() => showDialog = false}>&#11013;</span>
+    <span on:click={() => showDialog = false}>&#9668;</span>
     {title}
   </div>
 
@@ -39,8 +39,10 @@
   {label}
   bind:value={value}
   {disabled}
-  append=&#9778;
+  append=select_all
   {...attributes}
   on:click-append={() => showDialog = true}
   on:change
 />
+    <!-- <span on:click={() => showDialog = false}>&#11013;</span> -->
+  <!-- append=&#9778; -->

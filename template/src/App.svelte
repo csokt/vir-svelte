@@ -1,9 +1,8 @@
 <script>
   import 'smelte/src/tailwind.css'
   import Router from 'svelte-spa-router'
-  import {push, pop, replace} from 'svelte-spa-router'
+  import { pop } from 'svelte-spa-router'
   import routes from './routes'
-  import Button from 'smelte/src/components/Button'
   import { pagetitle } from './stores.js'
 
   let title

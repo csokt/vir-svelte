@@ -1,9 +1,17 @@
 import api from '../api'
 import common from '../common'
+console.log('login.js')
 
 export default {
   id: 'login',
   name: 'Be és kijelentkezés',
+  onMount: async (fields) => {
+    let result = await api.get({ url: '/private/account/info', expect: 'object' })
+    fields.fullname.value = result.fullname || ''
+    fields.ldap.value = result.ldap
+    fields.vir.value = result.vir
+    fields.vir2.value = result.vir2
+  },
   elements: [
     {
       id: 'username',
@@ -25,6 +33,27 @@ export default {
       type: 'text',
       value: '',
       attributes: {readonly: true}
+    },
+    {
+      id: 'ldap',
+      name: 'LDAP',
+      type: 'checkbox',
+      value: false,
+      attributes: {disabled: true}
+    },
+    {
+      id: 'vir',
+      name: 'Vir',
+      type: 'checkbox',
+      value: false,
+      attributes: {disabled: true}
+    },
+    {
+      id: 'vir2',
+      name: 'Vir2',
+      type: 'checkbox',
+      value: false,
+      attributes: {disabled: true}
     },
     {
       id: 'belep',
@@ -50,16 +79,6 @@ export default {
         fields.fullname.value = ''
         delete localStorage.szefo_api2_token
         api.API.setHeader('Authorization', undefined)
-      },
-    },
-    {
-      id: 'info',
-      name: 'Info',
-      type: 'button',
-      value: null,
-      onClick: async (fields) => {
-        let result = await api.get({ url: '/private/account/info', expect: 'object' })
-        console.log(result)
       },
     },
     common.alert_fields_button,

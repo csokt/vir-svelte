@@ -3,6 +3,7 @@
   import {push, pop, replace} from 'svelte-spa-router'
   import Card from 'smelte/src/components/Card'
   import Button from 'smelte/src/components/Button'
+  import Checkbox from 'smelte/src/components/Checkbox'
   import TextField from "smelte/src/components/TextField"
   import Select from 'smelte/src/components/Select'
   import QrTextField from './core/QrTextField.svelte'
@@ -21,6 +22,9 @@
   }
 
 	onMount(() => {
+    if (card.hasOwnProperty('onMount')) {
+      exec_function(card.onMount)
+    }
     for (const key in fields) {
       if (fields.hasOwnProperty(key)) {
         const field = fields[key]
@@ -63,6 +67,16 @@
         >
           {element.name}
         </Button>
+      {/if}
+
+      {#if element.type === "checkbox"}
+        <Checkbox
+          label={element.name}
+          bind:checked={fields[element.id].value}
+          disabled={disableFields}
+          {...element.attributes}
+          on:change={exec_function(element.onChange)}
+        />
       {/if}
 
       {#if element.type === "text"}

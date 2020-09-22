@@ -1,4 +1,5 @@
 import apisauce from 'apisauce'
+console.log('api.js')
 
 const API = apisauce.create({
   // baseURL: '/api2/',
