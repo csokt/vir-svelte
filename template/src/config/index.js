@@ -46,7 +46,7 @@ for (const key in config.cards) {
       if (!['menu'].includes(element.type)) {
         checkProp('value', card, element)
       }
-      if (element.type === 'button') {
+      if (['button', 'checkbox', 'text', 'qrtext'].includes(element.type)) {
         element.disabled = element.disabled || false
       }
       if (element.type === 'list') {

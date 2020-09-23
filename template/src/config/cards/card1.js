@@ -4,6 +4,18 @@ import common from '../common'
 export default {
   id: 'card1',
   name: 'Card 1',
+  onMount: (fields) => {fields.select1.items = [
+      { value: 0, text: "Zero" },
+      { value: 1, text: "One" },
+      { value: 2, text: "Two" },
+      { value: 3, text: "Three" },
+      { value: 4, text: "Four" },
+      { value: 5, text: "Five" },
+      { value: 6, text: "Six" },
+      { value: 7, text: "Seven" },
+      { value: 8, text: "Eight" },
+      { value: 9, text: "Nine" },
+  ]},
   elements: [
     { ...common.text_field },
     { ...common.qrtext_field,
@@ -18,18 +30,6 @@ export default {
       name: 'Select 1',
       value: '',
       items: [],
-      onMount: (fields) => {fields.select1.items = [
-          { value: 0, text: "Zero" },
-          { value: 1, text: "One" },
-          { value: 2, text: "Two" },
-          { value: 3, text: "Three" },
-          { value: 4, text: "Four" },
-          { value: 5, text: "Five" },
-          { value: 6, text: "Six" },
-          { value: 7, text: "Seven" },
-          { value: 8, text: "Eight" },
-          { value: 9, text: "Nine" },
-      ]},
     },
     {
       id: 'select_button',
