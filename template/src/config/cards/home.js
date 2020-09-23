@@ -1,6 +1,5 @@
 export default {
   id: 'home',
-  // name: 'Home Card',
   name: 'Főmenü',
   elements: [
     {

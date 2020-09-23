@@ -7,7 +7,7 @@
   export let page
 
 	onMount(() => {
-    pagetitle.set(page.name)
+    $pagetitle = page.name
 	})
 </script>
 

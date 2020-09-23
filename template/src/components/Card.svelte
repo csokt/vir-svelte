@@ -12,11 +12,27 @@
   let fields = card.fields
   let disableFields = false
 
+  function updateState() {
+    for (const id in fields) {
+      if (fields.hasOwnProperty(id)) {
+        const field = fields[id]
+        for (const prop in field) {
+          if (field.hasOwnProperty(prop)) {
+            const splits = prop.split('State')
+            if (splits.length > 1) {
+              field[splits[0]] = field[prop](fields)
+            }
+          }
+        }
+      }
+    }
+  }
+
   function exec_function(func) {
     if (!func) return
     disableFields = true
     const func_returned = func(fields)
-    Promise.resolve(func_returned).then(result => {})
+    Promise.resolve(func_returned).then(result => { updateState() })
     .catch(error => console.log(error))
     .finally(() => { disableFields = false; fields = fields })
   }
@@ -24,14 +40,8 @@
 	onMount(() => {
     if (card.hasOwnProperty('onMount')) {
       exec_function(card.onMount)
-    }
-    for (const key in fields) {
-      if (fields.hasOwnProperty(key)) {
-        const field = fields[key]
-        if (field.hasOwnProperty('onMount')) {
-          exec_function(field.onMount)
-        }
-      }
+    } else {
+      updateState()
     }
 	})
 
@@ -61,7 +71,7 @@
 
       {#if element.type === "button"}
         <Button
-          disabled={disableFields}
+          disabled={disableFields || fields[element.id].disabled}
           {...element.attributes}
           on:click={exec_function(element.onClick)}
         >
