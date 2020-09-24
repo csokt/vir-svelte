@@ -52,6 +52,7 @@ export default {
           onClick: async (fields) => {
             let result = await api.post({url: '/account/login', expect: 'object', params: {username: fields.username.value, password: fields.password.value} })
             if (result.accesstoken) {
+              fields.password.value = ''
               fields.fullname.value = result.fullname || ''
               localStorage.szefo_api2_token = result.accesstoken
               api.API.setHeader('Authorization', result.accesstoken)
@@ -66,6 +67,7 @@ export default {
           id: 'kilep',
           name: 'Kilép',
           onClick: (fields) => {
+            fields.password.value = ''
             fields.fullname.value = ''
             userinfo.set({})
             delete localStorage.szefo_api2_token
