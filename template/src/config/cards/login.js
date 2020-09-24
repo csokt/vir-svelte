@@ -29,7 +29,7 @@ export default {
       id: 'password',
       name: 'Jelszó',
       type: 'text',
-      value: 'Godhak04',
+      value: '',
       attributes: {type: 'password'},
       onChange: (fields) => {
       },
