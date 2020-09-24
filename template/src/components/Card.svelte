@@ -53,23 +53,23 @@
     <hr />
   {/if}
   {#each card.elements as element}
-    <div>
-      {#if element.type === "menu"}
-        <div class="text-primary-600 text-lg py-1" on:click={() => push(element.path)}>
-          {element.name}
-        </div>
+    {#if element.type === "menu"}
+      <div class="text-primary-600 text-lg py-1" on:click={() => push(element.path)}>
+        {element.name}
+      </div>
+      <hr />
+    {/if}
+
+    {#if element.type === "list"}
+      {#each fields[element.id].value as row}
+        <div> {row[element.labelid]} </div>
+        <div> {row[element.valueid]} </div>
         <hr />
-      {/if}
+      {/each}
+    {/if}
 
-      {#if element.type === "list"}
-        {#each fields[element.id].value as row}
-          <div> {row[element.labelid]} </div>
-          <div> {row[element.valueid]} </div>
-          <hr />
-        {/each}
-      {/if}
-
-      {#if element.type === "button"}
+    {#if element.type === "button"}
+      <div class="py-2">
         <Button
           disabled={disableFields || fields[element.id].disabled}
           {...element.attributes}
@@ -77,48 +77,48 @@
         >
           {element.name}
         </Button>
-      {/if}
+      </div>
+    {/if}
 
-      {#if element.type === "checkbox"}
-        <Checkbox
-          label={element.name}
-          bind:checked={fields[element.id].value}
-          disabled={disableFields}
-          {...element.attributes}
-          on:change={exec_function(element.onChange)}
-        />
-      {/if}
+    {#if element.type === "checkbox"}
+      <Checkbox
+        label={element.name}
+        bind:checked={fields[element.id].value}
+        disabled={disableFields}
+        {...element.attributes}
+        on:change={exec_function(element.onChange)}
+      />
+    {/if}
 
-      {#if element.type === "text"}
-        <TextField
-          label={element.name}
-          bind:value={fields[element.id].value}
-          disabled={disableFields}
-          {...element.attributes}
-          on:change={exec_function(element.onChange)}
-        />
-      {/if}
+    {#if element.type === "text"}
+      <TextField
+        label={element.name}
+        bind:value={fields[element.id].value}
+        disabled={disableFields}
+        {...element.attributes}
+        on:change={exec_function(element.onChange)}
+      />
+    {/if}
 
-      {#if element.type === "qrtext"}
-        <QrTextField
-          label={element.name}
-          bind:value={fields[element.id].value}
-          disabled={disableFields}
-          attributes={element.attributes}
-          on:change={exec_function(element.onChange)}
-        />
-      {/if}
+    {#if element.type === "qrtext"}
+      <QrTextField
+        label={element.name}
+        bind:value={fields[element.id].value}
+        disabled={disableFields}
+        attributes={element.attributes}
+        on:change={exec_function(element.onChange)}
+      />
+    {/if}
 
-      {#if element.type === "select"}
-        <Select
-          label={element.name}
-          bind:value={fields[element.id].value}
-          items={fields[element.id].items}
-          append=""
-          disabled={disableFields}
-          {...element.attributes}
-        />
-      {/if}
-    </div>
+    {#if element.type === "select"}
+      <Select
+        label={element.name}
+        bind:value={fields[element.id].value}
+        items={fields[element.id].items}
+        append=""
+        disabled={disableFields}
+        {...element.attributes}
+      />
+    {/if}
   {/each}
 </div>
