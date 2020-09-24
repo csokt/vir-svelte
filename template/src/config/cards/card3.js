@@ -8,6 +8,7 @@ export default {
     { ...common.text_field },
     { ...common.qrtext_field },
     common.alert_fields_button,
+    { type: 'line' },
     {
       id: 'card3_list1',
       name: 'Gyümölcsök',

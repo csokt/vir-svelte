@@ -77,6 +77,6 @@ export default {
         },
       ]
     },
-    common.alert_fields_button,
+    // common.alert_fields_button,
   ],
 }

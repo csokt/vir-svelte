@@ -52,6 +52,10 @@
     <hr />
   {/if}
   {#each card.elements as element}
+    {#if element.type === "line"}
+      <hr />
+    {/if}
+
     {#if element.type === "menu"}
       <div class="text-primary-600 text-lg py-1" on:click={() => push(element.path)}>
         {element.name}
