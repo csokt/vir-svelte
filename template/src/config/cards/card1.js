@@ -35,7 +35,6 @@ export default {
       id: 'select_button',
       name: 'Modify select items',
       type: 'button',
-      value: null,
       onClick: (fields) => {fields.select1.items = [
           { value: 1, text: "Egy" },
           { value: 2, text: "Kettő" },

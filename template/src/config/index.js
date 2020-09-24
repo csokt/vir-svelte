@@ -40,10 +40,12 @@ for (const key in config.cards) {
     checkProp('elements', card)
     card.fields = {}
     for (const element of card.elements) {
-      card.fields[element.id] = element
+      if (!['menu', 'buttongroup'].includes(element.type)) {
+        card.fields[element.id] = element
+      }
       checkProp('name', card, element)
       checkProp('type', card, element)
-      if (!['menu'].includes(element.type)) {
+      if (!['menu', 'button', 'buttongroup'].includes(element.type)) {
         checkProp('value', card, element)
       }
       if (['button', 'checkbox', 'text', 'qrtext'].includes(element.type)) {
@@ -55,6 +57,13 @@ for (const key in config.cards) {
       }
       if (element.type === 'select') {
         checkProp('items', card, element)
+      }
+      if (element.type === 'buttongroup') {
+        for (const button of element.buttons) {
+          checkProp('onClick', card, button)
+          card.fields[button.id] = button
+          button.disabled = button.disabled || false
+        }
       }
     }
   }

@@ -24,8 +24,10 @@ export default {
     id: 'alert_fields_button',
     name: 'Alert fields',
     type: 'button',
-    value: null,
     attributes: {color: 'alert'},
-    onClick: (fields) => {alert(JSON.stringify(fields))},
+    onClick: (fields) => {
+      console.log(fields)
+      alert(JSON.stringify(fields, null, 4))
+    },
   },
 }

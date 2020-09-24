@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte'
   import {push, pop, replace} from 'svelte-spa-router'
-  import Card from 'smelte/src/components/Card'
   import Button from 'smelte/src/components/Button'
   import Checkbox from 'smelte/src/components/Checkbox'
   import TextField from "smelte/src/components/TextField"
@@ -77,6 +76,22 @@
         >
           {element.name}
         </Button>
+      </div>
+    {/if}
+
+    {#if element.type === "buttongroup"}
+      <div class="flex flex-row justify-start py-2">
+        {#each element.buttons as button}
+          <div class="pr-4">
+            <Button
+              disabled={disableFields || fields[button.id].disabled}
+              {...button.attributes}
+              on:click={exec_function(button.onClick)}
+            >
+              {button.name}
+            </Button>
+          </div>
+        {/each}
       </div>
     {/if}
 

@@ -16,7 +16,6 @@ export default {
       id: 'button1',
       name: 'Keres',
       type: 'button',
-      value: null,
       onClick: async (fields) => { fields.card2_list1.value = await api.get({url: '/local/seafile/search/'+fields.cikkszam.value})},
     },
     // common.alert_fields_button,

@@ -16,11 +16,13 @@ list:
   valueid: value mező neve
 
 button:
-  value: null
   onClick(): kattintásra ezt a függvényt hívja meg, lehet async is.
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
   disabledState(): a disabled státuszt álltja be, csak szinkron lehet, bool visszatérő értékkel.
   disabled: számított attribútum, alapértelmezetten false.
+
+buttongroup:
+  buttons[button]
 
 checkbox:
   label: megjelenítendő név
