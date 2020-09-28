@@ -1,8 +1,9 @@
 <script>
   import { onMount } from 'svelte'
-  import 'smelte/src/tailwind.css'
   import Router from 'svelte-spa-router'
-  import { pop } from 'svelte-spa-router'
+  import { push, pop } from 'svelte-spa-router'
+  import 'smelte/src/tailwind.css'
+  import Icon from 'smelte/src/components/Icon'
   import routes from './routes'
   import { pagetitle, userinfo } from './stores.js'
   import api from './config/api'
@@ -15,9 +16,10 @@
 </script>
 
 <main>
-  <div class="bg-primary-400 text-white py-0">
-    <span class="text-2xl px-2" on:click={() => pop()}>&#9668;</span>
-    <span class="text-xl">{$pagetitle}</span>
+  <div class="bg-primary-400 text-white flex flex-row justify-between items-center">
+    <div class="text-2xl px-2" on:click={() => pop()}>&#9668;</div>
+    <div class="text-xl">{$pagetitle}</div>
+    <Icon class="px-2" on:click={() => push('/setup/login')}>settings</Icon>
   </div>
   <div class="App flex justify-center py-2">
     <Router {routes}/>
