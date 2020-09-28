@@ -9,7 +9,7 @@ export default {
       id: 'cikkszam',
       name: 'Cikkszám',
       type: 'text',
-      value: '25529',
+      value: '25527',
       attributes: {placeholder: 'Cikkszám'}
     },
     {

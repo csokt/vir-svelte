@@ -4,6 +4,7 @@
   import { push, pop } from 'svelte-spa-router'
   import 'smelte/src/tailwind.css'
   import Icon from 'smelte/src/components/Icon'
+  import { Notifications } from 'smelte/src/components/Snackbar'
   import routes from './routes'
   import { pagetitle, userinfo } from './stores.js'
   import api from './config/api'
@@ -24,6 +25,7 @@
   <div class="App flex justify-center py-2">
     <Router {routes}/>
   </div>
+  <Notifications />
 </main>
   <!-- <div class="App container p-2"> -->
   <!-- <div class="App container flex flex-row flex-wrap justify-evenly"> -->

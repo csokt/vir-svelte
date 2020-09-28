@@ -1,4 +1,5 @@
 import apisauce from 'apisauce'
+import { notifier } from 'smelte/src/components/Snackbar'
 
 const API = apisauce.create({
   // baseURL: '/api2/',
@@ -11,7 +12,7 @@ const API = apisauce.create({
 
 function checkResponse (response) {
   if (!response.ok) {
-    // EventBus.$emit('inform', { type: 'alert', variation: 'error', message: response.data.error.data.message })
+    notifier.error('Kommunikációs hiba: ' + response.status + ' ' + response.data.error)
     console.log(response)
   }
   return response.ok
