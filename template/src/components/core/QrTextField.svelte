@@ -2,6 +2,7 @@
   import { createEventDispatcher } from 'svelte'
   import TextField from "smelte/src/components/TextField"
 	import Dialog from 'smelte/src/components/Dialog'
+  import { facingmode } from '../../stores.js'
   import QrScanner from './QrScanner.svelte'
 
   const dispatch = createEventDispatcher()
@@ -30,6 +31,7 @@
 
   {#if showDialog}
     <QrScanner
+      facingmode={$facingmode}
       on:scanned={onScanned}
     />
   {/if}

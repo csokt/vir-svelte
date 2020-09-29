@@ -4,7 +4,7 @@
 
   const dispatch = createEventDispatcher()
 
-  export let facing = 'environment'
+  export let facingmode = 'environment'
   export let width = 340
   export let height = 340
   let codeReader
@@ -24,7 +24,10 @@
         return
       }
 
-      if (facing === 'environment' && devices.length > 1) {
+      if (facingmode === 'user' && devices.length > 0) {
+        deviceId = devices[0].deviceId
+      }
+      if (facingmode === 'environment' && devices.length > 1) {
         deviceId = devices[1].deviceId
       }
 

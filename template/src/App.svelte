@@ -6,17 +6,21 @@
   import Icon from 'smelte/src/components/Icon'
   import { Notifications } from 'smelte/src/components/Snackbar'
   import routes from './routes'
-  import { pagetitle, userinfo } from './stores.js'
+  import { facingmode, pagetitle, userinfo } from './stores.js'
   import api from './config/api'
 
+  let viewportwidth
+
   onMount(async () => {
+    // $device = (viewportwidth < 800) ? 'mobile' : (viewportwidth > 1280) ? 'pc' : 'tablet'
+    $facingmode = (viewportwidth < 800) ? 'environment' : 'user'
     if (localStorage.szefo_api2_token) {
       $userinfo = await api.get({ url: '/private/account/info', expect: 'object' })
     }
 	})
 </script>
 
-<main>
+<main bind:clientWidth={viewportwidth}>
   <div class="bg-primary-400 text-white flex flex-row justify-between items-center">
     <div class="text-2xl px-2" on:click={() => pop()}>&#9668;</div>
     <div class="text-xl">{$pagetitle}</div>

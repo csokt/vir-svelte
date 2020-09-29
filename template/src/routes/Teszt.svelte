@@ -1,16 +1,23 @@
 <script>
-  import { notifier } from 'smelte/src/components/Snackbar'
-  import Button from 'smelte/src/components/Button'
-  import Checkbox from 'smelte/src/components/Checkbox'
-
+	let w;
+	let h;
+	let size = 42;
+	let text = 'edit me';
 </script>
 
+<style>
+	input { display: block; }
+	div { display: inline-block; }
+	span { word-break: break-all; }
+</style>
+
+<main bind:clientWidth={w} bind:clientHeight={h} class="w-full">
+<input type=range bind:value={size}>
+<input bind:value={text}>
+
+<p>size: {w}px x {h}px</p>
+
 <div>
-
-
-<p>Also Smelte comes with a simple notification queue implementation.</p>
-
-<Button on:click={() => notifier.alert('message1')}>Add message1 to queue</Button>
-<Button on:click={() => notifier.error('message2')}>Add message2 to queue</Button>
-
+	<span style="font-size: {size}px">{text}</span>
 </div>
+</main>
