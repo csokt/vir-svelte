@@ -12,8 +12,8 @@ const API = apisauce.create({
 
 function checkResponse (response) {
   if (!response.ok) {
-    notifier.error('Kommunikációs hiba: ' + response.status + ' ' + response.data.error)
     console.log(response)
+    notifier.error('Hiba: ' + response.status + ' ' + response.problem + ' ' + (response.data && response.data.error))
   }
   return response.ok
 }

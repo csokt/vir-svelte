@@ -19,7 +19,7 @@
     "@zxing/library": "^0.17.1",
     "apisauce": "^1.1.2",
     "sirv-cli": "^1.0.0",
-    "smelte": "^1.0.15",
+    "smelte": "^1.0.16",
     "svelte-spa-router": "^3.0.0"
   }
 }
