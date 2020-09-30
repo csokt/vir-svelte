@@ -40,9 +40,8 @@ for (const key in config.cards) {
     checkProp('elements', card)
     card.fields = {}
     for (const element of card.elements) {
-      if (!['line', 'menu', 'buttongroup'].includes(element.type)) {
-        card.fields[element.id] = element
-      }
+      card.fields[element.id] = element
+      element.hidden = element.hidden || false
       if (['button', 'checkbox', 'text', 'qrtext'].includes(element.type)) {
         element.disabled = element.disabled || false
       }
@@ -68,6 +67,7 @@ for (const key in config.cards) {
           checkProp('onClick', card, button)
           card.fields[button.id] = button
           button.disabled = button.disabled || false
+          button.hidden = button.hidden || false
         }
       }
     }

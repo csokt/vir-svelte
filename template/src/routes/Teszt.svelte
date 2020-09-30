@@ -1,23 +1,11 @@
 <script>
-	let w;
-	let h;
-	let size = 42;
-	let text = 'edit me';
+	let ishidden = true
 </script>
 
-<style>
-	input { display: block; }
-	div { display: inline-block; }
-	span { word-break: break-all; }
-</style>
-
-<main bind:clientWidth={w} bind:clientHeight={h} class="w-full">
-<input type=range bind:value={size}>
-<input bind:value={text}>
-
-<p>size: {w}px x {h}px</p>
-
 <div>
-	<span style="font-size: {size}px">{text}</span>
+<button on:click={() => ishidden = !ishidden}> Toggle</button>
+<p hidden={ishidden}>This paragraph should be hidden.</p>
+<p>This is a visible paragraph.</p>
+<p><b>Note:</b> The hidden attribute is not supported in IE10 or earlier versions.</p>
+
 </div>
-</main>

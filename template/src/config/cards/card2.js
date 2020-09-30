@@ -20,6 +20,13 @@ export default {
     },
     // common.alert_fields_button,
     {
+      id: 'line1' ,
+      type: 'line',
+      hiddenState: (fields) => {
+        return !fields.card2_list1.value.length
+      },
+    },
+    {
       id: 'card2_list1',
       name: 'List 1',
       type: 'list',

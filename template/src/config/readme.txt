@@ -20,6 +20,7 @@ button:
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
   disabledState(): a disabled státuszt álltja be, csak szinkron lehet, bool visszatérő értékkel.
   disabled: számított attribútum, alapértelmezetten false.
+  hidden: számított attribútum, alapértelmezetten false.
 
 buttongroup:
   buttons[button]
@@ -30,6 +31,7 @@ checkbox:
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
   disabledState(): a disabled státuszt álltja be, csak szinkron lehet, bool visszatérő értékkel.
   disabled: számított attribútum, alapértelmezetten false.
+  hidden: számított attribútum, alapértelmezetten false.
   onChange(): tartalom megváltozásakor ezt a függvényt hívja meg, lehet async is.
 
 text:
@@ -38,6 +40,7 @@ text:
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
   disabledState(): a disabled státuszt álltja be, csak szinkron lehet, bool visszatérő értékkel.
   disabled: számított attribútum, alapértelmezetten false.
+  hidden: számított attribútum, alapértelmezetten false.
   onChange(): tartalom megváltozásakor ezt a függvényt hívja meg, lehet async is.
 
 qrtext:
