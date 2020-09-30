@@ -9,18 +9,21 @@
   import { facingmode, pagetitle, userinfo } from './stores.js'
   import api from './config/api'
 
-  let viewportwidth
-
   onMount(async () => {
-    // $device = (viewportwidth < 800) ? 'mobile' : (viewportwidth > 1280) ? 'pc' : 'tablet'
-    $facingmode = (viewportwidth < 800) ? 'environment' : 'user'
+    $facingmode = (window.screen.width < 800) ? 'environment' : 'user'
     if (localStorage.szefo_api2_token) {
       $userinfo = await api.get({ url: '/private/account/info', expect: 'object' })
     }
+    //// Production verzióban kell
+    // window.oncontextmenu = function (event) {
+    //   event.preventDefault()
+    //   event.stopPropagation()
+    //   return false
+    // }
 	})
 </script>
 
-<main bind:clientWidth={viewportwidth}>
+<main>
   <div class="bg-primary-400 text-white flex flex-row justify-between items-center">
     <div class="text-2xl px-2" on:click={() => pop()}>&#9668;</div>
     <div class="text-xl">{$pagetitle}</div>
@@ -31,8 +34,6 @@
   </div>
   <Notifications />
 </main>
-  <!-- <div class="App container p-2"> -->
-  <!-- <div class="App container flex flex-row flex-wrap justify-evenly"> -->
 
 <style>
   :global(i) {
