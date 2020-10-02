@@ -106,8 +106,16 @@ export default {
         }
         else {
         }
-        console.log(store)
+        fields.fullname.value = store.user.name
+        // console.log(store)
       },
+    },
+    {
+      id: 'fullname',
+      name: 'Név',
+      type: 'text',
+      value: '',
+      attributes: {readonly: true}
     },
   ],
 }

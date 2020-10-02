@@ -19,10 +19,10 @@ export default {
   elements: [
     { ...common.text_field },
     { ...common.qrtext_field,
-      onChange: (fields) => {fields.text_field = fields.qrtext_field}
+      onChange: (fields) => {fields.text_field.value = fields.qrtext_field.value}
     },
     { ...common.number_field,
-      onChange: (fields) => {fields.text_field = fields.number_field}
+      onChange: (fields) => {fields.text_field.value = fields.number_field.value}
     },
     {
       id: 'select1',

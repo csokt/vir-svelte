@@ -2,22 +2,30 @@ export default {
   home: {
     id: 'home',
     name: 'Termelés Információs Rend.',
-    cards: [
-      { cardid: 'tirlogin' },
-      { cardid: 'home' },
+    cardArray: [
+      {
+        cardid: 'tirlogin',
+        // onChange: (cards) => {console.log(cards.tirlogin.card.fields.qrcode.value)},
+        onChange: (cards) => {console.log(cards)},
+        hiddenState: (cards) => { return !!cards.tirlogin.card.fields.fullname.value }
+      },
+      {
+        cardid: 'home',
+        hiddenState: (cards) => { return !cards.tirlogin.card.fields.fullname.value }
+      },
     ],
   },
   kodol: {
     id: 'kodol',
     name: 'Kódolás',
-    cards: [
+    cardArray: [
       { cardid: 'card1' },
     ],
   },
   atad: {
     id: 'atad',
     name: 'Átadás',
-    cards: [
+    cardArray: [
       { cardid: 'card1' },
       { cardid: 'card2' }
     ],
@@ -25,28 +33,28 @@ export default {
   munkalap: {
     id: 'munkalap',
     name: 'Munkalap',
-    cards: [
+    cardArray: [
       { cardid: 'card1' },
     ],
   },
   seasearch: {
     id: 'seasearch',
     name: 'Dokumentációk',
-    cards: [
+    cardArray: [
       { cardid: 'card1' },
     ],
   },
   norma: {
     id: 'norma',
     name: 'Mai teljesítmény %',
-    cards: [
+    cardArray: [
       { cardid: 'card1' },
     ],
   },
   tablazatok: {
     id: 'tablazatok',
     name: 'Táblázatok',
-    cards: [
+    cardArray: [
       { cardid: 'card1' },
       { cardid: 'card2' },
       { cardid: 'card3' },

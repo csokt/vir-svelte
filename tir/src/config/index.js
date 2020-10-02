@@ -23,15 +23,6 @@ function checkProp(prop, obj1, obj2=null) {
   }
 }
 
-console.log('CHECK PAGES')
-for (const key in config.pages) {
-  if (config.pages.hasOwnProperty(key)) {
-    const page = config.pages[key]
-    checkProp('name', page)
-    checkProp('cards', page)
-  }
-}
-
 console.log('CHECK CARDS')
 for (const key in config.cards) {
   if (config.cards.hasOwnProperty(key)) {
@@ -73,5 +64,21 @@ for (const key in config.cards) {
     }
   }
 }
+
+console.log('CHECK PAGES')
+for (const key in config.pages) {
+  if (config.pages.hasOwnProperty(key)) {
+    const page = config.pages[key]
+    checkProp('name', page)
+    checkProp('cardArray', page)
+    page.cards = {}
+    for (const card of page.cardArray) {
+      page.cards[card.cardid] = card
+      card.card = config.cards[card.cardid]
+      card.hidden = card.hidden || false
+    }
+  }
+}
+// console.log(config.pages)
 
 export default config
