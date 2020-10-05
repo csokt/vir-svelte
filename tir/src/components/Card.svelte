@@ -6,10 +6,11 @@
   import Checkbox from 'smelte/src/components/Checkbox'
   import TextField from "smelte/src/components/TextField"
   import Select from 'smelte/src/components/Select'
+  import { debug } from '../stores.js'
   import QrTextField from './core/QrTextField.svelte'
 
   export let card
-  export let hidden
+  export let hidden = false
 
 	const dispatch = createEventDispatcher()
   let disableFields = false
@@ -23,6 +24,7 @@
             const splits = prop.split('State')
             if (splits.length > 1) {
               field[splits[0]] = field[prop](card.fields)
+              if (debug) console.log('Card', card.id, 'updateState field', field)
             }
           }
         }
@@ -30,18 +32,23 @@
     }
   }
 
-  function exec_function(func) {
+  function exec_function(func, ref) {
     if (!func) return
+    if (debug) console.log('Card', card.id, 'exec_function', ref)
     disableFields = true
     const func_returned = func(card.fields)
-    Promise.resolve(func_returned).then(result => { updateState(); dispatch('change') })
-    .catch(error => console.log(error))
+    Promise.resolve(func_returned).then(result => {
+      updateState()
+      dispatch('change')
+    })
+    .catch(error => console.log('Card', card.id, 'error:', error))
     .finally(() => { disableFields = false; card = card })
   }
 
   onMount(() => {
+    if (debug) console.log('Card', card.id, 'mounted')
     if (card.hasOwnProperty('onMount')) {
-      exec_function(card.onMount)
+      exec_function(card.onMount, 'onMount')
     } else {
       updateState()
     }
@@ -80,7 +87,7 @@
           <Button
             disabled={disableFields || card.fields[element.id].disabled}
             {...element.attributes}
-            on:click={exec_function(element.onClick)}
+            on:click={exec_function(element.onClick, 'onClick ' + element.id)}
           >
             {element.name}
           </Button>
@@ -94,7 +101,7 @@
               <Button
                 disabled={disableFields || card.fields[button.id].disabled}
                 {...button.attributes}
-                on:click={exec_function(button.onClick)}
+                on:click={exec_function(button.onClick, 'onClick ' + button.id)}
               >
                 {button.name}
               </Button>
@@ -109,7 +116,7 @@
           bind:checked={card.fields[element.id].value}
           disabled={disableFields}
           {...element.attributes}
-          on:change={exec_function(element.onChange)}
+          on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
       {/if}
 
@@ -119,7 +126,7 @@
           bind:value={card.fields[element.id].value}
           disabled={disableFields}
           {...element.attributes}
-          on:change={exec_function(element.onChange)}
+          on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
       {/if}
 
@@ -129,7 +136,7 @@
           bind:value={card.fields[element.id].value}
           disabled={disableFields}
           attributes={element.attributes}
-          on:change={exec_function(element.onChange)}
+          on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
       {/if}
 

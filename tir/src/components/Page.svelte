@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { pagetitle } from '../stores.js'
-  import config from '../config/index'
+  import { debug, pagetitle } from '../stores.js'
   import Card from '../components/Card.svelte'
 
   export let page
@@ -14,8 +13,8 @@
           if (card.hasOwnProperty(prop)) {
             const splits = prop.split('State')
             if (splits.length > 1) {
-              console.log('updateState', card)
               card[splits[0]] = card[prop](page.cards)
+              if (debug) console.log('Page', page.id, 'updateState Card', card)
             }
           }
         }
@@ -23,18 +22,22 @@
     }
   }
 
-  function exec_function(func) {
+  function exec_function(func, ref) {
     if (!func) return
+    if (debug) console.log('Page', page.id, 'exec_function', ref)
     const func_returned = func(page.cards)
-    Promise.resolve(func_returned).then(result => { updateState() })
-    .catch(error => console.log(error))
+    Promise.resolve(func_returned).then(result => {
+      updateState()
+    })
+    .catch(error => console.log('Page', page.id, 'error', error))
     .finally(() => { page = page })
   }
 
   onMount(() => {
+    if (debug) console.log('Page', page.id, 'mounted')
     $pagetitle = page.name
     if (page.hasOwnProperty('onMount')) {
-      exec_function(page.onMount)
+      exec_function(page.onMount, 'onMount')
     } else {
       updateState()
     }
@@ -46,9 +49,7 @@
     <Card
       bind:card={page.cards[card.cardid].card}
       hidden={page.cards[card.cardid].hidden}
-      on:change={exec_function(card.onChange)}
+      on:change={exec_function(card.onChange, 'onChange ' + card.cardid)}
     />
   {/each}
 </div>
-    <!-- <Card card={card.card} /> -->
-    <!-- <Card card={config.cards[card.cardid]} /> -->

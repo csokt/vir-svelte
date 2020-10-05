@@ -6,7 +6,7 @@ export default {
       {
         cardid: 'tirlogin',
         // onChange: (cards) => {console.log(cards.tirlogin.card.fields.qrcode.value)},
-        onChange: (cards) => {console.log(cards)},
+        onChange: (cards) => {console.log('config Page home onChange', cards)},
         hiddenState: (cards) => { return !!cards.tirlogin.card.fields.fullname.value }
       },
       {
@@ -49,6 +49,7 @@ export default {
     name: 'Mai teljesítmény %',
     cardArray: [
       { cardid: 'card1' },
+      { cardid: 'card2' },
     ],
   },
   tablazatok: {

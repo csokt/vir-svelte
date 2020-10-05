@@ -4,8 +4,6 @@ import common from '../common'
 export default {
   id: 'tirlogin',
   name: 'Kérem jelentkezzen be!',
-  onMount: (fields) => {
-  },
   elements: [
     {
       id: 'qrcode',

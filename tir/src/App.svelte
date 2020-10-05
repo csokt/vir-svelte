@@ -6,10 +6,11 @@
   import Icon from 'smelte/src/components/Icon'
   import { Notifications } from 'smelte/src/components/Snackbar'
   import routes from './routes'
-  import { facingmode, pagetitle, userinfo } from './stores.js'
+  import { debug, facingmode, pagetitle, userinfo } from './stores.js'
   import api from './config/api'
 
   onMount(async () => {
+    if (debug) console.log('App.svelte mounted')
     $facingmode = (window.screen.width < 800) ? 'environment' : 'user'
     if (localStorage.szefo_api2_token) {
       $userinfo = await api.get({ url: '/private/account/info', expect: 'object' })
