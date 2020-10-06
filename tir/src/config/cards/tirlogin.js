@@ -14,7 +14,6 @@ export default {
       attributes: {type: 'number', placeholder: 'QR'},
       onChange: async (fields) => {
         const qr = fields.qrcode.value
-        let store = data
         if (qr < 50000) {
           const dolgozokod = qr - 20000
           const sql = `
@@ -25,23 +24,23 @@ export default {
           const result = await api.post({url: '/local/tir/query', expect: 'object', params: {sql: sql}})
           if (result.dolgozokod) {
             const vonalkodRole = { 1: 'varró', 2: 'varró', 3: 'varró', 7: 'félkész vasaló', 8: 'szabó', 9: 'készáru vasaló', 11: 'logisztikus', 13: 'kötő', 32: 'kötő', 33: 'technológus', 45: 'varró2' }
-            store.user = {
+            data.user = {
               name: result.dolgozonev.trim(),
               role: vonalkodRole[result.vonalkod],
               uzemnev: result.uzemnev.trim(),
               dolgozokod: result.dolgozokod.toString(),
               belepokod: (result.dolgozokod + 20000).toString()
             }
-            store.kodol = {
-              role: store.user.role,
+            data.kodol = {
+              role: data.user.role,
               telephelykod: result.telephelykod,
               telephely: result.telephely.trim(),
               kodolokod: '-1',
               kodolo: 'dolgozó',
-              dolgozokod: store.user.belepokod,
-              dolgozonev: store.user.name,
-              belepokod: store.user.belepokod,
-              username: store.user.name,
+              dolgozokod: data.user.belepokod,
+              dolgozonev: data.user.name,
+              belepokod: data.user.belepokod,
+              username: data.user.name,
               munkalapazonosito: '',
               kartoninfo: '',
               gepkod: '0',
@@ -49,7 +48,7 @@ export default {
               mennyiseg: '',
               suly: '0',
               koteshelye: '',
-              uzemnev: store.user.uzemnev
+              uzemnev: data.user.uzemnev
             }
           }
         }
@@ -60,21 +59,21 @@ export default {
           `
           const result = await api.post({url: '/local/tir/query', expect: 'object', params: {sql: sql}})
           if (result.userid) {
-            store.user = {
+            data.user = {
               name: result.fullname.trim(),
               role: 'kódoló',
               belepokod: (result.userid + 50000).toString()
             }
-            store.kodol = {
-              role: store.user.role,
+            data.kodol = {
+              role: data.user.role,
               telephelykod: '0',
               telephely: 'Szeged, Tavasz u. 2.',
-              kodolokod: store.user.belepokod,
-              kodolo: store.user.name,
+              kodolokod: data.user.belepokod,
+              kodolo: data.user.name,
               dolgozokod: '',
               dolgozonev: '',
-              belepokod: store.user.belepokod,
-              username: store.user.name,
+              belepokod: data.user.belepokod,
+              username: data.user.name,
               munkalapazonosito: '',
               kartoninfo: '',
               gepkod: '0',
@@ -93,19 +92,19 @@ export default {
         else if (qr < 54000) {
         }
         else if (qr < 55000) {
-          store.user = {
+          data.user = {
             name: 'MEO',
             role: 'meo',
             belepokod: qr
           }
-          store.kodol = {
+          data.kodol = {
             munkalapazonosito: '',
             kartoninfo: ''
           }
         }
         else {
         }
-        fields.fullname.value = store.user.name
+        fields.fullname.value = data.user.name
         if (debug) console.log('config Card tirlogin onChange qrcode', '\n  user', data.user, '\n  kodol', data.kodol)
       },
     },

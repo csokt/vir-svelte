@@ -17,9 +17,9 @@ export default {
   },
   kodol: {
     id: 'kodol',
-    name: 'Kódolás',
+    name: 'Teljesítmény kódolás',
     cardArray: [
-      { cardid: 'card1' },
+      { cardid: 'kodol' },
     ],
   },
   atad: {

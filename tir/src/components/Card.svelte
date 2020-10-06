@@ -16,6 +16,7 @@
   let disableFields = false
 
   function updateState() {
+    let counter = 0
     for (const id in card.fields) {
       if (card.fields.hasOwnProperty(id)) {
         const field = card.fields[id]
@@ -23,6 +24,7 @@
           if (field.hasOwnProperty(prop)) {
             const splits = prop.split('State')
             if (splits.length > 1) {
+              counter++
               field[splits[0]] = field[prop](card.fields)
               if (debug) console.log('Card', card.id, 'updateState field', field)
             }
@@ -30,10 +32,14 @@
         }
       }
     }
+    if (counter) card = card
   }
 
   function exec_function(func, ref) {
-    if (!func) return
+    if (!func) {
+      updateState()
+      return
+    }
     if (debug) console.log('Card', card.id, 'exec_function', ref)
     disableFields = true
     const func_returned = func(card.fields)
