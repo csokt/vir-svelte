@@ -1,5 +1,6 @@
-import api from '../api'
+import api from '../../api'
 import common from '../common'
+import { debug, data } from '../../stores.js'
 
 export default {
   id: 'tirlogin',
@@ -13,7 +14,7 @@ export default {
       attributes: {type: 'number', placeholder: 'QR'},
       onChange: async (fields) => {
         const qr = fields.qrcode.value
-        let store = {}
+        let store = data
         if (qr < 50000) {
           const dolgozokod = qr - 20000
           const sql = `
@@ -105,7 +106,7 @@ export default {
         else {
         }
         fields.fullname.value = store.user.name
-        // console.log(store)
+        if (debug) console.log('config Card tirlogin onChange qrcode', '\n  user', data.user, '\n  kodol', data.kodol)
       },
     },
     {

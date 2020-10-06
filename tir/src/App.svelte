@@ -7,7 +7,7 @@
   import { Notifications } from 'smelte/src/components/Snackbar'
   import routes from './routes'
   import { debug, facingmode, pagetitle, userinfo } from './stores.js'
-  import api from './config/api'
+  import api from './api'
 
   onMount(async () => {
     if (debug) console.log('App.svelte mounted')
