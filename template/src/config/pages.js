@@ -1,30 +1,61 @@
 export default {
   home: {
     id: 'home',
-    name: 'Svelte teszt projekt',
-    cards: [
-      { cardid: 'home' },
+    name: 'Termelés Információs Rend.',
+    cardArray: [
+      {
+        cardid: 'tirlogin',
+        // onChange: (cards) => {console.log(cards.tirlogin.card.fields.qrcode.value)},
+        onChange: (cards) => {console.log('config Page home onChange', cards)},
+        hiddenState: (cards) => { return !!cards.tirlogin.card.fields.fullname.value }
+      },
+      {
+        cardid: 'home',
+        hiddenState: (cards) => { return !cards.tirlogin.card.fields.fullname.value }
+      },
     ],
   },
-  page1: {
-    id: 'page1',
-    name: 'Page 1',
-    cards: [
-      { cardid: 'card1' },
+  kodol: {
+    id: 'kodol',
+    name: 'Teljesítmény kódolás',
+    cardArray: [
+      { cardid: 'kodol' },
     ],
   },
-  page2: {
-    id: 'page2',
-    name: 'Page 2',
-    cards: [
+  atad: {
+    id: 'atad',
+    name: 'Átadás',
+    cardArray: [
       { cardid: 'card1' },
       { cardid: 'card2' }
     ],
   },
-  page3: {
-    id: 'page3',
-    name: 'Page 3',
-    cards: [
+  munkalap: {
+    id: 'munkalap',
+    name: 'Munkalap',
+    cardArray: [
+      { cardid: 'card1' },
+    ],
+  },
+  seasearch: {
+    id: 'seasearch',
+    name: 'Dokumentációk',
+    cardArray: [
+      { cardid: 'card1' },
+    ],
+  },
+  norma: {
+    id: 'norma',
+    name: 'Mai teljesítmény %',
+    cardArray: [
+      { cardid: 'card1' },
+      { cardid: 'card2' },
+    ],
+  },
+  tablazatok: {
+    id: 'tablazatok',
+    name: 'Táblázatok',
+    cardArray: [
       { cardid: 'card1' },
       { cardid: 'card2' },
       { cardid: 'card3' },

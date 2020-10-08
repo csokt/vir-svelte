@@ -1,4 +1,4 @@
-import api from '../api'
+import api from '../../api'
 import common from '../common'
 
 export default {
@@ -9,7 +9,7 @@ export default {
       id: 'cikkszam',
       name: 'Cikkszám',
       type: 'text',
-      value: '25527',
+      value: '25504',
       attributes: {placeholder: 'Cikkszám'}
     },
     {

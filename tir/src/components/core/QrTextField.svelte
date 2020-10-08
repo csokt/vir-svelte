@@ -38,6 +38,7 @@
 </Dialog>
 
 <TextField
+  dense
   {label}
   bind:value={value}
   {disabled}

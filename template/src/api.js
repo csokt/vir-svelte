@@ -1,9 +1,10 @@
 import apisauce from 'apisauce'
 import { notifier } from 'smelte/src/components/Snackbar'
+import { debug } from './stores.js'
 
 const API = apisauce.create({
-  // baseURL: '/api2/',
-  baseURL: 'http://api2.szefo.local:34000/api2/',
+  baseURL: '/api2/',
+  // baseURL: 'http://api2.szefo.local:34000/api2/',
   timeout: 5000,
   headers: {
     Authorization: localStorage.szefo_api2_token
@@ -50,11 +51,13 @@ async function get({url, expect='array', params=null}) {
     parstr = '?params=' + JSON.stringify(params)
   }
   const response = await API.get(url + parstr)
+  if (debug) console.log('api.get', url + parstr, '\n  response:', response)
   return dataFromResponse(response, expect)
 }
 
 async function post({url, expect='array', params={}}) {
   const response = await API.post(url, params)
+  if (debug) console.log('api.post', url,  '\n  params:', params, '\n  response:', response)
   return dataFromResponse(response, expect)
 }
 

@@ -30,23 +30,30 @@ export default {
   },
 
   methods: {
+    emitEmptyData () {
+      if (this.expect === 'array') {
+        this.$emit('input', [])
+        this.$emit('length', 0)
+      } else if (this.expect === 'object') {
+        this.$emit('input', {})
+      } else {
+        this.$emit('input', null)
+      }
+    },
+
     async apiGet () {
       await this.$nextTick()
       if (!this.apiUrl) {
-        if (this.expect === 'array') {
-          this.$emit('input', [])
-          this.$emit('length', 0)
-        } else if (this.expect === 'object') {
-          this.$emit('input', {})
-        } else {
-          this.$emit('input', null)
-        }
+        this.emitEmptyData()
         return
       }
       this.$emit('loading', true)
       const response = await API.get(this.apiUrl)
       this.$emit('loading', false)
-      if (!checkResponse(response)) return
+      if (!checkResponse(response)) {
+        this.emitEmptyData()
+        return
+      }
       const data = response.data
       if (this.expect === 'array') {
         if (Array.isArray(data)) {

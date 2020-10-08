@@ -8,6 +8,8 @@
   import Select from 'smelte/src/components/Select'
   import { debug } from '../stores.js'
   import QrTextField from './core/QrTextField.svelte'
+  // import Tags from 'svelte-tags-input'
+  import Tags from './core/Tags.svelte'
 
   export let card
   export let hidden = false
@@ -128,6 +130,7 @@
 
       {#if element.type === "text"}
         <TextField
+          dense
           label={element.name}
           bind:value={card.fields[element.id].value}
           disabled={disableFields}
@@ -144,6 +147,17 @@
           attributes={element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
+      {/if}
+
+      {#if element.type === "tags"}
+        <Tags
+          placeholder={element.name}
+          bind:tags={card.fields[element.id].value}
+          disable={disableFields}
+          attributes={element.attributes}
+          on:tags={exec_function(element.onChange, 'onChange ' + element.id)}
+        />
+        <div class="py-1"></div>
       {/if}
 
       {#if element.type === "select"}

@@ -1,3 +1,4 @@
+import { debug } from '../stores.js'
 import pages from './pages'
 import cards from './cards/index'
 
@@ -6,7 +7,7 @@ function delay(ms) {
 }
 
 const config = {
-  version: '20.08.01',
+  version: '20.10.05',
   pages,
   cards,
 }
@@ -14,25 +15,16 @@ const config = {
 function checkProp(prop, obj1, obj2=null) {
   if (obj2) {
     if (!obj2.hasOwnProperty(prop)) {
-      console.log(obj1.id, obj2.id, ':', prop, 'missing')
+      if (debug) console.log(obj1.id, obj2.id, ':', prop, 'missing')
     }
   } else {
     if (!obj1.hasOwnProperty(prop)) {
-      console.log(obj1.id,':', prop, 'missing')
+      if (debug) console.log(obj1.id,':', prop, 'missing')
     }
   }
 }
 
-console.log('CHECK PAGES')
-for (const key in config.pages) {
-  if (config.pages.hasOwnProperty(key)) {
-    const page = config.pages[key]
-    checkProp('name', page)
-    checkProp('cards', page)
-  }
-}
-
-console.log('CHECK CARDS')
+if (debug) console.log('CHECK CARDS')
 for (const key in config.cards) {
   if (config.cards.hasOwnProperty(key)) {
     const card = config.cards[key]
@@ -73,5 +65,21 @@ for (const key in config.cards) {
     }
   }
 }
+
+if (debug) console.log('CHECK PAGES')
+for (const key in config.pages) {
+  if (config.pages.hasOwnProperty(key)) {
+    const page = config.pages[key]
+    checkProp('name', page)
+    checkProp('cardArray', page)
+    page.cards = {}
+    for (const card of page.cardArray) {
+      page.cards[card.cardid] = card
+      card.card = config.cards[card.cardid]
+      card.hidden = card.hidden || false
+    }
+  }
+}
+// if (debug) console.log(config.pages)
 
 export default config

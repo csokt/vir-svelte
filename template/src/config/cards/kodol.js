@@ -72,9 +72,8 @@ export default {
     {
       id: 'muveletkodok',
       name: 'Műveletkódok',
-      type: 'tags',
-      value: [],
-      attributes: {type: 'number'},
+      type: 'text',
+      value: '',
     },
     {
       id: 'mennyiseg',
@@ -91,7 +90,7 @@ export default {
         console.log(fields)
       },
       disabledState: (fields) => {
-        return !fields.dolgozonev.value || !fields.kartoninfo.value || !fields.muveletkodok.value.length || !(fields.mennyiseg.value > 0)
+        return !fields.dolgozonev.value || !fields.kartoninfo.value || !fields.muveletkodok.value || !(fields.mennyiseg.value > 0)
       },
     },
     common.alert_fields_button,
