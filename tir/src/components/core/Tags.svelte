@@ -290,7 +290,7 @@ function uniqueID() {
 .svelte-tags-input-tag,
 .svelte-tags-input-matchs {
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     padding: 2px 5px;
 }
 
@@ -306,8 +306,9 @@ function uniqueID() {
         -ms-flex-align:center;
             align-items:center;
     padding: 0px 5px 5px 5px;
+    margin-bottom: 16px;
     border: solid 1px #CCC;
-    background: #FFF;
+    background: #F5F5F5;
     border-radius: 2px;
 }
 
@@ -324,7 +325,9 @@ function uniqueID() {
             flex: 1;
     margin: 0;
     margin-top: 5px;
-    border:none;
+    border: none;
+    background: #F5F5F5;
+    width: 2.5em;
 }
 
 .svelte-tags-input:focus {
@@ -407,5 +410,10 @@ function uniqueID() {
 
 .svelte-tags-input-layout.sti-layout-disable .svelte-tags-input-tag-remove {
     cursor: not-allowed;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #757575;
+    opacity: 1; /* Firefox */
 }
 </style>

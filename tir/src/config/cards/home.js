@@ -38,5 +38,18 @@ export default {
       type: 'menu',
       path: '/menu1/tablazatok',
     },
+    {
+      id: 'fullname',
+      name: 'Dolgozó',
+      type: 'text',
+      value: '',
+      attributes: {readonly: true}
+    },
+    {
+      id: 'logout',
+      name: 'Másik dolgozó választása',
+      type: 'button',
+      onClick: (fields) => { fields.fullname.value = '' },
+    },
   ],
 }

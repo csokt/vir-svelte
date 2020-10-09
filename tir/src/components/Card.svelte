@@ -8,7 +8,6 @@
   import Select from 'smelte/src/components/Select'
   import { debug } from '../stores.js'
   import QrTextField from './core/QrTextField.svelte'
-  // import Tags from 'svelte-tags-input'
   import Tags from './core/Tags.svelte'
 
   export let card
@@ -67,26 +66,26 @@
 <div hidden={hidden} class="Card w-full max-w-sm p-2 mb-6 border shadow-xl">
   {#if card.name}
     <div class="text-gray-500 text-lg py-1">{card.name}</div>
-    <hr />
+    <hr>
   {/if}
   {#each card.elements as element}
     <div hidden={card.fields[element.id].hidden}>
       {#if element.type === "line"}
-        <hr />
+        <hr>
       {/if}
 
       {#if element.type === "menu"}
         <div class="text-primary-600 text-lg py-2" on:click={() => push(element.path)}>
           {element.name}
         </div>
-        <hr />
+        <hr>
       {/if}
 
       {#if element.type === "list"}
         {#each card.fields[element.id].value as row}
           <div> {row[element.labelid]} </div>
           <div> {row[element.valueid]} </div>
-          <hr />
+          <hr>
         {/each}
       {/if}
 
@@ -157,7 +156,6 @@
           attributes={element.attributes}
           on:tags={exec_function(element.onChange, 'onChange ' + element.id)}
         />
-        <div class="py-1"></div>
       {/if}
 
       {#if element.type === "select"}

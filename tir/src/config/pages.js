@@ -5,12 +5,16 @@ export default {
     cardArray: [
       {
         cardid: 'tirlogin',
-        // onChange: (cards) => {console.log(cards.tirlogin.card.fields.qrcode.value)},
-        onChange: (cards) => {console.log('config Page home onChange', cards)},
+        onChange: (cards) => {cards.home.card.fields.fullname.value = cards.tirlogin.card.fields.fullname.value},
         hiddenState: (cards) => { return !!cards.tirlogin.card.fields.fullname.value }
       },
       {
         cardid: 'home',
+        onChange: (cards) => {
+          if (cards.home.card.fields.fullname.value) return
+          cards.tirlogin.card.fields.qrcode.value = ''
+          cards.tirlogin.card.fields.fullname.value = ''
+        },
         hiddenState: (cards) => { return !cards.tirlogin.card.fields.fullname.value }
       },
     ],

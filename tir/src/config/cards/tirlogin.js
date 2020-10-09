@@ -1,3 +1,4 @@
+import { notifier } from 'smelte/src/components/Snackbar'
 import api from '../../api'
 import common from '../common'
 import { debug, data } from '../../stores.js'
@@ -8,13 +9,16 @@ export default {
   elements: [
     {
       id: 'qrcode',
-      name: 'QR code',
+      name: 'Dolgozókód',
       type: 'qrtext',
       value: '',
-      attributes: {type: 'number', placeholder: 'QR'},
+      attributes: {type: 'number'},
       onChange: async (fields) => {
+        data.user = {}
+        data.kodol = {}
         const qr = fields.qrcode.value
-        if (qr < 50000) {
+        if (qr < 20000) {}
+        else if (qr < 50000) {
           const dolgozokod = qr - 20000
           const sql = `
             select top 1 dolgozokod, dolgozonev, dolgtr.uzemkod, uzemek.vonalkod, uzemnev, uzemek.telephelykod, telephely
@@ -102,9 +106,10 @@ export default {
             kartoninfo: ''
           }
         }
-        else {
-        }
         fields.fullname.value = data.user.name
+        if (!fields.fullname.value) {
+          notifier.alert('A dolgozókód nem található!')
+        }
         if (debug) console.log('config Card tirlogin onChange qrcode', '\n  user', data.user, '\n  kodol', data.kodol)
       },
     },
