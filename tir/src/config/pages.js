@@ -31,21 +31,20 @@ export default {
     name: 'Átadás',
     cardArray: [
       { cardid: 'card1' },
-      { cardid: 'card2' }
     ],
   },
   munkalap: {
     id: 'munkalap',
     name: 'Munkalap',
     cardArray: [
-      { cardid: 'card1' },
+      { cardid: 'card2' },
     ],
   },
   seasearch: {
     id: 'seasearch',
     name: 'Dokumentációk',
     cardArray: [
-      { cardid: 'card1' },
+      { cardid: 'card3' },
     ],
   },
   norma: {

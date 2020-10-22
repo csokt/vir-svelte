@@ -12,12 +12,14 @@
 
   export let card
   export let hidden = false
+  const fields = card.fields  // not reactive
+
+  $: console.log('Card changed', card)
 
 	const dispatch = createEventDispatcher()
   let disableFields = false
 
-  function updateState() {
-    let counter = 0
+  $: {
     for (const id in card.fields) {
       if (card.fields.hasOwnProperty(id)) {
         const field = card.fields[id]
@@ -25,7 +27,6 @@
           if (field.hasOwnProperty(prop)) {
             const splits = prop.split('State')
             if (splits.length > 1) {
-              counter++
               field[splits[0]] = field[prop](card.fields)
               if (debug) console.log('Card', card.id, 'updateState field', field)
             }
@@ -33,19 +34,19 @@
         }
       }
     }
-    if (counter) card = card
   }
 
   function exec_function(func, ref) {
     if (!func) {
-      updateState()
+      card = card
+      // updateState()
       return
     }
     if (debug) console.log('Card', card.id, 'exec_function', ref)
     disableFields = true
     const func_returned = func(card.fields)
     Promise.resolve(func_returned).then(result => {
-      updateState()
+      // updateState()
       dispatch('change')
     })
     .catch(error => console.log('Card', card.id, 'error:', error))
@@ -57,7 +58,7 @@
     if (card.hasOwnProperty('onMount')) {
       exec_function(card.onMount, 'onMount')
     } else {
-      updateState()
+      // updateState()
     }
   })
 
@@ -120,7 +121,7 @@
       {#if element.type === "checkbox"}
         <Checkbox
           label={element.name}
-          bind:checked={card.fields[element.id].value}
+          bind:checked={fields[element.id].value}
           disabled={disableFields}
           {...element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
@@ -131,7 +132,7 @@
         <TextField
           dense
           label={element.name}
-          bind:value={card.fields[element.id].value}
+          bind:value={fields[element.id].value}
           disabled={disableFields}
           {...element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
@@ -141,7 +142,7 @@
       {#if element.type === "qrtext"}
         <QrTextField
           label={element.name}
-          bind:value={card.fields[element.id].value}
+          bind:value={fields[element.id].value}
           disabled={disableFields}
           attributes={element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
@@ -151,7 +152,7 @@
       {#if element.type === "tags"}
         <Tags
           placeholder={element.name}
-          bind:tags={card.fields[element.id].value}
+          bind:tags={fields[element.id].value}
           disable={disableFields}
           attributes={element.attributes}
           on:tags={exec_function(element.onChange, 'onChange ' + element.id)}
@@ -161,11 +162,12 @@
       {#if element.type === "select"}
         <Select
           label={element.name}
-          bind:value={card.fields[element.id].value}
+          bind:value={fields[element.id].value}
           items={card.fields[element.id].items}
           append=""
           disabled={disableFields}
           {...element.attributes}
+          on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
       {/if}
     </div>

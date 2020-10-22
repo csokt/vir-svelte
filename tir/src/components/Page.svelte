@@ -4,8 +4,9 @@
   import Card from '../components/Card.svelte'
 
   export let page
+  $: console.log('Page changed', page)
 
-  function updateState() {
+  $: {
     for (const id in page.cards) {
       if (page.cards.hasOwnProperty(id)) {
         const card = page.cards[id]
@@ -27,7 +28,7 @@
     if (debug) console.log('Page', page.id, 'exec_function', ref)
     const func_returned = func(page.cards)
     Promise.resolve(func_returned).then(result => {
-      updateState()
+      // updateState()
     })
     .catch(error => console.log('Page', page.id, 'error', error))
     .finally(() => { page = page })
@@ -39,7 +40,7 @@
     if (page.hasOwnProperty('onMount')) {
       exec_function(page.onMount, 'onMount')
     } else {
-      updateState()
+      // updateState()
     }
   })
 </script>
