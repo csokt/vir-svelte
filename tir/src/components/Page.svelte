@@ -10,13 +10,11 @@
     for (const id in page.cards) {
       if (page.cards.hasOwnProperty(id)) {
         const card = page.cards[id]
-        for (const prop in card) {
-          if (card.hasOwnProperty(prop)) {
-            const splits = prop.split('State')
-            if (splits.length > 1) {
-              card[splits[0]] = card[prop](page.cards)
-              if (debug) console.log('Page', page.id, 'updateState Card', card)
-            }
+        for (const key in card.states) {
+          if (card.states.hasOwnProperty(key)) {
+            card[key] = card.states[key](page.cards)
+            if (debug) console.log('Page', page.id, 'updateState Card', card)
+
           }
         }
       }

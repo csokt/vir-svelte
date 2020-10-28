@@ -32,10 +32,23 @@ for (const key in config.cards) {
     checkProp('elements', card)
     card.fields = {}
     for (const element of card.elements) {
+      // Create states object from nameState shaped fields
+      element.states = {}
+      for (const prop in element) {
+        if (element.hasOwnProperty(prop)) {
+          const splits = prop.split('State')
+          if (splits.length > 1) {
+            element.states[splits[0]] = element[prop]
+          }
+        }
+      }
       card.fields[element.id] = element
       element.hidden = element.hidden || false
       if (['button', 'checkbox', 'text', 'qrtext'].includes(element.type)) {
         element.disabled = element.disabled || false
+      }
+      if (['text', 'qrtext'].includes(element.type)) {
+        element.error = false
       }
       if (!['line'].includes(element.type)) {
         checkProp('name', card, element)
@@ -74,6 +87,16 @@ for (const key in config.pages) {
     checkProp('cardArray', page)
     page.cards = {}
     for (const card of page.cardArray) {
+      // Create states object from nameState shaped fields
+      card.states = {}
+      for (const prop in card) {
+        if (card.hasOwnProperty(prop)) {
+          const splits = prop.split('State')
+          if (splits.length > 1) {
+            card.states[splits[0]] = card[prop]
+          }
+        }
+      }
       page.cards[card.cardid] = card
       card.card = config.cards[card.cardid]
       card.hidden = card.hidden || false

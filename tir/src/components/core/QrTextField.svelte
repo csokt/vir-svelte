@@ -13,6 +13,8 @@
   export let value = ''
   export let label = 'field label'
   export let disabled = false
+  export let readonly = null
+  export let error = false
   export let attributes = {}
 
   function onScanned(event) {
@@ -42,10 +44,10 @@
   {label}
   bind:value={value}
   {disabled}
-  append=select_all
+  {readonly}
+  {error}
+  append={readonly ? '' : 'select_all'}
   {...attributes}
   on:click-append={() => showDialog = true}
   on:change
 />
-    <!-- <span on:click={() => showDialog = false}>&#11013;</span> -->
-  <!-- append=&#9778; -->

@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store'
 
 export const debug = true
-export const data = {}
+export const data = { user: {}, kodol: {} }
 
 export const facingmode = writable('')
 export const pagetitle = writable('Page title')

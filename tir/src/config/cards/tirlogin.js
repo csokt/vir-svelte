@@ -1,4 +1,3 @@
-import { notifier } from 'smelte/src/components/Snackbar'
 import api from '../../api'
 import common from '../common'
 import { debug, data } from '../../stores.js'
@@ -108,7 +107,7 @@ export default {
         }
         fields.fullname.value = data.user.name
         if (!fields.fullname.value) {
-          notifier.alert('A dolgozókód nem található!')
+          api.notifier.alert('A dolgozókód nem található!')
         }
         if (debug) console.log('config Card tirlogin onChange qrcode', '\n  user', data.user, '\n  kodol', data.kodol)
       },

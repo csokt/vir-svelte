@@ -14,7 +14,8 @@ const API = apisauce.create({
 function checkResponse (response) {
   if (!response.ok) {
     console.log(response)
-    notifier.error('Hiba: ' + response.status + ' ' + response.problem + ' ' + (response.data && response.data.error))
+    notifier.error('Hiba: ' + (response.status ? response.status : '') + ' ' + response.problem + ' ' +
+                              ((response.data && response.data.error) ? response.data.error : ''))
   }
   return response.ok
 }
@@ -61,4 +62,4 @@ async function post({url, expect='array', params={}}) {
   return dataFromResponse(response, expect)
 }
 
-export default { API, checkResponse, get, post }
+export default { API, checkResponse, get, post, notifier }

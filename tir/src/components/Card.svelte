@@ -23,13 +23,11 @@
     for (const id in card.fields) {
       if (card.fields.hasOwnProperty(id)) {
         const field = card.fields[id]
-        for (const prop in field) {
-          if (field.hasOwnProperty(prop)) {
-            const splits = prop.split('State')
-            if (splits.length > 1) {
-              field[splits[0]] = field[prop](card.fields)
-              if (debug) console.log('Card', card.id, 'updateState field', field)
-            }
+        for (const key in field.states) {
+          if (field.states.hasOwnProperty(key)) {
+            field[key] = field.states[key](card.fields)
+            if (debug) console.log('Card', card.id, 'updateState field', field)
+
           }
         }
       }
@@ -122,7 +120,7 @@
         <Checkbox
           label={element.name}
           bind:checked={fields[element.id].value}
-          disabled={disableFields}
+          disabled={disableFields || card.fields[element.id].disabled}
           {...element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
@@ -133,7 +131,9 @@
           dense
           label={element.name}
           bind:value={fields[element.id].value}
-          disabled={disableFields}
+          disabled={disableFields || card.fields[element.id].disabled}
+          readonly={card.fields[element.id].readonly}
+          error={card.fields[element.id].error}
           {...element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
@@ -143,7 +143,8 @@
         <QrTextField
           label={element.name}
           bind:value={fields[element.id].value}
-          disabled={disableFields}
+          disabled={disableFields || card.fields[element.id].disabled}
+          readonly={card.fields[element.id].readonly}
           attributes={element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
@@ -153,7 +154,7 @@
         <Tags
           placeholder={element.name}
           bind:tags={fields[element.id].value}
-          disable={disableFields}
+          disabled={disableFields || card.fields[element.id].disabled}
           attributes={element.attributes}
           on:tags={exec_function(element.onChange, 'onChange ' + element.id)}
         />
@@ -165,7 +166,7 @@
           bind:value={fields[element.id].value}
           items={card.fields[element.id].items}
           append=""
-          disabled={disableFields}
+          disabled={disableFields || card.fields[element.id].disabled}
           {...element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
