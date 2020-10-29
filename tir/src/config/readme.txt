@@ -10,6 +10,10 @@ Az element-nek mindig van típusa (type), ezek a következők:
 menu:
   path: az új oldal címe
 
+line:
+  hidden: számított attribútum, alapértelmezetten false.
+  hiddenState(fields): a hidden státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
+
 list:
   value[]: megjelenítendő lista
   labelid: label mező neve
@@ -18,9 +22,10 @@ list:
 button:
   onClick(): kattintásra ezt a függvényt hívja meg, lehet async is.
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
-  disabledState(): a disabled státuszt álltja be, csak szinkron lehet, bool visszatérő értékkel.
   disabled: számított attribútum, alapértelmezetten false.
+  disabledState(fields): a disabled státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
   hidden: számított attribútum, alapértelmezetten false.
+  hiddenState(fields): a hidden státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
 
 buttongroup:
   buttons[button]
@@ -29,22 +34,35 @@ checkbox:
   label: megjelenítendő név
   value: boolean
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
-  disabledState(): a disabled státuszt álltja be, csak szinkron lehet, bool visszatérő értékkel.
   disabled: számított attribútum, alapértelmezetten false.
+  disabledState(fields): a disabled státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
   hidden: számított attribútum, alapértelmezetten false.
+  hiddenState(fields): a hidden státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
   onChange(): tartalom megváltozásakor ezt a függvényt hívja meg, lehet async is.
 
 text:
   label: megjelenítendő név
   value: string
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
-  disabledState(): a disabled státuszt álltja be, csak szinkron lehet, bool visszatérő értékkel.
   disabled: számított attribútum, alapértelmezetten false.
+  disabledState(fields): a disabled státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
+  readonly: számított attribútum, alapértelmezetten undefined.
+  readonlyState(fields): a readonly státuszt állítja be, csak szinkron lehet, null|true visszatérő értékkel.
+  error: számított attribútum, alapértelmezetten false.
+  errorState(fields): a error státuszt állítja be, csak szinkron lehet, false|string visszatérő értékkel.
   hidden: számított attribútum, alapértelmezetten false.
+  hiddenState(fields): a hidden státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
   onChange(): tartalom megváltozásakor ezt a függvényt hívja meg, lehet async is.
 
 qrtext:
   Ugyanaz mint a text, csak lehetőség van QR kód beolvasására is.
+
+tags:
+  placeholder:
+  value: [string]
+  disabled: számított attribútum, alapértelmezetten false.
+  disabledState(fields): a disabled státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
+  onChange(): tartalom megváltozásakor ezt a függvényt hívja meg, lehet async is.
 
 select:
   label: megjelenítendő név

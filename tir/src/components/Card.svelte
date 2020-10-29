@@ -69,14 +69,14 @@
   {/if}
   {#each card.elements as element}
     <div hidden={card.fields[element.id].hidden}>
-      {#if element.type === "line"}
-        <hr>
-      {/if}
-
       {#if element.type === "menu"}
         <div class="text-primary-600 text-lg py-2" on:click={() => push(element.path)}>
           {element.name}
         </div>
+        <hr>
+      {/if}
+
+      {#if element.type === "line"}
         <hr>
       {/if}
 
@@ -145,6 +145,7 @@
           bind:value={fields[element.id].value}
           disabled={disableFields || card.fields[element.id].disabled}
           readonly={card.fields[element.id].readonly}
+          error={card.fields[element.id].error}
           attributes={element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
         />
