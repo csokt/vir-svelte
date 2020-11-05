@@ -8,6 +8,7 @@
   import Select from 'smelte/src/components/Select'
   import { debug } from '../stores.js'
   import QrTextField from './core/QrTextField.svelte'
+  import SimpleTable from './core/SimpleTable.svelte'
   import Tags from './core/Tags.svelte'
 
   export let card
@@ -170,6 +171,13 @@
           disabled={disableFields || card.fields[element.id].disabled}
           {...element.attributes}
           on:change={exec_function(element.onChange, 'onChange ' + element.id)}
+        />
+      {/if}
+
+      {#if element.type === "simpletable"}
+        <SimpleTable
+          data={fields[element.id].value}
+          {...element.attributes}
         />
       {/if}
     </div>

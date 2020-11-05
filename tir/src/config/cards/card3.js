@@ -15,14 +15,14 @@ export default {
     {
       id: 'card3_list1',
       name: 'Gyümölcsök',
-      type: 'list',
+      type: 'simpletable',
       value: [
-        {field1: 'alma', field2: 'jonatán'},
-        {field1: 'korte', field2: 'vilmos'},
-        {field1: 'szilva', field2: 'ringló'}
+        {gyumolcs: 'alma', fajta: 'jonatán', szin: 'piros'},
+        {gyumolcs: 'korte', fajta: 'vilmos', szin: 'sárga'},
+        {gyumolcs: 'szilva', fajta: 'ringló', szin: 'kék'}
       ],
-      labelid: 'field1',
-      valueid: 'field2',
+      labelid: 'gyumolcs',
+      valueid: 'fajta',
     }
   ],
 }
