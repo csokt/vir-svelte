@@ -32,6 +32,7 @@ for (const key in config.cards) {
     checkProp('elements', card)
     card.fields = {}
     for (const element of card.elements) {
+      card.fields[element.id] = element
       // Create states object from nameState shaped fields
       element.states = {}
       for (const prop in element) {
@@ -42,7 +43,8 @@ for (const key in config.cards) {
           }
         }
       }
-      card.fields[element.id] = element
+      // Check required properties
+      checkProp('type', card, element)
       element.hidden = element.hidden || false
       if (['button', 'checkbox', 'text', 'qrtext'].includes(element.type)) {
         element.disabled = element.disabled || false
@@ -50,9 +52,11 @@ for (const key in config.cards) {
       if (['text', 'qrtext'].includes(element.type)) {
         element.error = false
       }
+      if (element.type === 'simpletable') {
+        element.selected = null
+      }
       if (!['line'].includes(element.type)) {
         checkProp('name', card, element)
-        checkProp('type', card, element)
       }
       if (!['line', 'menu', 'button', 'buttongroup'].includes(element.type)) {
         checkProp('value', card, element)

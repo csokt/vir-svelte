@@ -21,7 +21,6 @@ export default {
         {gyumolcs: 'korte', fajta: 'vilmos', szin: 'sárga'},
         {gyumolcs: 'szilva', fajta: 'ringló', szin: 'kék'}
       ],
-      selected: null,
     }
   ],
 }
