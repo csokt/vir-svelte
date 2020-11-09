@@ -21,9 +21,9 @@
     }
   }
 
-  function exec_function(func, ref) {
+  function exec_function(func, message) {
     if (!func) return
-    if (debug) console.log('Page', page.id, 'exec_function', ref)
+    if (debug) console.log('Page', page.id, 'exec_function', message, '\n  ', func)
     const func_returned = func(page.cards)
     Promise.resolve(func_returned).then(result => {
       // updateState()
@@ -48,7 +48,7 @@
     <Card
       bind:card={page.cards[card.cardid].card}
       hidden={page.cards[card.cardid].hidden}
-      on:change={exec_function(card.onChange, 'onChange ' + card.cardid)}
+      on:event={(event) => {exec_function(card.onEvent, event.detail) }}
     />
   {/each}
 </div>

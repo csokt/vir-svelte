@@ -35,18 +35,17 @@
     }
   }
 
-  function exec_function(func, ref) {
+  function exec_function(func, message) {
     if (!func) {
       card = card
-      // updateState()
+      dispatch('event', message)
       return
     }
-    if (debug) console.log('Card', card.id, 'exec_function', ref)
+    if (debug) console.log('Card exec_function', message, '\n  ', func)
     disableFields = true
-    const func_returned = func(card.fields)
+    const func_returned = func(card.fields, message)
     Promise.resolve(func_returned).then(result => {
-      // updateState()
-      dispatch('change')
+      dispatch('event', message)
     })
     .catch(error => console.log('Card', card.id, 'error:', error))
     .finally(() => { disableFields = false; card = card })
@@ -55,9 +54,7 @@
   onMount(() => {
     if (debug) console.log('Card', card.id, 'mounted')
     if (card.hasOwnProperty('onMount')) {
-      exec_function(card.onMount, 'onMount')
-    } else {
-      // updateState()
+      exec_function(card.onMount, {message: 'mount', cardid: card.id})
     }
   })
 
@@ -94,7 +91,7 @@
           <Button
             disabled={disableFields || card.fields[element.id].disabled}
             {...element.attributes}
-            on:click={exec_function(element.onClick, 'onClick ' + element.id)}
+            on:click={exec_function(element.onClick, {event: 'click', cardid: card.id, fieldid: element.id})}
           >
             {element.name}
           </Button>
@@ -108,7 +105,7 @@
               <Button
                 disabled={disableFields || card.fields[button.id].disabled}
                 {...button.attributes}
-                on:click={exec_function(button.onClick, 'onClick ' + button.id)}
+                on:click={exec_function(button.onClick, {event: 'click', cardid: card.id, fieldid: button.id})}
               >
                 {button.name}
               </Button>
@@ -123,7 +120,7 @@
           bind:checked={fields[element.id].value}
           disabled={disableFields || card.fields[element.id].disabled}
           {...element.attributes}
-          on:change={exec_function(element.onChange, 'onChange ' + element.id)}
+          on:change={exec_function(element.onChange, {event: 'change', cardid: card.id, fieldid: element.id, value: fields[element.id].value})}
         />
       {/if}
 
@@ -136,7 +133,7 @@
           readonly={card.fields[element.id].readonly}
           error={card.fields[element.id].error}
           {...element.attributes}
-          on:change={exec_function(element.onChange, 'onChange ' + element.id)}
+          on:change={exec_function(element.onChange, {event: 'change', cardid: card.id, fieldid: element.id, value: fields[element.id].value})}
         />
       {/if}
 
@@ -148,7 +145,7 @@
           readonly={card.fields[element.id].readonly}
           error={card.fields[element.id].error}
           attributes={element.attributes}
-          on:change={exec_function(element.onChange, 'onChange ' + element.id)}
+          on:change={exec_function(element.onChange, {event: 'change', cardid: card.id, fieldid: element.id, value: fields[element.id].value})}
         />
       {/if}
 
@@ -158,7 +155,7 @@
           bind:tags={fields[element.id].value}
           disabled={disableFields || card.fields[element.id].disabled}
           attributes={element.attributes}
-          on:tags={exec_function(element.onChange, 'onChange ' + element.id)}
+          on:tags={exec_function(element.onChange, {event: 'change', cardid: card.id, fieldid: element.id, value: fields[element.id].value})}
         />
       {/if}
 
@@ -170,13 +167,15 @@
           append=""
           disabled={disableFields || card.fields[element.id].disabled}
           {...element.attributes}
-          on:change={exec_function(element.onChange, 'onChange ' + element.id)}
+          on:change={exec_function(element.onChange, {event: 'change', cardid: card.id, fieldid: element.id, value: fields[element.id].value})}
         />
       {/if}
 
       {#if element.type === "simpletable"}
         <SimpleTable
           data={fields[element.id].value}
+          bind:selected={fields[element.id].selected}
+          on:select={exec_function(element.onSelect, {event: 'select', cardid: card.id, fieldid: element.id, value: fields[element.id].selected})}
           {...element.attributes}
         />
       {/if}

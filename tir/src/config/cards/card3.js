@@ -13,7 +13,7 @@ export default {
       type: 'line'
     },
     {
-      id: 'card3_list1',
+      id: 'simpletable1',
       name: 'Gyümölcsök',
       type: 'simpletable',
       value: [
@@ -21,8 +21,7 @@ export default {
         {gyumolcs: 'korte', fajta: 'vilmos', szin: 'sárga'},
         {gyumolcs: 'szilva', fajta: 'ringló', szin: 'kék'}
       ],
-      labelid: 'gyumolcs',
-      valueid: 'fajta',
+      selected: null,
     }
   ],
 }

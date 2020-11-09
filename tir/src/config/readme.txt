@@ -70,3 +70,8 @@ select:
   items[{value, text}]: ezekből lehet válogatni.
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
   onChange(): tartalom megváltozásakor ezt a függvényt hívja meg, lehet async is.
+
+simpletable:
+  data[]: táblázat adatok
+  selected: kiválasztott táblázat sor
+  onSelect(): sor kiválasztáskor ezt a függvényt hívja meg, lehet async is.
