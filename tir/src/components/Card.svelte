@@ -175,6 +175,8 @@
         <SimpleTable
           data={fields[element.id].value}
           bind:selected={fields[element.id].selected}
+          rowClass={fields[element.id].rowClass}
+          columns={fields[element.id].columns}
           on:select={exec_function(element.onSelect, {event: 'select', cardid: card.id, fieldid: element.id, value: fields[element.id].selected})}
           {...element.attributes}
         />

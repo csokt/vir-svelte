@@ -111,11 +111,8 @@ export default {
       name: 'Adatok mentése',
       type: 'button',
       onClick: async (fields) => {
-        console.log(fields)
-        // Log('kodol', fields)
-        // let message = ''
-        // this.feldolgozas = true
-
+        let message = ''
+        fields.kodolasok.value = []
         for (const muveletkod of fields.muveletkodok.value) {
           const params = {
             funkcio: '99994',
@@ -129,33 +126,30 @@ export default {
             suly: 0,
             koteshelye: ''
           }
+          // fields.kodolasok.value.unshift(params)
+          fields.kodolasok.value.push(params)
+          // Log('kodol', params)
           const result = await api.post({url: '/local/tir/kodol', expect: 'object', params: params})
-          console.log('######', result)
-        //   let doc = { ...this.kodol, muveletkod: muveletkod }
-        //   this.kodolasok.unshift(doc)
-        //   const response = await API.post('tir/kodol', doc)
-
-        //   if (response.ok) {
-        //     doc.eredmeny = response.data.message
-        //     doc.error = parseInt(response.data.error)
-        //     if (doc.error) {
-        //       message = 'Nem minden tételt sikerült bekódolni!'
-        //     }
-        //   } else {
-        //     message = 'Kódoló szerver hiba, értesítse a rendszergazdát!'
-        //     doc.eredmeny = 'Kódoló szerver hiba!'
-        //     doc.error = 1
-        //     break
-        //   }
+          if (result.message) {
+            params.eredmeny = result.message
+            params.error = parseInt(result.error)
+            if (params.error) {
+              message = 'Nem minden tételt sikerült bekódolni!'
+            }
+          } else {
+            message = 'Kódoló szerver hiba, értesítse a rendszergazdát!'
+            params.eredmeny = 'Kódoló szerver hiba!'
+            params.error = 1
+            break
+          }
         }
-        // this.feldolgozas = false
-        // if (message) {
-        //   EventBus.$emit('inform', { type: 'alert', variation: 'error', message: message })
-        //   Log('message', { message: message })
-        //   return
-        // }
-        // EventBus.$emit('inform', { type: 'alert', variation: 'success', message: 'Tételek bekódolva!' })
-        // this.kodol.mennyiseg = ''
+        if (message) {
+          api.notifier.error(message)
+          // Log('message', { message: message })
+          return
+        }
+        api.notifier.notify('Tételek bekódolva!')
+        fields.mennyiseg.value = ''
 
       },
       disabledState: (fields) => {
@@ -163,6 +157,18 @@ export default {
           fields.gepkod.error || fields.muveletkodok.error || fields.mennyiseg.error
       },
     },
-    common.alert_fields_button,
+    // common.alert_fields_button,
+    {
+      id: 'kodolasok',
+      name: 'Kódolások',
+      type: 'simpletable',
+      rowClass: (row) => {return row.error ? 'text-error-900' : null},
+      columns: [
+        { label: 'Műv.kód', field: 'muveletkod' },
+        { label: 'Menny.',  field: 'mennyiseg' },
+        { label: 'Eredmény',field: 'eredmeny' },
+      ],
+      value: [],
+    }
   ],
 }

@@ -3,6 +3,7 @@
 
   export let data = []
   export let selected = null
+  export let rowClass
   export let columns = Object.keys(data[0] || {}).map(i => ({ label: (i || "").replace("_", " "), field: i }))
 
   const dispatch = createEventDispatcher()
@@ -25,7 +26,9 @@
   </thead>
   <tbody>
     {#each data as item, index}
-      <tr on:click={() => { selected = item; dispatch('select') }}>
+      <tr class="{rowClass && rowClass(item)}"
+        on:click={() => { selected = item; dispatch('select') }}
+      >
         {#each columns as column, i}
           <td>
             {#if column.value}
