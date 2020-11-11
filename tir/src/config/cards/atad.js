@@ -3,34 +3,53 @@ import common from '../common'
 import { debug, data } from '../../stores.js'
 
 export default {
-  id: 'kodol',
+  id: 'atad',
   name: '',
-  onMount: (fields) => {
-    fields.dolgozokod.value = data.kodol.dolgozokod
-    fields.dolgozonev.value = data.kodol.dolgozonev
-  },
+  // onMount: (fields) => {
+  //   fields.dolgozokod.value = data.kodol.dolgozokod
+  //   fields.dolgozonev.value = data.kodol.dolgozonev
+  // },
   elements: [
     {
-      id: 'dolgozokod',
-      name: 'Dolgozó kód',
+      id: 'hely',
+      name: 'Átadási helykód',
       type: 'qrtext',
       value: '',
       attributes: {type: 'number'},
-      readonlyState: (fields) => {
-        return data.user.role!=='kódoló' ? true : null
-      },
       onChange: async (fields) => {
-        const dolgozokod = fields.dolgozokod.value - 20000
-        const sql = `select top 1 dolgozokod, dolgozonev from dolgtr where aktiv = 'A' and kilepett = 0 and dolgozokod = ${dolgozokod}`
+        const sql = `select top 1 kod, kodnev from vonalkodok where kod = ${fields.hely.value}`
         const result = await api.post({url: '/local/tir/query', expect: 'object', params: {sql: sql}})
-        if (debug) console.log('config Card kodol onChange dolgozokod', '\n  result', result)
-        fields.dolgozonev.value = result.dolgozonev
+        if (debug) console.log('config Card atad onChange hely', '\n  result', result)
+        fields.helynev.value = result.kodnev
       },
     },
 
     {
-      id: 'dolgozonev',
-      name: 'Dolgozó',
+      id: 'helynev',
+      name: 'Átadási helynév',
+      type: 'text',
+      value: '',
+      readonly: true,
+    },
+
+    {
+      id: 'uzemkod',
+      name: 'Üzemkód',
+      type: 'qrtext',
+      value: '',
+      attributes: {type: 'number'},
+      onChange: async (fields) => {
+        const value = parseInt(fields.uzemkod.value) - 54000
+        const sql = `select top 1 vonalkod, uzemnev from uzemek where vonalkod = ${value}`
+        const result = await api.post({url: '/local/tir/query', expect: 'object', params: {sql: sql}})
+        if (debug) console.log('config Card atad onChange uzemkod', '\n  result', result)
+        fields.uzemnev.value = result.uzemnev
+      },
+    },
+
+    {
+      id: 'uzemnev',
+      name: 'Üzemnév',
       type: 'text',
       value: '',
       readonly: true,
@@ -38,46 +57,6 @@ export default {
 
     common.munkalapazonosito,
     common.kartoninfo,
-
-    {
-      id: 'gepkod',
-      name: 'Gépkód',
-      type: 'text',
-      value: '0',
-      attributes: {type: 'number'},
-      errorState: (fields) => {
-        return fields.gepkod.value !== parseInt(fields.gepkod.value).toString() || parseInt(fields.gepkod.value) < 0 ? 'Érvénytelen gépkód!' : false
-      },
-    },
-
-    {
-      id: 'muveletkodok',
-      name: 'Műveletkódok',
-      type: 'tags',
-      value: [],
-      attributes: {type: 'number'},
-      errorState: (fields) => {
-        for (const muveletkod of fields.muveletkodok.value) {
-          if (muveletkod !== parseInt(muveletkod).toString() || parseInt(muveletkod) < 1) {
-            api.notifier.alert('Érvénytelen műveletkód!')
-            return true
-          }
-        }
-        return false
-      },
-    },
-
-    {
-      id: 'mennyiseg',
-      name: 'Mennyiség',
-      type: 'text',
-      value: '',
-      attributes: {type: 'number'},
-      errorState: (fields) => {
-        if (fields.mennyiseg.value === '') return false
-        return fields.mennyiseg.value !== parseInt(fields.mennyiseg.value).toString() || parseInt(fields.mennyiseg.value) <= 0 ? 'Érvénytelen mennyiség!' : false
-      },
-    },
 
     {
       id: 'mentes',
@@ -125,10 +104,10 @@ export default {
         fields.mennyiseg.value = ''
 
       },
-      disabledState: (fields) => {
-        return !fields.dolgozonev.value || !fields.kartoninfo.value || !fields.muveletkodok.value.length || !(fields.mennyiseg.value > 0) ||
-          fields.gepkod.error || fields.muveletkodok.error || fields.mennyiseg.error
-      },
+      // disabledState: (fields) => {
+      //   return !fields.dolgozonev.value || !fields.kartoninfo.value || !fields.muveletkodok.value.length || !(fields.mennyiseg.value > 0) ||
+      //     fields.gepkod.error || fields.muveletkodok.error || fields.mennyiseg.error
+      // },
     },
 
     // common.alert_fields_button,

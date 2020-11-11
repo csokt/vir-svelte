@@ -30,7 +30,7 @@ export default {
     id: 'atad',
     name: 'Átadás',
     cardArray: [
-      { cardid: 'card1' },
+      { cardid: 'atad' },
     ],
   },
   munkalap: {
