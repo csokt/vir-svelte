@@ -117,7 +117,7 @@ export default {
       name: 'Név',
       type: 'text',
       value: '',
-      hiddenState: (field) => { return true }
+      hiddenState: (fields) => { return true }
     },
   ],
 }

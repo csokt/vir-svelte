@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy, createEventDispatcher } from 'svelte'
+  import { createEventDispatcher } from 'svelte'
 
   export let data
   export let selected
@@ -9,13 +9,6 @@
   $: _columns = columns || Object.keys(data[0] || {}).map(i => ({ label: (i || "").replace("_", " "), field: i }))
 
   const dispatch = createEventDispatcher()
-
-
-	onMount(async () => {
-	})
-
-  onDestroy(() => {
-  })
 </script>
 
 <table>
