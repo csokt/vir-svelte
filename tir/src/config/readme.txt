@@ -75,4 +75,5 @@ simpletable:
   data[]: táblázat adatok
   selected: kiválasztott táblázat sor
   rowClass(): (row) => {return <kalkulált class>}
+  columns[]: { label, field, class }
   onSelect(): sor kiválasztáskor ezt a függvényt hívja meg, lehet async is.

@@ -1,10 +1,12 @@
 <script>
   import { onMount, onDestroy, createEventDispatcher } from 'svelte'
 
-  export let data = []
-  export let selected = null
+  export let data
+  export let selected
   export let rowClass
-  export let columns = Object.keys(data[0] || {}).map(i => ({ label: (i || "").replace("_", " "), field: i }))
+  export let columns
+
+  $: _columns = columns || Object.keys(data[0] || {}).map(i => ({ label: (i || "").replace("_", " "), field: i }))
 
   const dispatch = createEventDispatcher()
 
@@ -18,23 +20,23 @@
 
 <table>
   <thead class="items-center">
-    {#each columns as column, i}
+    {#each _columns as column, i}
       <th>
         <span>{column.label || column.field}</span>
       </th>
     {/each}
   </thead>
   <tbody>
-    {#each data as item, index}
-      <tr class="{rowClass && rowClass(item)}"
-        on:click={() => { selected = item; dispatch('select') }}
+    {#each data as row, index}
+      <tr class="{rowClass && rowClass(row)}"
+        on:click={() => { selected = row; dispatch('select') }}
       >
-        {#each columns as column, i}
-          <td>
+        {#each _columns as column, i}
+          <td class={column.class}>
             {#if column.value}
-              {@html column.value(item)}
+              {@html column.value(row)}
             {:else}
-              {@html item[column.field]}
+              {@html row[column.field]}
             {/if}
           </td>
         {/each}

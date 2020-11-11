@@ -18,7 +18,7 @@ export default {
       type: 'simpletable',
       rowClass: (row) => {return row.szin === 'piros' ? 'text-error-900' : null},
       columns: [
-        { label: 'Gyümölcs',  field: 'gyumolcs' },
+        { label: 'Gyümölcs',  field: 'gyumolcs', class: 'text-blue-900' },
         { label: 'Fajta',     field: 'fajta' },
         { label: 'Szín',      field: 'szin' },
       ],
