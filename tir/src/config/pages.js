@@ -37,7 +37,7 @@ export default {
     id: 'munkalap',
     name: 'Munkalap',
     cardArray: [
-      { cardid: 'card2' },
+      { cardid: 'munkalap' },
     ],
   },
   seasearch: {

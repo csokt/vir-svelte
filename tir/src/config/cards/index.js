@@ -3,6 +3,7 @@ import login from './login'
 import tirlogin from './tirlogin'
 import kodol from './kodol'
 import atad from './atad'
+import munkalap from './munkalap'
 import card1 from './card1'
 import card2 from './card2'
 import card3 from './card3'
@@ -13,6 +14,7 @@ export default {
   tirlogin,
   kodol,
   atad,
+  munkalap,
   card1,
   card2,
   card3,

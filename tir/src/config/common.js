@@ -18,8 +18,6 @@ export default {
           where munkalapazonosito = ${munkalapazonosito}
       `
       const result = await api.post({url: '/local/tir/query', expect: 'object', params: {sql: sql}})
-      data.munkalap = result
-      if (debug) console.log('config Card kodol onChange munkalapazonosito', '\n  result', result)
       if (result.munkalapazonosito) {
         if (kellek) {
           fields.kartoninfo.value = result.cikkszam.trim() + '/' + parseInt(result.rendelesszam.trim().slice(-4).toString()) + ' ' + result.mennyiseg.toString() + ' db'
@@ -30,6 +28,9 @@ export default {
       } else {
         fields.kartoninfo.value = ''
       }
+      data.munkalap = result
+      if (fields.munkalap) { fields.munkalap.value = result }
+      if (debug) console.log('config Card kodol onChange munkalapazonosito', '\n  result', result)
     },
   },
 
@@ -39,6 +40,29 @@ export default {
     type: 'text',
     value: '',
     readonly: true,
+  },
+
+  munkalap:  {
+      id: 'munkalap',
+      name: 'Munkalap',
+      type: 'simpleobject',
+      fields: [
+        { field: 'itszam', label: 'IT azonosító' },
+        { field: 'cikkszam', label: 'Cikkszám' },
+        { field: 'cikkmegnevezes', label: 'Cikknév' },
+        { field: 'kartonszam', label: 'Gyártási kartonszám' },
+        { field: 'csoport4', label: 'Gépfinomság' },
+        { field: 'alapanyag', label: 'Fonal összetétel' },
+        { field: 'megjegyzes', label: 'Megjegyzés' },
+        { field: 'mosott', label: 'Mosott' },
+        { field: 'szinkod', label: 'Színszám' },
+        { field: 'meret', label: 'Nagyság' },
+        { field: 'db', label: 'Darabszám' },
+        { field: 'ugyfelnev', label: 'Partner' },
+        { field: 'partnerrendelesszam', label: 'Partner rendelésszám' },
+        { field: 'partnercikk', label: 'Partner modellszám' },
+      ],
+      value: {},
   },
 
   text_field: {

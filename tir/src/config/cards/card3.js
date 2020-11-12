@@ -28,6 +28,17 @@ export default {
         {gyumolcs: 'szőlő', fajta: 'szlanka', szin: 'piros'},
         {gyumolcs: 'szilva', fajta: 'ringló', szin: 'kék'}
       ],
+    },
+    {
+      id: 'simpleobject1',
+      name: 'Gyümölcsök',
+      type: 'simpleobject',
+      fields: [
+        { label: 'Gyümölcs',  field: 'gyumolcs' },
+        { label: 'Fajta',     field: 'fajta' },
+        { label: 'Szín',      field: 'szin' },
+      ],
+      value: { gyumolcs: 'alma', fajta: 'jonatán', szin: 'piros' },
     }
   ],
 }

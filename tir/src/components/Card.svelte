@@ -8,8 +8,9 @@
   import Select from 'smelte/src/components/Select'
   import { debug } from '../stores.js'
   import QrTextField from './core/QrTextField.svelte'
-  import SimpleTable from './core/SimpleTable.svelte'
   import Tags from './core/Tags.svelte'
+  import SimpleTable from './core/SimpleTable.svelte'
+  import SimpleObject from './core/SimpleObject.svelte'
 
   export let card
   export let hidden = false
@@ -178,6 +179,14 @@
           rowClass={fields[element.id].rowClass}
           columns={fields[element.id].columns}
           on:select={exec_function(element.onSelect, {event: 'select', cardid: card.id, fieldid: element.id, value: fields[element.id].selected})}
+          {...element.attributes}
+        />
+      {/if}
+
+      {#if element.type === "simpleobject"}
+        <SimpleObject
+          data={fields[element.id].value}
+          fields={fields[element.id].fields}
           {...element.attributes}
         />
       {/if}
