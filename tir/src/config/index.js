@@ -52,7 +52,7 @@ for (const key in config.cards) {
       if (['text', 'qrtext'].includes(element.type)) {
         element.error = false
       }
-      if (element.type === 'simpletable') {
+      if (['simplelist', 'simpletable'].includes(element.type)) {
         element.selected = null
       }
       if (!['line'].includes(element.type)) {
@@ -63,10 +63,6 @@ for (const key in config.cards) {
       }
       if (element.type === 'menu') {
         checkProp('path', card, element)
-      }
-      if (element.type === 'list') {
-        checkProp('labelid', card, element)
-        checkProp('valueid', card, element)
       }
       if (element.type === 'select') {
         checkProp('items', card, element)

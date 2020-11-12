@@ -5,10 +5,6 @@ import { debug, data } from '../../stores.js'
 export default {
   id: 'atad',
   name: '',
-  // onMount: (fields) => {
-  //   fields.dolgozokod.value = data.kodol.dolgozokod
-  //   fields.dolgozonev.value = data.kodol.dolgozonev
-  // },
   elements: [
     {
       id: 'hely',

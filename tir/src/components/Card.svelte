@@ -8,9 +8,10 @@
   import Select from 'smelte/src/components/Select'
   import { debug } from '../stores.js'
   import QrTextField from './core/QrTextField.svelte'
-  import Tags from './core/Tags.svelte'
-  import SimpleTable from './core/SimpleTable.svelte'
+  import SimpleList from './core/SimpleList.svelte'
   import SimpleObject from './core/SimpleObject.svelte'
+  import SimpleTable from './core/SimpleTable.svelte'
+  import Tags from './core/Tags.svelte'
 
   export let card
   export let hidden = false
@@ -76,15 +77,9 @@
       {/if}
 
       {#if element.type === "line"}
-        <hr>
-      {/if}
-
-      {#if element.type === "list"}
-        {#each card.fields[element.id].value as row}
-          <div> {row[element.labelid]} </div>
-          <div> {row[element.valueid]} </div>
+        <div class="{element.class ? element.class : 'pt-2'}">
           <hr>
-        {/each}
+        </div>
       {/if}
 
       {#if element.type === "button"}
@@ -169,6 +164,17 @@
           disabled={disableFields || card.fields[element.id].disabled}
           {...element.attributes}
           on:change={exec_function(element.onChange, {event: 'change', cardid: card.id, fieldid: element.id, value: fields[element.id].value})}
+        />
+      {/if}
+
+      {#if element.type === "simplelist"}
+        <SimpleList
+          data={fields[element.id].value}
+          bind:selected={fields[element.id].selected}
+          rowClass={fields[element.id].rowClass}
+          rows={fields[element.id].rows}
+          on:select={exec_function(element.onSelect, {event: 'select', cardid: card.id, fieldid: element.id, value: fields[element.id].selected})}
+          {...element.attributes}
         />
       {/if}
 

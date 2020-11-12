@@ -11,13 +11,9 @@ menu:
   path: az új oldal címe
 
 line:
+  class: 'pt-2' default
   hidden: számított attribútum, alapértelmezetten false.
   hiddenState(fields): a hidden státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
-
-list:
-  value[]: megjelenítendő lista
-  labelid: label mező neve
-  valueid: value mező neve
 
 button:
   onClick(): kattintásra ezt a függvényt hívja meg, lehet async is.
@@ -71,9 +67,20 @@ select:
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
   onChange(): tartalom megváltozásakor ezt a függvényt hívja meg, lehet async is.
 
+simpleobject:
+  value: javascript object
+  fields[]: { label, field }
+
 simpletable:
-  data[]: táblázat adatok
+  value[]: táblázat adatok
   selected: kiválasztott táblázat sor
   rowClass(): (row) => {return <kalkulált class>}
   columns[]: { label, field, class }
+  onSelect(): sor kiválasztáskor ezt a függvényt hívja meg, lehet async is.
+
+simplelist:
+  value[]: lista adatok
+  selected: kiválasztott lista sor
+  rowClass(): (row) => {return <kalkulált class>};    'py-2' default
+  rows[]: { label, field, class }
   onSelect(): sor kiválasztáskor ezt a függvényt hívja meg, lehet async is.

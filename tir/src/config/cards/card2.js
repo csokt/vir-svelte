@@ -29,10 +29,9 @@ export default {
     {
       id: 'card2_list1',
       name: 'List 1',
-      type: 'list',
+      type: 'simplelist',
+      rows: [{ field: 'name' }],
       value: [],
-      labelid: 'repo_name',
-      valueid: 'name',
     }
   ],
 }
