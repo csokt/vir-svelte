@@ -44,7 +44,7 @@ export default {
     id: 'seasearch',
     name: 'Dokumentációk',
     cardArray: [
-      { cardid: 'card3' },
+      { cardid: 'seasearch' },
     ],
   },
   norma: {
