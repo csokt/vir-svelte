@@ -1,4 +1,7 @@
 <script>
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
+
   import TextField from "smelte/src/components/TextField"
   import Switcher from './Switcher.svelte'
 
@@ -102,7 +105,7 @@
             <Switcher type='minutes' data={MINUTES} selected={_time.getMinutes() } on:timeChange={timeChanged}/>
           </div>
         <div class='touch-time-reset'>
-          <button on:click={() => {time = _time; visible = !visible}}>Ment</button>
+          <button on:click={() => {time = _time; visible = !visible; dispatch('change')}}>Ment</button>
           <button on:click={() => {_time = time; visible = !visible}}>Elvet</button>
         </div>
       </div>

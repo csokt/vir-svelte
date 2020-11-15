@@ -1,23 +1,23 @@
 <script>
 
-  import { afterUpdate, onMount, createEventDispatcher } from 'svelte';
+  import { afterUpdate, onMount, createEventDispatcher } from 'svelte'
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  export let selected;
-  export let data = 0;
-  export let type;
+  export let selected
+  export let data = 0
+  export let type
 
   let position = -selected * 50
-  let offset = 0;
-  let dragging = false;
+  let offset = 0
+  let dragging = false
 
-  let itemWrapper, previousY;
+  let itemWrapper, previousY
 
 
   onMount(() => {
    setPosition()
-  });
+  })
 
   afterUpdate(() => {
 		let selectedPosition = -selected * 50
@@ -26,13 +26,13 @@
         position = selectedPosition
         setPosition()
     }
-  });
+  })
 
 
   function onTimeChange(type, changedData) {
 		dispatch('timeChange', {
 			type, changedData
-		});
+		})
   }
 
   function setPosition(){
@@ -40,13 +40,13 @@
       will-change: 'transform';
       transition: transform ${Math.abs(offset) / 100 + 0.1}s;
       transform: translateY(${position}px)
-    `;
-    itemWrapper.style.cssText = itemPosition;
+    `
+    itemWrapper.style.cssText = itemPosition
   }
 
   let onMouseDown = (event) => {
-    previousY = event.touches ? event.touches[0].clientY : event.clientY;
-    dragging = true;
+    previousY = event.touches ? event.touches[0].clientY : event.clientY
+    dragging = true
 
     window.addEventListener('mousemove', onMouseMove)
     window.addEventListener('mouseup', onMouseUp)
@@ -55,33 +55,32 @@
   }
 
    let onMouseMove = (event) => {
-    let clientY = event.touches ? event.touches[0].clientY : event.clientY;
-    offset = clientY - previousY;
+    let clientY = event.touches ? event.touches[0].clientY : event.clientY
+    offset = clientY - previousY
 
-    let maxPosition = -data.length * 50;
-    let _position = position + offset;
+    let maxPosition = -data.length * 50
+    let _position = position + offset
     position = Math.max(maxPosition, Math.min(50, _position))
-    previousY = event.touches ? event.touches[0].clientY : event.clientY;
-    setPosition();
+    previousY = event.touches ? event.touches[0].clientY : event.clientY
+    setPosition()
   }
 
   let onMouseUp = () => {
-    let maxPosition = -(data.length - 1) * 50;
-    let rounderPosition = Math.round((position + offset * 5) / 50) * 50;
-    let finalPosition = Math.max(maxPosition, Math.min(0, rounderPosition));
+    let maxPosition = -(data.length - 1) * 50
+    let rounderPosition = Math.round((position + offset * 5) / 50) * 50
+    let finalPosition = Math.max(maxPosition, Math.min(0, rounderPosition))
 
-    dragging = false;
-    position = finalPosition;
+    dragging = false
+    position = finalPosition
 
     window.removeEventListener('mousemove', onMouseMove)
     window.removeEventListener('mouseup', onMouseUp)
     window.removeEventListener('touchmove', onMouseMove)
-    window.removeEventListener('touchend', onMouseUp);
+    window.removeEventListener('touchend', onMouseUp)
 
-    setPosition();
-    onTimeChange(type, -finalPosition / 50);
+    setPosition()
+    onTimeChange(type, -finalPosition / 50)
   }
-
 
 </script>
 
