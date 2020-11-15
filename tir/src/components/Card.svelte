@@ -12,6 +12,7 @@
   import SimpleObject from './core/SimpleObject.svelte'
   import SimpleTable from './core/SimpleTable.svelte'
   import Tags from './core/Tags.svelte'
+  import TimePicker from './core/TimePicker.svelte'
 
   export let card
   export let hidden = false
@@ -141,6 +142,18 @@
           readonly={card.fields[element.id].readonly}
           error={card.fields[element.id].error}
           attributes={element.attributes}
+          on:change={exec_function(element.onChange, {event: 'change', cardid: card.id, fieldid: element.id, value: fields[element.id].value})}
+        />
+      {/if}
+
+      {#if element.type === "time"}
+        <TimePicker
+          dense
+          label={element.name}
+          bind:time={fields[element.id].value}
+          disabled={disableFields || card.fields[element.id].disabled}
+          readonly={card.fields[element.id].readonly}
+          {...element.attributes}
           on:change={exec_function(element.onChange, {event: 'change', cardid: card.id, fieldid: element.id, value: fields[element.id].value})}
         />
       {/if}

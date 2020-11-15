@@ -5,6 +5,8 @@ import kodol from './kodol'
 import atad from './atad'
 import munkalap from './munkalap'
 import seasearch from './seasearch'
+import norma from './norma'
+
 import card1 from './card1'
 import card2 from './card2'
 import card3 from './card3'
@@ -17,6 +19,7 @@ export default {
   atad,
   munkalap,
   seasearch,
+  norma,
   card1,
   card2,
   card3,

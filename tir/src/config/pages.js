@@ -49,10 +49,9 @@ export default {
   },
   norma: {
     id: 'norma',
-    name: 'Mai teljesítmény %',
+    name: 'Mai teljesítmény százalék',
     cardArray: [
-      { cardid: 'card1' },
-      { cardid: 'card2' },
+      { cardid: 'norma' },
     ],
   },
   tablazatok: {
