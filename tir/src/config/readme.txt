@@ -53,6 +53,9 @@ text:
 qrtext:
   Ugyanaz mint a text, csak lehetőség van QR kód beolvasására is.
 
+time:
+  Ugyanaz mint a text, csak a value Date() objektum.
+
 tags:
   placeholder:
   value: [string]
