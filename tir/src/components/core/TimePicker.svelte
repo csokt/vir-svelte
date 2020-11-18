@@ -2,7 +2,7 @@
   import { createEventDispatcher } from 'svelte'
   const dispatch = createEventDispatcher()
 
-  import TextField from "smelte/src/components/TextField"
+  import { Textfield } from 'svelte-mui'
   import Switcher from './Switcher.svelte'
 
   const HOURS = new Array(24).fill(0).map((v, i) => v + i)
@@ -88,7 +88,7 @@
 
 </style>
 
-<TextField
+<Textfield
   dense
   {label}
   value={timeStr}

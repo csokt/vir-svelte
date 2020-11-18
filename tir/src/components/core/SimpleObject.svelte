@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte'
-  import TextField from "smelte/src/components/TextField"
+  import { Textfield } from 'svelte-mui'
 
   export let data
   export let fields
@@ -12,7 +12,7 @@
 
 <div>
   {#each _fields as _field, i}
-    <TextField
+    <Textfield
       dense
       label={_field.label}
       value={data[_field.field]}

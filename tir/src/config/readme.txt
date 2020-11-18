@@ -1,5 +1,5 @@
-Svelte - smelte - deklaratív fejlesztő környezet
-================================================
+Svelte deklaratív fejlesztő környezet
+=====================================
 
 Alkotóelemek: Page[] -> Card[] -> elements
 Mindegyik elemnek van azonosítója (id) és neve (name).

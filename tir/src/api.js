@@ -1,6 +1,10 @@
 import apisauce from 'apisauce'
-import { notifier } from 'smelte/src/components/Snackbar'
-import { debug } from './stores.js'
+import { debug, snackbar} from './stores.js'
+
+const notifier = {
+  alert: (message) => snackbar.set({message: message, timeout: 2, bg: 'gray'}),
+  error: (message) => snackbar.set({message: message, timeout: 5, bg: 'red'})
+}
 
 const API = apisauce.create({
   // baseURL: '/api2/',

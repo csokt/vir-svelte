@@ -93,7 +93,7 @@ export default {
     id: 'alert_fields_button',
     name: 'Alert fields',
     type: 'button',
-    attributes: {color: 'alert'},
+    attributes: {color: 'orange'},
     onClick: (fields) => {
       console.log(fields)
       alert(JSON.stringify(fields, null, 4))
@@ -104,7 +104,7 @@ export default {
     id: 'alert_data_button',
     name: 'Alert data',
     type: 'button',
-    attributes: {color: 'alert'},
+    attributes: {color: 'orange'},
     onClick: (fields) => {
       console.log(data)
       alert(JSON.stringify(data, null, 4))
