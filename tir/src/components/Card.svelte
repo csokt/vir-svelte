@@ -68,7 +68,7 @@
   {#each card.elements as element}
     <div hidden={card.fields[element.id].hidden}>
       {#if element.type === "menu"}
-        <div class="text-primary-600 text-lg py-2" on:click={() => push(element.path)}>
+        <div class="text-gray-700 text-lg py-2" on:click={() => push(element.path)}>
           {element.name}
         </div>
         <hr>
@@ -84,6 +84,7 @@
         <div class="py-2">
           <Button
             raised
+            color={card.fields[element.id].color || '#3182ce'}
             disabled={disableFields || card.fields[element.id].disabled}
             {...element.attributes}
             on:click={exec_function(element.onClick, {event: 'click', cardid: card.id, fieldid: element.id})}
