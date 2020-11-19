@@ -109,7 +109,7 @@ export default {
       id: 'atadasok',
       name: 'Átadások',
       type: 'simpletable',
-      rowClass: (row) => {return row.error ? 'text-error-900' : null},
+      rowClass: (row) => {return row.error ? 'text-red-700' : null},
       columns: [
         { label: 'Helykód', field: 'hely' },
         { label: 'Munkalap',  field: 'munkalap' },

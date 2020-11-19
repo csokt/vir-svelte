@@ -136,7 +136,7 @@ export default {
       id: 'kodolasok',
       name: 'Kódolások',
       type: 'simpletable',
-      rowClass: (row) => {return row.error ? 'text-error-900' : null},
+      rowClass: (row) => {return row.error ? 'text-red-700' : null},
       columns: [
         { label: 'Műv.kód', field: 'muveletkod' },
         { label: 'Menny.',  field: 'mennyiseg' },

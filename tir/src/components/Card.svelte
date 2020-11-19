@@ -84,7 +84,7 @@
         <div class="py-2">
           <Button
             raised
-            color={card.fields[element.id].color || '#3182ce'}
+            color={card.fields[element.id].color || 'primary'}
             disabled={disableFields || card.fields[element.id].disabled}
             {...element.attributes}
             on:click={exec_function(element.onClick, {event: 'click', cardid: card.id, fieldid: element.id})}
