@@ -22,7 +22,8 @@
     "autoprefixer": "^9.8.6",
     "sirv-cli": "^1.0.0",
     "svelte-mui": "^0.3.3-4",
-    "svelte-preprocess": "^4.2.1",
+    "svelte-preprocess": "^4.6.1",
+    "svelte-simple-datatables": "^0.1.25",
     "svelte-spa-router": "^3.0.5",
     "tailwindcss": "^1.8.5"
   }

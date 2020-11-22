@@ -52,13 +52,17 @@
     {$snackbar.message}
   </Snackbar>
 </main>
-<!--
+
 <style global>
+  .simple-datatables-full-height {
+    height: calc(100vh - 52px);
+}
+</style>
+<!--
   /* purgecss start ignore */
   @tailwind base;
   @tailwind components;
   /* purgecss end ignore */
 
   @tailwind utilities;
-</style>
  -->

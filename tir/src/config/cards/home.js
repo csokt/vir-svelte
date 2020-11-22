@@ -3,6 +3,12 @@ export default {
   name: '',
   elements: [
     {
+      id: 'teszt',
+      name: 'Teszt',
+      type: 'menu',
+      path: '/teszt',
+    },
+    {
       id: 'kodol',
       name: 'Kódolás',
       type: 'menu',

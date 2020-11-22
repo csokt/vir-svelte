@@ -1,8 +1,8 @@
 import Home from './routes/Home.svelte'
-import Teszt from './routes/Teszt.svelte'
 import Page from './routes/Page.svelte'
 import Card from './routes/Card.svelte'
 import NotFound from './routes/NotFound.svelte'
+import Teszt from './routes/tables/Teszt.svelte'
 
 const routes = {
   '/': Home,
