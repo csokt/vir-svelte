@@ -4,12 +4,13 @@
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import api from '../../api'
 
+  export let dolgozokod = data.user.belepokod || -1
+
   let tabledata = []
 
   onMount( async () => {
     $pagetitle = 'Teljesítmény % (napi becsült)'
-    const dolgozokod = data.user.belepokod || 0
-    const sql = `select top 300 [Dolgozó kód], [Dátum], [Teljesítmény %] from monitor_napiteljesitmeny where [Dolgozó kód] = ${dolgozokod} order by [Dátum] desc`
+    const sql = `select top 300 * from monitor_napiteljesitmeny where [Dolgozó kód] = ${dolgozokod} order by [Dátum] desc`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
     tabledata = result
   })
@@ -26,7 +27,7 @@
     {#each $rows as row}
       <tr>
         <td>{row['Dátum'].substring(0,10)}</td>
-        <td class="text-right">{row['Teljesítmény %']}</td>
+        <td class="text-center">{row['Teljesítmény %']}</td>
       </tr>
     {/each}
     </tbody>

@@ -6,7 +6,7 @@ import Napiteljesitmeny from './routes/tables/Napiteljesitmeny.svelte'
 import Havilezartteljesitmeny from './routes/tables/Havilezartteljesitmeny.svelte'
 import Kodolasok from './routes/tables/Kodolasok.svelte'
 import Napikodolas from './routes/tables/Napikodolas.svelte'
-// import Havikodolas from './routes/tables/Havikodolas.svelte'
+import Havikodolas from './routes/tables/Havikodolas.svelte'
 import Teszt from './routes/tables/Teszt.svelte'
 
 const routes = {
@@ -22,7 +22,7 @@ const routes = {
   '/table/havilezartteljesitmeny': Havilezartteljesitmeny,
   '/table/kodolasok': Kodolasok,
   '/table/napikodolas': Napikodolas,
-  // '/table/havikodolas': Havikodolas,
+  '/table/havikodolas': Havikodolas,
   '*': NotFound,
   }
 
