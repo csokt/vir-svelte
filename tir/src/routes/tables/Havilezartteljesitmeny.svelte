@@ -26,10 +26,16 @@
     <tbody>
     {#each $rows as row}
       <tr>
-        <td>{row['Dátum']}</td>
-        <td class="text-center">{row['Teljesítmény %']}</td>
+        <td class="textleft">{row['Dátum']}</td>
+        <td>{row['Teljesítmény %']}</td>
       </tr>
     {/each}
     </tbody>
   </Datatable>
 </div>
+
+<style>
+  .textleft{
+    text-align:left;
+  }
+</style>

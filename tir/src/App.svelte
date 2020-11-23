@@ -56,7 +56,13 @@
 <style global>
   .simple-datatables-full-height {
     height: calc(100vh - 52px);
-}
+  }
+  .datatable article table tbody tr td{
+    text-align:center;
+  }
+  .datatable article table tbody tr:nth-child(odd) {
+    background-color: #E8E8E8;
+  }
 </style>
 <!--
   /* purgecss start ignore */

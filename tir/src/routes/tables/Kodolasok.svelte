@@ -66,7 +66,7 @@
         <td>{row['Méret']}</td>
         <td>{row['darab']}</td>
         <td>{row['Művelet']}</td>
-        <td>{row['Művelet név']}</td>
+        <td class="textleft">{row['Művelet név']}</td>
         <td>{row['Norma perc']}</td>
         <td>{row['Dolgozó név']}</td>
         <td>{row['Kódolás ideje'].substring(0,10)+' '+row['Kódolás ideje'].substring(11,19)}</td>
@@ -78,5 +78,7 @@
 </div>
 
 <style>
-  td{text-align:center;}
+  .textleft{
+    text-align:left;
+  }
 </style>

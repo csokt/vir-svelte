@@ -81,7 +81,7 @@
         <td>{row['Méret']}</td>
         <td>{row['darab']}</td>
         <td>{row['Művelet']}</td>
-        <td>{row['Művelet név']}</td>
+        <td class="textleft">{row['Művelet név']}</td>
         <td>{row['Normaperc']}</td>
         <td>{row['Összes Normaperc']}</td>
         <td>{row['Megjegyzés']}</td>
@@ -94,5 +94,7 @@
 </div>
 
 <style>
-  td{text-align:center;}
+  .textleft{
+    text-align:left;
+  }
 </style>

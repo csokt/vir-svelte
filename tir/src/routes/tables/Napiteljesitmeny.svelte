@@ -27,7 +27,7 @@
     {#each $rows as row}
       <tr>
         <td>{row['Dátum'].substring(0,10)}</td>
-        <td class="text-center">{row['Teljesítmény %']}</td>
+        <td>{row['Teljesítmény %']}</td>
       </tr>
     {/each}
     </tbody>
