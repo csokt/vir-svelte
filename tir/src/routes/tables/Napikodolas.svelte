@@ -4,11 +4,11 @@
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import api from '../../api'
 
+  export let dolgozokod = data.user.belepokod || -1
+
   let tablewidth = 'w-11/12'
   let tabledata = [{
-    'Üzemnév': '',
-    'Munkalap kód': '',
-    'Cikk': '',
+    'Cikkszám': '',
     'IT': '',
     'Diszpó': '',
     'Szín': '',
@@ -17,17 +17,19 @@
     'darab': '',
     'Művelet': '',
     'Művelet név': '',
-    'Norma perc': '',
-    'Dolgozó név': '',
-    'Kódolás ideje': '',
+    'Normaperc': '',
+    'Összes Normaperc': '',
+    'Megjegyzés': '',
     'Kódoló': '',
+    'Kódolás ideje': '',
   }]
+  let osszperc = ''
 
   onMount( async () => {
-    $pagetitle = 'Kódolások a munkalapon'
-    const munkalapazonosito = data.munkalap.munkalapazonosito || -1
-    const sql = `select top 500 * from monitor_kodolasok where [Munkalap kód] = ${munkalapazonosito} order by [Üzemkód], [Művelet], [Kódolás ideje]`
+    $pagetitle = 'Mai napi kódolások'
+    const sql = `select top 500 * from monitor_napikodolas where [Dolgozó kód] = ${dolgozokod} order by [Kódolás ideje] desc`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
+    osszperc = Math.round( result.reduce(( acc, curr ) => { return acc + curr['Összes Normaperc'] }, 0))
     tabledata = result
     tablewidth = 'w-full'
   })
@@ -37,9 +39,7 @@
 <div class="simple-datatables-full-height {tablewidth}">
   <Datatable settings={simple_datatables_settings} data={tabledata}>
     <thead>
-      <th data-key="Üzemnév">Üzemnév</th>
-      <th data-key="Munkalap kód">Munkalap</th>
-      <th data-key="Cikk">Cikk</th>
+      <th data-key="Cikkszám">Cikkszám</th>
       <th data-key="IT">IT</th>
       <th data-key="Diszpó">Diszpó</th>
       <th data-key="Szín">Szín</th>
@@ -48,17 +48,32 @@
       <th data-key="darab">Darab</th>
       <th data-key="Művelet">Művelet</th>
       <th data-key="Művelet név">Művelet név</th>
-      <th data-key="Norma perc">Norma perc</th>
-      <th data-key="Dolgozó név">Dolgozó név</th>
-      <th data-key="Kódolás ideje">Kódolás ideje</th>
+      <th data-key="Normaperc">Norma<br>perc</th>
+      <th data-key="Összes Normaperc">Összes<br>normaperc</th>
+      <th data-key="Megjegyzés">Megjegyzés</th>
       <th data-key="Kódoló">Kódoló</th>
+      <th data-key="Kódolás ideje">Kódolás ideje</th>
     </thead>
     <tbody>
+      <tr class="text-red-700" >
+        <td>Összesen</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{osszperc}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
     {#each $rows as row}
       <tr>
-        <td>{row['Üzemnév']}</td>
-        <td>{row['Munkalap kód']}</td>
-        <td>{row['Cikk']}</td>
+        <td>{row['Cikkszám']}</td>
         <td>{row['IT']}</td>
         <td>{row['Diszpó']}</td>
         <td>{row['Szín']}</td>
@@ -67,10 +82,11 @@
         <td>{row['darab']}</td>
         <td>{row['Művelet']}</td>
         <td>{row['Művelet név']}</td>
-        <td>{row['Norma perc']}</td>
-        <td>{row['Dolgozó név']}</td>
-        <td>{row['Kódolás ideje'].substring(0,10)+' '+row['Kódolás ideje'].substring(11,19)}</td>
+        <td>{row['Normaperc']}</td>
+        <td>{row['Összes Normaperc']}</td>
+        <td>{row['Megjegyzés']}</td>
         <td>{row['Kódoló']}</td>
+        <td>{row['Kódolás ideje'].substring(0,10)+' '+row['Kódolás ideje'].substring(11,19)}</td>
       </tr>
     {/each}
     </tbody>
