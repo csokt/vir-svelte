@@ -7,9 +7,9 @@
   let tabledata = []
 
   onMount( async () => {
-    $pagetitle = 'Teljesítmény % (napi becsült)'
+    $pagetitle = 'Teljesítmény % (havi lezárt)'
     const dolgozokod = data.user.belepokod || 0
-    const sql = `select top 300 [Dolgozó kód], [Dátum], [Teljesítmény %] from monitor_napiteljesitmeny where [Dolgozó kód] = ${dolgozokod} order by [Dátum] desc`
+    const sql = `select top 60 [Dolgozó kód], [Dátum], [Teljesítmény %] from monitor_havilezartteljesitmeny where [Dolgozó kód] = ${dolgozokod} order by [Év] desc, [Hónap] desc`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
     tabledata = result
   })
@@ -25,7 +25,7 @@
     <tbody>
     {#each $rows as row}
       <tr>
-        <td>{row['Dátum'].substring(0,10)}</td>
+        <td>{row['Dátum']}</td>
         <td class="text-right">{row['Teljesítmény %']}</td>
       </tr>
     {/each}

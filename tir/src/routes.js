@@ -2,6 +2,9 @@ import Home from './routes/Home.svelte'
 import Page from './routes/Page.svelte'
 import Card from './routes/Card.svelte'
 import NotFound from './routes/NotFound.svelte'
+import Napiteljesitmeny from './routes/tables/Napiteljesitmeny.svelte'
+import Havilezartteljesitmeny from './routes/tables/Havilezartteljesitmeny.svelte'
+import Kodolasok from './routes/tables/Kodolasok.svelte'
 import Teszt from './routes/tables/Teszt.svelte'
 
 const routes = {
@@ -13,6 +16,9 @@ const routes = {
   '/page/:id': Page,
   '/setup/:id': Card,
   '/card/:id': Card,
+  '/table/napiteljesitmeny': Napiteljesitmeny,
+  '/table/havilezartteljesitmeny': Havilezartteljesitmeny,
+  '/table/kodolasok': Kodolasok,
   '*': NotFound,
   }
 

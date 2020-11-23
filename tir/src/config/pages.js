@@ -58,9 +58,7 @@ export default {
     id: 'tablazatok',
     name: 'Táblázatok',
     cardArray: [
-      { cardid: 'card1' },
-      { cardid: 'card2' },
-      { cardid: 'card3' },
+      { cardid: 'tablazatok' },
     ],
   },
 }

@@ -39,6 +39,18 @@ export default {
       path: '/menu1/norma',
     },
     {
+      id: 'napiteljesitmeny',
+      name: 'Teljesítmény % (napi becsült)',
+      type: 'menu',
+      path: '/table/napiteljesitmeny',
+    },
+    {
+      id: 'havilezartteljesitmeny',
+      name: 'Teljesítmény % (havi lezárt)',
+      type: 'menu',
+      path: '/table/havilezartteljesitmeny',
+    },
+    {
       id: 'tablazatok',
       name: 'Táblázatok',
       type: 'menu',
