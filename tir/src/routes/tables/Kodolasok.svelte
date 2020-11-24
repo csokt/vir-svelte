@@ -4,6 +4,8 @@
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import api from '../../api'
 
+  export let munkalapazonosito = data.munkalap.munkalapazonosito || -1
+
   let tablewidth = 'w-11/12'
   let tabledata = [{
     'Üzemnév': '',
@@ -25,7 +27,6 @@
 
   onMount( async () => {
     $pagetitle = 'Kódolások a munkalapon'
-    const munkalapazonosito = data.munkalap.munkalapazonosito || -1
     const sql = `select top 500 * from monitor_kodolasok where [Munkalap kód] = ${munkalapazonosito} order by [Üzemkód], [Művelet], [Kódolás ideje]`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
     tabledata = result

@@ -8,6 +8,7 @@ import Kodolasok from './routes/tables/Kodolasok.svelte'
 import Napikodolas from './routes/tables/Napikodolas.svelte'
 import Havikodolas from './routes/tables/Havikodolas.svelte'
 import Cikknormai from './routes/tables/Cikknormai.svelte'
+import Varrodaleadas from './routes/tables/Varrodaleadas.svelte'
 import Teszt from './routes/tables/Teszt.svelte'
 
 const routes = {
@@ -25,6 +26,7 @@ const routes = {
   '/table/napikodolas': Napikodolas,
   '/table/havikodolas': Havikodolas,
   '/table/cikknormai': Cikknormai,
+  '/table/varrodaleadas': Varrodaleadas,
   '*': NotFound,
   }
 

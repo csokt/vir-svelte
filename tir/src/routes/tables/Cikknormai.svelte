@@ -4,7 +4,7 @@
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import api from '../../api'
 
-  export let cikkszam = data.munkalap.cikkszam || 25026
+  export let cikkszam = data.munkalap.cikkszam || -1
 
   let tablewidth = 'w-11/12'
   let tabledata = [{
