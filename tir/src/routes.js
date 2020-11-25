@@ -9,6 +9,8 @@ import Napikodolas from './routes/tables/Napikodolas.svelte'
 import Havikodolas from './routes/tables/Havikodolas.svelte'
 import Cikknormai from './routes/tables/Cikknormai.svelte'
 import Varrodaleadas from './routes/tables/Varrodaleadas.svelte'
+import Aktualishetigyartasiterv from './routes/tables/Aktualishetigyartasiterv.svelte'
+import Kovetkezohetigyartasiterv from './routes/tables/Kovetkezohetigyartasiterv.svelte'
 import Teszt from './routes/tables/Teszt.svelte'
 
 const routes = {
@@ -27,6 +29,8 @@ const routes = {
   '/table/havikodolas': Havikodolas,
   '/table/cikknormai': Cikknormai,
   '/table/varrodaleadas': Varrodaleadas,
+  '/table/aktualishetigyartasiterv': Aktualishetigyartasiterv,
+  '/table/kovetkezohetigyartasiterv': Kovetkezohetigyartasiterv,
   '*': NotFound,
   }
 

@@ -4,7 +4,7 @@ export const debug = true
 export const data = { user: {}, kodol: {}, munkalap: {} }
 
 export const simple_datatables_settings = {
-  sortable: true,
+  sortable: false,
   pagination: true,
   rowPerPage: 50,
   columnFilter: false,

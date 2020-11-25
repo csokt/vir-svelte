@@ -55,7 +55,7 @@
       <th data-key="Kódolás ideje">Kódolás ideje</th>
     </thead>
     <tbody>
-      <tr class="text-red-700" >
+      <tr class="text-blue-700" >
         <td>Összesen</td>
         <td></td>
         <td></td>

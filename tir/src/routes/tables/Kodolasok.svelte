@@ -41,7 +41,7 @@
       <th data-key="Üzemnév">Üzemnév</th>
       <th data-key="Munkalap kód">Munkalap</th>
       <th data-key="Cikk">Cikk</th>
-      <th data-key="IT">IT</th>
+      <th data-key="IT">IT szám</th>
       <th data-key="Diszpó">Diszpó</th>
       <th data-key="Szín">Szín</th>
       <th data-key="csomag">Csomag</th>
