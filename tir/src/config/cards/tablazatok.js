@@ -1,9 +1,12 @@
+import common from '../common'
 import { debug, data } from '../../stores.js'
 
 export default {
   id: 'tablazatok',
   name: '',
   elements: [
+    common.munkalapazonosito,
+    common.kartoninfo,
     {
       id: 'kodolasok',
       name: 'Kódolások a munkalapon',
@@ -70,6 +73,13 @@ export default {
       hiddenState: (fields) => { return !['varró', 'meo', 'varrodavezető'].includes(data.user.role) }
     },
     {
+      id: 'utovasaloleadas',
+      name: 'Szeged utóvasaló napi leadás',
+      type: 'menu',
+      path: '/table/utovasaloleadas',
+      hiddenState: (fields) => { return !['meo'].includes(data.user.role) }
+    },
+    {
       id: 'aktualishetigyartasiterv',
       name: 'Gyártási terv - aktuális hét',
       type: 'menu',
@@ -82,6 +92,13 @@ export default {
       type: 'menu',
       path: '/table/kovetkezohetigyartasiterv',
       hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'meo',  'varrodavezető'].includes(data.user.role) }
+    },
+    {
+      id: 'muveletekosszegzese',
+      name: 'Bekódolt műveletek összegzése',
+      type: 'menu',
+      path: '/table/muveletekosszegzese',
+      hiddenState: (fields) => { return !['varrodavezető'].includes(data.user.role) }
     },
   ],
 }

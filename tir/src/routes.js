@@ -11,8 +11,10 @@ import Havikodolas from './routes/tables/Havikodolas.svelte'
 import Cikknormai from './routes/tables/Cikknormai.svelte'
 import Szabaszatleadas from './routes/tables/Szabaszatleadas.svelte'
 import Varrodaleadas from './routes/tables/Varrodaleadas.svelte'
+import Utovasaloleadas from './routes/tables/Utovasaloleadas.svelte'
 import Aktualishetigyartasiterv from './routes/tables/Aktualishetigyartasiterv.svelte'
 import Kovetkezohetigyartasiterv from './routes/tables/Kovetkezohetigyartasiterv.svelte'
+import Muveletekosszegzese from './routes/tables/Muveletekosszegzese.svelte'
 
 const routes = {
   '/': Home,
@@ -31,8 +33,10 @@ const routes = {
   '/table/cikknormai': Cikknormai,
   '/table/szabaszatleadas': Szabaszatleadas,
   '/table/varrodaleadas': Varrodaleadas,
+  '/table/utovasaloleadas': Utovasaloleadas,
   '/table/aktualishetigyartasiterv': Aktualishetigyartasiterv,
   '/table/kovetkezohetigyartasiterv': Kovetkezohetigyartasiterv,
+  '/table/muveletekosszegzese': Muveletekosszegzese,
   '*': NotFound,
   }
 
