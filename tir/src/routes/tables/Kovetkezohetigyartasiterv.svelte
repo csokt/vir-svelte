@@ -121,7 +121,6 @@
     </tbody>
   </Datatable>
 </div>
-        <!-- <td class="textleft">{row['Megnevezés']}</td> -->
 
 <style>
   .textleft{
