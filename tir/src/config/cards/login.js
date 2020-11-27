@@ -17,6 +17,13 @@ export default {
   },
   elements: [
     {
+      id: 'version',
+      name: 'Verzió',
+      type: 'text',
+      value: '20.11.27',
+      attributes: { readonly: true }
+    },
+    {
       id: 'username',
       name: 'Bejelentkezési név',
       type: 'text',
@@ -30,7 +37,7 @@ export default {
       name: 'Jelszó',
       type: 'text',
       value: '',
-      attributes: {type: 'password'},
+      attributes: { type: 'password' },
       onChange: (fields) => {
       },
     },
@@ -39,7 +46,7 @@ export default {
       name: 'Név',
       type: 'text',
       value: '',
-      attributes: {readonly: true}
+      attributes: { readonly: true }
     },
     {
       id: 'actions',

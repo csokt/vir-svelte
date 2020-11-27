@@ -7,7 +7,6 @@ function delay(ms) {
 }
 
 const config = {
-  version: '20.10.05',
   pages,
   cards,
 }
@@ -73,6 +72,16 @@ for (const key in config.cards) {
           card.fields[button.id] = button
           button.disabled = button.disabled || false
           button.hidden = button.hidden || false
+          // Create states object from nameState shaped fields
+          button.states = {}
+          for (const prop in button) {
+            if (button.hasOwnProperty(prop)) {
+              const splits = prop.split('State')
+              if (splits.length > 1) {
+                button.states[splits[0]] = button[prop]
+              }
+            }
+          }
         }
       }
     }

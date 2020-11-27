@@ -99,6 +99,8 @@
           {#each element.buttons as button}
             <div class="pr-4" hidden={card.fields[button.id].hidden}>
               <Button
+                raised
+                color={card.fields[button.id].color || 'primary'}
                 disabled={disableFields || card.fields[button.id].disabled}
                 {...button.attributes}
                 on:click={exec_function(button.onClick, {event: 'click', cardid: card.id, fieldid: button.id})}
