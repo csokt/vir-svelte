@@ -15,7 +15,7 @@
   export let hidden = false
   const fields = card.fields  // not reactive
 
-  $: console.log('Card changed', card)
+  $: if (debug) console.log('Card changed', card)
 
 	const dispatch = createEventDispatcher()
   let disableFields = false

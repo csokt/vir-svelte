@@ -16,7 +16,7 @@ export default {
       type: 'qrtext',
       value: '',
       attributes: {type: 'number'},
-      readonlyState: (fields) => {
+      hiddenState: (fields) => {
         return data.user.role!=='kódoló' ? true : null
       },
       onChange: async (fields) => {

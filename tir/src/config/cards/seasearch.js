@@ -8,7 +8,7 @@ export default {
       id: 'cikkszam',
       name: 'Cikkszám keresése',
       type: 'text',
-      value: '25155',
+      value: '',
       onChange: async (fields) => { fields.sealist.value = await api.get({url: '/local/seafile/search/'+fields.cikkszam.value}) },
     },
     {

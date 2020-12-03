@@ -20,7 +20,7 @@ export default {
       id: 'version',
       name: 'Verzió',
       type: 'text',
-      value: '20.11.27',
+      value: '20.12.04',
       attributes: { readonly: true }
     },
     {

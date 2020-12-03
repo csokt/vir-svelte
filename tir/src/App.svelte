@@ -2,11 +2,10 @@
   import { onMount } from 'svelte'
   import Router from 'svelte-spa-router'
   import { push, pop } from 'svelte-spa-router'
-  // import 'smelte/src/tailwind.css'
   import { Icon, Snackbar } from 'svelte-mui'
 	import Tailwindcss from './Tailwindcss.svelte'
   import routes from './routes'
-  import { debug, snackbar, facingmode, pagetitle, userinfo } from './stores.js'
+  import { debug, production, snackbar, facingmode, pagetitle, userinfo } from './stores.js'
   import api from './api'
 
   let snackbarVisible = false
@@ -22,17 +21,19 @@
       $userinfo = await api.get({ url: '/private/account/info', expect: 'object' })
     }
     //// Production verzióban kell
-    // window.oncontextmenu = function (event) {
-    //   event.preventDefault()
-    //   event.stopPropagation()
-    //   return false
-    // }
+    if (production) {
+      window.oncontextmenu = function (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        return false
+      }
+    }
 	})
 </script>
 
 <Tailwindcss/>
 <main>
-  <div class="bg-blue-600 text-white flex flex-row justify-between items-center">
+  <div class="bg-blue-600 text-white flex flex-row justify-between items-center py-1">
     <div class="text-2xl px-2" on:click={() => pop()}>&#9668;</div>
     <div class="text-lg">{$pagetitle}</div>
     <Icon class="px-2"
@@ -55,7 +56,7 @@
 
 <style global>
   .simple-datatables-full-height {
-    height: calc(100vh - 52px);
+    height: calc(100vh - 60px);
   }
   .datatable article table tbody tr td{
     text-align:center;

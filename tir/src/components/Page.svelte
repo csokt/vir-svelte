@@ -4,7 +4,7 @@
   import Card from '../components/Card.svelte'
 
   export let page
-  $: console.log('Page changed', page)
+  $: if (debug) console.log('Page changed', page)
 
   $: {
     for (const id in page.cards) {
