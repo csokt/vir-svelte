@@ -1,3 +1,3 @@
 module.exports = {
-  purge: ["./src/**/*.svelte"],
+  purge: ["./src/**/*.svelte", "./src/**/*.js"],
 };
