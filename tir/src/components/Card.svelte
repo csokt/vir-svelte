@@ -47,7 +47,6 @@
       exec_function({event: 'mount', cardid: card.id, func: card.onMount})
     }
   })
-
 </script>
 
 <div hidden={hidden} class="Card w-full max-w-sm p-2 mb-6 border shadow-xl">
@@ -60,7 +59,7 @@
       {#if Array.isArray(element)}
         <div class="flex flex-row justify-start py-2">
           {#each element as fieldid}
-            <div class="pr-4" hidden={card.fields[fieldid].hidden}>
+            <div class="pr-4">
               <Field
                 field={card.fields[fieldid]}
                 disabled={disableFields}
@@ -70,24 +69,20 @@
           {/each}
         </div>
       {:else}
-        <div hidden={card.fields[element].hidden}>
-          <Field
-            field={card.fields[element]}
-            disabled={disableFields}
-            on:event={(event) => { event.detail.cardid=card.id, exec_function(event.detail) }}
-          />
-        </div>
+        <Field
+          field={card.fields[element]}
+          disabled={disableFields}
+          on:event={(event) => { event.detail.cardid=card.id, exec_function(event.detail) }}
+        />
       {/if}
     {/each}
   {:else}
-  {#each card.elements as element}
-    <div hidden={card.fields[element.id].hidden}>
+    {#each card.elements as element}
       <Field
         field={element}
         disabled={disableFields}
         on:event={(event) => { event.detail.cardid=card.id, exec_function(event.detail) }}
       />
-    </div>
-  {/each}
+    {/each}
   {/if}
 </div>
