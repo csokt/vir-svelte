@@ -18,12 +18,15 @@ import Muveletekosszegzese from './routes/tables/Muveletekosszegzese.svelte'
 
 const routes = {
   '/': Home,
+  '/page/:id': Page,
   '/menu1/:id': Page,
   '/menu2/:id': Page,
   '/menu3/:id': Page,
-  '/page/:id': Page,
-  '/setup/:id': Card,
   '/card/:id': Card,
+  '/cmenu1/:id': Card,
+  '/cmenu2/:id': Card,
+  '/cmenu3/:id': Card,
+  '/setup/:id': Card,
   '/table/napiteljesitmeny': Napiteljesitmeny,
   '/table/havilezartteljesitmeny': Havilezartteljesitmeny,
   '/table/kodolasok': Kodolasok,

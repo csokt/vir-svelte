@@ -25,91 +25,65 @@ function checkProp(prop, obj1, obj2=null) {
 
 if (debug) console.log('CHECK CARDS')
 for (const key in config.cards) {
-  if (config.cards.hasOwnProperty(key)) {
-    const card = config.cards[key]
-    checkProp('name', card)
-    checkProp('elements', card)
-    card.fields = {}
-    for (const element of card.elements) {
-      card.fields[element.id] = element
-      // Create states object from nameState shaped fields
-      element.states = {}
-      for (const prop in element) {
-        if (element.hasOwnProperty(prop)) {
-          const splits = prop.split('State')
-          if (splits.length > 1) {
-            element.states[splits[0]] = element[prop]
-          }
-        }
+  const card = config.cards[key]
+  checkProp('name', card)
+  checkProp('elements', card)
+  card.fields = {}
+  for (const element of card.elements) {
+    card.fields[element.id] = element
+    // Create states object from nameState shaped fields
+    element.states = {}
+    for (const prop in element) {
+      const splits = prop.split('State')
+      if (splits.length > 1) {
+        element.states[splits[0]] = element[prop]
       }
-      // Check required properties
-      checkProp('type', card, element)
-      element.hidden = element.hidden || false
-      if (['button', 'checkbox', 'text', 'qrtext'].includes(element.type)) {
-        element.disabled = element.disabled || false
-      }
-      if (['text', 'qrtext'].includes(element.type)) {
-        element.error = false
-      }
-      if (['simplelist', 'simpletable'].includes(element.type)) {
-        element.selected = null
-      }
-      if (!['line'].includes(element.type)) {
-        checkProp('name', card, element)
-      }
-      if (!['line', 'menu', 'button', 'buttongroup'].includes(element.type)) {
-        checkProp('value', card, element)
-      }
-      if (element.type === 'menu') {
-        checkProp('path', card, element)
-      }
-      if (element.type === 'select') {
-        checkProp('items', card, element)
-      }
-      if (element.type === 'buttongroup') {
-        for (const button of element.buttons) {
-          checkProp('onClick', card, button)
-          card.fields[button.id] = button
-          button.disabled = button.disabled || false
-          button.hidden = button.hidden || false
-          // Create states object from nameState shaped fields
-          button.states = {}
-          for (const prop in button) {
-            if (button.hasOwnProperty(prop)) {
-              const splits = prop.split('State')
-              if (splits.length > 1) {
-                button.states[splits[0]] = button[prop]
-              }
-            }
-          }
-        }
-      }
+    }
+    // Check required properties
+    checkProp('type', card, element)
+    element.hidden = element.hidden || false
+    if (['button', 'checkbox', 'text', 'qrtext'].includes(element.type)) {
+      element.disabled = element.disabled || false
+    }
+    if (['text', 'qrtext'].includes(element.type)) {
+      element.error = false
+    }
+    if (['simplelist', 'simpletable'].includes(element.type)) {
+      element.selected = null
+    }
+    if (!['line'].includes(element.type)) {
+      checkProp('name', card, element)
+    }
+    if (!['line', 'menu', 'button'].includes(element.type)) {
+      checkProp('value', card, element)
+    }
+    if (element.type === 'menu') {
+      checkProp('path', card, element)
+    }
+    if (element.type === 'select') {
+      checkProp('items', card, element)
     }
   }
 }
 
 if (debug) console.log('CHECK PAGES')
 for (const key in config.pages) {
-  if (config.pages.hasOwnProperty(key)) {
-    const page = config.pages[key]
-    checkProp('name', page)
-    checkProp('cardArray', page)
-    page.cards = {}
-    for (const card of page.cardArray) {
-      // Create states object from nameState shaped fields
-      card.states = {}
-      for (const prop in card) {
-        if (card.hasOwnProperty(prop)) {
-          const splits = prop.split('State')
-          if (splits.length > 1) {
-            card.states[splits[0]] = card[prop]
-          }
-        }
+  const page = config.pages[key]
+  checkProp('name', page)
+  checkProp('cardArray', page)
+  page.cards = {}
+  for (const card of page.cardArray) {
+    // Create states object from nameState shaped fields
+    card.states = {}
+    for (const prop in card) {
+      const splits = prop.split('State')
+      if (splits.length > 1) {
+        card.states[splits[0]] = card[prop]
       }
-      page.cards[card.cardid] = card
-      card.card = config.cards[card.cardid]
-      card.hidden = card.hidden || false
     }
+    page.cards[card.cardid] = card
+    card.card = config.cards[card.cardid]
+    card.hidden = card.hidden || false
   }
 }
 // if (debug) console.log(config.pages)

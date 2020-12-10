@@ -1,11 +1,42 @@
 Svelte deklaratív fejlesztő környezet
 =====================================
 
-Alkotóelemek: Page[] -> Card[] -> elements
-Mindegyik elemnek van azonosítója (id) és neve (name).
+Alkotóelemek: Page[] -> Card[] -> elements[element]
 Két Card neve rögzített: 'home' és 'login'.
 Egy Page-en lehet egy vagy több Card, egy Card-on egy vagy több element.
-Az element-nek mindig van típusa (type), ezek a következők:
+
+Page:
+----
+id: javascript változóra vonatkozó megkötések
+
+name: a lap neve, megjelenik a felső kiemelt részen.
+
+cardArray[cardobjects]:
+  cardobject:
+    cardid: megjeleníteni kívánt card azonosítója
+    onEvent: (cards) => { statements; }
+    hiddenState: (cards) => { return function }
+
+
+Card:
+----
+id: javascript változóra vonatkozó megkötések
+
+name: a lap neve, megjelenik a felső kiemelt részen.
+
+onMount(): mountoláskor ezt a függvényt hívja meg, lehet async is.
+
+layout[fieldid, [fieldid]]: mezősorrend, lehet array[fieldid] is.
+
+elements[element]: mezőleírók
+
+element:
+-------
+id: javascript változóra vonatkozó megkötések
+
+name: a lap neve, megjelenik a felső kiemelt részen.
+
+type: az element-nek mindig van típusa (type), ettől függ a többi adat:
 
 menu:
   path: az új oldal címe
@@ -22,9 +53,6 @@ button:
   disabledState(fields): a disabled státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
   hidden: számított attribútum, alapértelmezetten false.
   hiddenState(fields): a hidden státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
-
-buttongroup:
-  buttons[button]
 
 checkbox:
   label: megjelenítendő név

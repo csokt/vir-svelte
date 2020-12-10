@@ -8,23 +8,18 @@
 
   $: {
     for (const id in page.cards) {
-      if (page.cards.hasOwnProperty(id)) {
-        const card = page.cards[id]
-        for (const key in card.states) {
-          if (card.states.hasOwnProperty(key)) {
-            card[key] = card.states[key](page.cards)
-            if (debug) console.log('Page', page.id, 'updateState Card', card)
-
-          }
-        }
+      const card = page.cards[id]
+      for (const key in card.states) {
+        card[key] = card.states[key](page.cards)
+        if (debug) console.log('Page', page.id, 'updateState Card', card)
       }
     }
   }
 
-  function exec_function(func, message) {
+  function exec_function(func, params) {
     if (!func) return
-    if (debug) console.log('Page', page.id, 'exec_function', message, '\n  ', func)
-    const func_returned = func(page.cards)
+    if (debug) console.log('Page', page.id, 'exec_function', params, '\n  ', func)
+    const func_returned = func(page.cards, params)
     Promise.resolve(func_returned).then(result => {
       // updateState()
     })
@@ -36,7 +31,7 @@
     if (debug) console.log('Page', page.id, 'mounted')
     $pagetitle = page.name
     if (page.hasOwnProperty('onMount')) {
-      exec_function(page.onMount, 'onMount')
+      exec_function(page.onMount, {event: 'mount', pageid: page.id})
     } else {
       // updateState()
     }
@@ -47,6 +42,7 @@
   {#each page.cardArray as card}
     <Card
       bind:card={page.cards[card.cardid].card}
+      inpage
       hidden={page.cards[card.cardid].hidden}
       on:event={(event) => {exec_function(card.onEvent, event.detail) }}
     />

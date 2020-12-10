@@ -5,6 +5,7 @@ import { debug, data } from '../../stores.js'
 export default {
   id: 'tirlogin',
   name: 'Kérem jelentkezzen be!',
+  layout: ['qrcode'],
   elements: [
     {
       id: 'qrcode',
@@ -117,7 +118,6 @@ export default {
       name: 'Név',
       type: 'text',
       value: '',
-      hiddenState: (fields) => { return true }
     },
   ],
 }
