@@ -3,6 +3,9 @@
   import { Datatable, rows } from 'svelte-simple-datatables'
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import api from '../../api'
+  import Spinner from '../../components/core/Spinner.svelte'
+
+  let spinner = true
 
   export let munkalapazonosito = data.munkalap.munkalapazonosito || -1
 
@@ -30,6 +33,7 @@
     const sql = `select top 500 * from monitor_kodolasok where [Munkalap kód] = ${munkalapazonosito} order by [Üzemkód], [Művelet], [Kódolás ideje]`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
     tabledata = result
+    spinner=false
     tablewidth = 'w-full'
   })
 
@@ -76,6 +80,7 @@
     {/each}
     </tbody>
   </Datatable>
+  <Spinner active={spinner}/>
 </div>
 
 <style>

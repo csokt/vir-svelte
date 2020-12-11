@@ -3,6 +3,9 @@
   import { Datatable, rows } from 'svelte-simple-datatables'
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import api from '../../api'
+  import Spinner from '../../components/core/Spinner.svelte'
+
+  let spinner = true
 
   let tablewidth = 'w-11/12'
   let tabledata = [{
@@ -37,6 +40,7 @@
       osszesen[field] = Math.round( result.reduce(( acc, curr ) => { return acc + curr[field] }, 0))
     }
     tabledata = result
+    spinner=false
     tablewidth = 'w-full'
   })
 </script>
@@ -87,6 +91,7 @@
     {/each}
     </tbody>
   </Datatable>
+  <Spinner active={spinner}/>
 </div>
 
 <style>
