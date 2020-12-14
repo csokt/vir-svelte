@@ -1,8 +1,16 @@
 import api from '../../api'
+import { data } from '../../stores.js'
 
 export default {
   id: 'seasearch',
   name: '',
+  onMount: async (fields) => {
+    if (data.params.seasearch) {
+      fields.cikkszam.value = data.params.seasearch
+      delete data.params.seasearch
+    }
+    if (fields.cikkszam.value) fields.sealist.value = await api.get({url: '/local/seafile/search/'+fields.cikkszam.value})
+  },
   elements: [
     {
       id: 'cikkszam',

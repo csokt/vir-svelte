@@ -1,10 +1,11 @@
 <script>
-  import { onMount } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import { Datatable, rows } from 'svelte-simple-datatables'
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import api from '../../api'
   import Spinner from '../../components/core/Spinner.svelte'
 
+	const dispatch = createEventDispatcher()
   let spinner = true
 
   let tablewidth = 'w-11/12'
@@ -76,7 +77,7 @@
       </tr>
     {#each $rows as row}
       <tr>
-        <td>{row['Cikkszám']}</td>
+        <td class="text-blue-800" on:click={e => dispatch('seasearch', row['Cikkszám'])}>{row['Cikkszám']}</td>
         <td>{row['IT']}</td>
         <td class="textleft">{row['Megnevezés']}</td>
         <td>{row['Megrendelő']}</td>

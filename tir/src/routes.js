@@ -1,20 +1,8 @@
 import Home from './routes/Home.svelte'
+import Table from './routes/Table.svelte'
 import Page from './routes/Page.svelte'
 import Card from './routes/Card.svelte'
 import NotFound from './routes/NotFound.svelte'
-import Napiteljesitmeny from './routes/tables/Napiteljesitmeny.svelte'
-import Havilezartteljesitmeny from './routes/tables/Havilezartteljesitmeny.svelte'
-import Kodolasok from './routes/tables/Kodolasok.svelte'
-import Napikodolas from './routes/tables/Napikodolas.svelte'
-import Mitkodoltamma from './routes/tables/Mitkodoltamma.svelte'
-import Havikodolas from './routes/tables/Havikodolas.svelte'
-import Cikknormai from './routes/tables/Cikknormai.svelte'
-import Szabaszatleadas from './routes/tables/Szabaszatleadas.svelte'
-import Varrodaleadas from './routes/tables/Varrodaleadas.svelte'
-import Utovasaloleadas from './routes/tables/Utovasaloleadas.svelte'
-import Aktualishetigyartasiterv from './routes/tables/Aktualishetigyartasiterv.svelte'
-import Kovetkezohetigyartasiterv from './routes/tables/Kovetkezohetigyartasiterv.svelte'
-import Muveletekosszegzese from './routes/tables/Muveletekosszegzese.svelte'
 
 const routes = {
   '/': Home,
@@ -27,19 +15,7 @@ const routes = {
   '/cmenu2/:id': Card,
   '/cmenu3/:id': Card,
   '/setup/:id': Card,
-  '/table/napiteljesitmeny': Napiteljesitmeny,
-  '/table/havilezartteljesitmeny': Havilezartteljesitmeny,
-  '/table/kodolasok': Kodolasok,
-  '/table/napikodolas': Napikodolas,
-  '/table/mitkodoltamma': Mitkodoltamma,
-  '/table/havikodolas': Havikodolas,
-  '/table/cikknormai': Cikknormai,
-  '/table/szabaszatleadas': Szabaszatleadas,
-  '/table/varrodaleadas': Varrodaleadas,
-  '/table/utovasaloleadas': Utovasaloleadas,
-  '/table/aktualishetigyartasiterv': Aktualishetigyartasiterv,
-  '/table/kovetkezohetigyartasiterv': Kovetkezohetigyartasiterv,
-  '/table/muveletekosszegzese': Muveletekosszegzese,
+  '/table/:id': Table,
   '*': NotFound,
   }
 

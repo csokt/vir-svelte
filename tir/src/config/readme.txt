@@ -100,6 +100,7 @@ select:
 
 simpleobject:
   value: javascript object
+  selected: kiválasztott {label, value}
   fields[]: { label, field }
 
 simpletable:

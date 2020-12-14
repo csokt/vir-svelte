@@ -141,8 +141,10 @@
   {#if field.type === "simpleobject"}
     <SimpleObject
       data={field.value}
+      bind:selected={field.selected}
       fields={field.fields}
       {...field.attributes}
+      on:select={dispatch('event', { event: 'select', fieldid: field.id, value: field.selected, func: field.onSelect })}
     />
   {/if}
 </div>

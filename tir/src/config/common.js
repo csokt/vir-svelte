@@ -1,3 +1,4 @@
+import { push } from 'svelte-spa-router'
 import api from '../api'
 import { debug, data } from '../stores.js'
 
@@ -43,26 +44,32 @@ export default {
   },
 
   munkalap:  {
-      id: 'munkalap',
-      name: 'Munkalap',
-      type: 'simpleobject',
-      fields: [
-        { field: 'itszam', label: 'IT azonosító' },
-        { field: 'cikkszam', label: 'Cikkszám' },
-        { field: 'cikkmegnevezes', label: 'Cikknév' },
-        { field: 'kartonszam', label: 'Gyártási kartonszám' },
-        { field: 'csoport4', label: 'Gépfinomság' },
-        { field: 'alapanyag', label: 'Fonal összetétel' },
-        { field: 'megjegyzes', label: 'Megjegyzés' },
-        { field: 'mosott', label: 'Mosott' },
-        { field: 'szinkod', label: 'Színszám' },
-        { field: 'meret', label: 'Nagyság' },
-        { field: 'db', label: 'Darabszám' },
-        { field: 'ugyfelnev', label: 'Partner' },
-        { field: 'partnerrendelesszam', label: 'Partner rendelésszám' },
-        { field: 'partnercikk', label: 'Partner modellszám' },
-      ],
-      value: {},
+    id: 'munkalap',
+    name: 'Munkalap',
+    type: 'simpleobject',
+    fields: [
+      { field: 'itszam', label: 'IT azonosító' },
+      { field: 'cikkszam', label: 'Cikkszám' },
+      { field: 'cikkmegnevezes', label: 'Cikknév' },
+      { field: 'kartonszam', label: 'Gyártási kartonszám' },
+      { field: 'csoport4', label: 'Gépfinomság' },
+      { field: 'alapanyag', label: 'Fonal összetétel' },
+      { field: 'megjegyzes', label: 'Megjegyzés' },
+      { field: 'mosott', label: 'Mosott' },
+      { field: 'szinkod', label: 'Színszám' },
+      { field: 'meret', label: 'Nagyság' },
+      { field: 'db', label: 'Darabszám' },
+      { field: 'ugyfelnev', label: 'Partner' },
+      { field: 'partnerrendelesszam', label: 'Partner rendelésszám' },
+      { field: 'partnercikk', label: 'Partner modellszám' },
+    ],
+    value: {},
+    onSelect: async (fields, params) => {
+      if (params.value.field === 'cikkszam') {
+        data.params.seasearch = params.value.value.trim()
+        push('/menu2/seasearch')
+      }
+    },
   },
 
   text_field: {

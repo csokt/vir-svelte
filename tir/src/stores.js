@@ -4,7 +4,7 @@ export const debug = true
 export const production = !debug
 export const apiURL = production ? '/api2/' : 'http://api2.szefo.local:34000/api2/'
 
-export const data = { user: {}, kodol: {}, munkalap: {} }
+export const data = { user: {}, kodol: {}, munkalap: {}, params: {} }
 
 export const simple_datatables_settings = {
   sortable: false,

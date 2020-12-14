@@ -48,7 +48,7 @@ for (const key in config.cards) {
     if (['text', 'qrtext'].includes(element.type)) {
       element.error = false
     }
-    if (['simplelist', 'simpletable'].includes(element.type)) {
+    if (['simplelist', 'simpletable', 'simpleobject'].includes(element.type)) {
       element.selected = null
     }
     if (!['line'].includes(element.type)) {
