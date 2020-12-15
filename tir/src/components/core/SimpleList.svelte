@@ -2,7 +2,6 @@
   import { createEventDispatcher } from 'svelte'
 
   export let data
-  export let selected
   export let rowClass
   export let rows
 
@@ -13,7 +12,7 @@
 
 {#each data as item, index}
   <div class="{rowClass ? rowClass(item) : 'py-2'}"
-    on:click={() => { selected = item; dispatch('select') }}
+    on:click={() => { dispatch('select', item) }}
   >
     {#each _rows as row, i}
       <div class={row.class}>

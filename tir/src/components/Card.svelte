@@ -25,8 +25,9 @@
   }
 
   function exec_function(params) {
+    params.cardid = card.id
     if (!params.func) {
-      card = card
+      if (params.event === 'change') card = card
       dispatch('event', params)
       return
     }
@@ -44,7 +45,7 @@
     if (debug) console.log('Card', card.id, 'mounted')
     if (!inpage) $pagetitle = card.name
     if (card.hasOwnProperty('onMount')) {
-      exec_function({event: 'mount', cardid: card.id, func: card.onMount})
+      exec_function({event: 'mount', func: card.onMount})
     }
   })
 </script>
@@ -63,7 +64,7 @@
               <Field
                 field={card.fields[fieldid]}
                 disabled={disableFields}
-                on:event={(event) => { event.detail.cardid=card.id, exec_function(event.detail) }}
+                on:event={(event) => { exec_function(event.detail) }}
               />
             </div>
           {/each}
@@ -72,7 +73,7 @@
         <Field
           field={card.fields[element]}
           disabled={disableFields}
-          on:event={(event) => { event.detail.cardid=card.id, exec_function(event.detail) }}
+          on:event={(event) => { exec_function(event.detail) }}
         />
       {/if}
     {/each}
@@ -81,7 +82,7 @@
       <Field
         field={element}
         disabled={disableFields}
-        on:event={(event) => { event.detail.cardid=card.id, exec_function(event.detail) }}
+        on:event={(event) => { exec_function(event.detail) }}
       />
     {/each}
   {/if}

@@ -21,7 +21,7 @@ export default {
       id: 'version',
       name: 'Verzió',
       type: 'text',
-      value: '20.12.04',
+      value: '20.12.14',
       attributes: { readonly: true }
     },
     {
@@ -30,8 +30,7 @@ export default {
       type: 'text',
       value: 'csok.tibor',
       attributes: {},
-      onChange: (fields) => {
-      },
+      onChange: (fields) => {},
     },
     {
       id: 'password',
@@ -39,8 +38,7 @@ export default {
       type: 'text',
       value: '',
       attributes: { type: 'password' },
-      onChange: (fields) => {
-      },
+      onChange: (fields) => {},
     },
     {
       id: 'fullname',

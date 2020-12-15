@@ -64,9 +64,9 @@ export default {
       { field: 'partnercikk', label: 'Partner modellszám' },
     ],
     value: {},
-    onSelect: (fields) => {
-      if (fields.munkalap.selected.field === 'cikkszam') {
-        data.params.seasearch = fields.munkalap.selected.value.trim()
+    onSelect: (fields, params) => {
+      if (params.selected.field === 'cikkszam' && params.selected.value) {
+        data.params.seasearch = params.selected.value.trim()
         push('/menu2/seasearch')
       }
     },

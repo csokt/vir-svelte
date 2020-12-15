@@ -35,7 +35,7 @@
         color={field.color || 'primary'}
         disabled={disabled || field.disabled}
         {...field.attributes}
-        on:click={dispatch('event', { event: 'click', fieldid: field.id, func: field.onClick })}
+        on:click={() => dispatch('event', { event: 'click', fieldid: field.id, func: field.onClick })}
       >
         {field.name}
       </Button>
@@ -48,7 +48,7 @@
       bind:checked={field.value}
       disabled={disabled || field.disabled}
       {...field.attributes}
-      on:change={dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
+      on:change={() => dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
     >
       <span>{field.name}</span>
     </Checkbox>
@@ -63,7 +63,7 @@
       readonly={field.readonly}
       error={field.error}
       {...field.attributes}
-      on:change={dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
+      on:change={() => dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
     />
   {/if}
 
@@ -75,7 +75,7 @@
       readonly={field.readonly}
       error={field.error}
       attributes={field.attributes}
-      on:change={dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
+      on:change={() => dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
     />
   {/if}
 
@@ -88,7 +88,7 @@
       readonly={field.readonly}
       error={field.error}
       {...field.attributes}
-      on:change={dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
+      on:change={() => dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
     />
   {/if}
 
@@ -100,7 +100,7 @@
       readonly={field.readonly}
       error={field.error}
       attributes={field.attributes}
-      on:tags={dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
+      on:tags={() => dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
     />
   {/if}
 
@@ -119,32 +119,29 @@
   {#if field.type === "simplelist"}
     <SimpleList
       data={field.value}
-      bind:selected={field.selected}
       rowClass={field.rowClass}
       rows={field.rows}
       {...field.attributes}
-      on:select={dispatch('event', { event: 'select', fieldid: field.id, value: field.selected, func: field.onSelect })}
+      on:select={(event) => dispatch('event', { event: 'select', fieldid: field.id, selected: event.detail, func: field.onSelect })}
     />
   {/if}
 
   {#if field.type === "simpletable"}
     <SimpleTable
       data={field.value}
-      bind:selected={field.selected}
       rowClass={field.rowClass}
       columns={field.columns}
       {...field.attributes}
-      on:select={dispatch('event', { event: 'select', fieldid: field.id, value: field.selected, func: field.onSelect })}
+      on:select={(event) => dispatch('event', { event: 'select', fieldid: field.id, selected: event.detail, func: field.onSelect })}
     />
   {/if}
 
   {#if field.type === "simpleobject"}
     <SimpleObject
       data={field.value}
-      bind:selected={field.selected}
       fields={field.fields}
       {...field.attributes}
-      on:select={dispatch('event', { event: 'select', fieldid: field.id, value: field.selected, func: field.onSelect })}
+      on:select={(event) => dispatch('event', { event: 'select', fieldid: field.id, selected: event.detail, func: field.onSelect })}
     />
   {/if}
 </div>

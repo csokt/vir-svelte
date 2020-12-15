@@ -100,19 +100,17 @@ select:
 
 simpleobject:
   value: javascript object
-  selected: kiválasztott {label, value}
   fields[]: { label, field }
+  onSelect(fields, params): mező kiválasztáskor ezt a függvényt hívja meg, lehet async is.
 
 simpletable:
   value[]: táblázat adatok
-  selected: kiválasztott táblázat sor
   rowClass(): (row) => {return <kalkulált class>}
   columns[]: { label, field, class }
-  onSelect(): sor kiválasztáskor ezt a függvényt hívja meg, lehet async is.
+  onSelect(fields, params): sor kiválasztáskor ezt a függvényt hívja meg, lehet async is.
 
 simplelist:
   value[]: lista adatok
-  selected: kiválasztott lista sor
   rowClass(): (row) => {return <kalkulált class>};    'py-2' default
   rows[]: { label, field, class }
-  onSelect(): sor kiválasztáskor ezt a függvényt hívja meg, lehet async is.
+  onSelect(fields, params): sor kiválasztáskor ezt a függvényt hívja meg, lehet async is.

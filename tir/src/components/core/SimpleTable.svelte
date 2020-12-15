@@ -2,7 +2,6 @@
   import { createEventDispatcher } from 'svelte'
 
   export let data
-  export let selected
   export let rowClass
   export let columns
 
@@ -22,7 +21,7 @@
   <tbody>
     {#each data as row, index}
       <tr class="{rowClass && rowClass(row)}"
-        on:click={() => { selected = row; dispatch('select') }}
+        on:click={() => { dispatch('select', row) }}
       >
         {#each _columns as column, i}
           <td class={column.class}>
