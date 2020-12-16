@@ -9,6 +9,7 @@ export default {
     fields.dolgozokod.value = data.kodol.dolgozokod
     fields.dolgozonev.value = data.kodol.dolgozonev
   },
+  layout: ['dolgozokod','dolgozonev','munkalapazonosito','kartoninfo',['gepkod','torles'],'muveletkodok','mennyiseg','mentes','kodolasok'],
   elements: [
     {
       id: 'dolgozokod',
@@ -47,6 +48,21 @@ export default {
       attributes: {type: 'number'},
       errorState: (fields) => {
         return fields.gepkod.value !== parseInt(fields.gepkod.value).toString() || parseInt(fields.gepkod.value) < 0 ? 'Érvénytelen gépkód!' : false
+      },
+    },
+
+    {
+      id: 'torles',
+      name: 'Törlés\u21A7',
+      type: 'button',
+      class: 'pl-2',
+      onClick: (fields) => {
+        fields.gepkod.value = '0'
+        fields.muveletkodok.value = []
+        fields.mennyiseg.value = ''
+      },
+      disabledState: (fields) => {
+        return fields.gepkod.value === '0' && !fields.muveletkodok.value.length && fields.mennyiseg.value === ''
       },
     },
 

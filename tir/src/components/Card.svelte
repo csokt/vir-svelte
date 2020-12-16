@@ -58,15 +58,13 @@
   {#if card.layout}
     {#each card.layout as element}
       {#if Array.isArray(element)}
-        <div class="flex flex-row justify-start py-2">
+        <div class="flex flex-row justify-between py-2">
           {#each element as fieldid}
-            <div class="pr-4">
-              <Field
-                field={card.fields[fieldid]}
-                disabled={disableFields}
-                on:event={(event) => { exec_function(event.detail) }}
-              />
-            </div>
+            <Field
+              field={card.fields[fieldid]}
+              disabled={disableFields}
+              on:event={(event) => { exec_function(event.detail) }}
+            />
           {/each}
         </div>
       {:else}

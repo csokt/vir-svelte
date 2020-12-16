@@ -14,7 +14,7 @@
 	const dispatch = createEventDispatcher()
 </script>
 
-<div hidden={field.hidden}>
+<div hidden={field.hidden} class:w-full="{['text', 'qrtext'].includes(field.type)}" class="{field.class}">
   {#if field.type === "menu"}
     <div class="text-gray-700 text-lg py-2" on:click={() => push(field.path)}>
       {field.name}
