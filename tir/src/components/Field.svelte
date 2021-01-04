@@ -70,6 +70,7 @@
   {#if field.type === "qrtext"}
     <QrTextField
       label={field.name}
+      title={field.title || field.name}
       bind:value={field.value}
       disabled={disabled || field.disabled}
       readonly={field.readonly}

@@ -9,7 +9,7 @@ export default {
   elements: [
     {
       id: 'qrcode',
-      name: 'Dolgozókód',
+      name: 'Dolgozó kód',
       type: 'qrtext',
       value: '',
       attributes: {type: 'number'},

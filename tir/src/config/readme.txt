@@ -34,7 +34,9 @@ element:
 -------
 id: javascript változóra vonatkozó megkötések
 
-name: a lap neve, megjelenik a felső kiemelt részen.
+name: az elem neve, ez jelenik meg a felhasználónak
+
+class: az elemet befoglaló div class értéke
 
 type: az element-nek mindig van típusa (type), ettől függ a többi adat:
 
@@ -80,6 +82,7 @@ text:
 
 qrtext:
   Ugyanaz mint a text, csak lehetőség van QR kód beolvasására is.
+  title: QR olvasóban megjelenítendő név, 'label' a default
 
 time:
   Ugyanaz mint a text, csak a value Date() objektum.

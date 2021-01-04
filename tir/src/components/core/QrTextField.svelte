@@ -6,11 +6,11 @@
 
   const dispatch = createEventDispatcher()
 
-  export let title = 'Scan QR'
+  export let title = ''
   export let showDialog = false
 
   export let value = ''
-  export let label = 'field label'
+  export let label = ''
   export let disabled = false
   export let readonly = null
   export let error = false
