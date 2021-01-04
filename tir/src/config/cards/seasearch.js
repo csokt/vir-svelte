@@ -25,10 +25,10 @@ export default {
       type: 'simplelist',
       rows: [{ field: 'name' }],
       value: [],
-      onSelect: (fields) => {
+      onSelect: (fields, params) => {
         // Log('show', { file: fields.sealist.selected.fullpath })
         const publicUrl = 'https://mobilszefo.hopto.org:19540/d/a5008cf7b7484ef6b34e/'
-        const win = window.open(publicUrl + 'files/?p=' + fields.sealist.selected.fullpath, '_blank')
+        const win = window.open(publicUrl + 'files/?p=' + params.selected.fullpath, '_blank')
         if (win) {
           win.focus()
         } else {

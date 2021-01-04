@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-export const debug = true
+export const debug = false
 export const production = !debug
 export const apiURL = production ? '/api2/' : 'http://api2.szefo.local:34000/api2/'
 
