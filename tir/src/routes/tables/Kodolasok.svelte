@@ -31,6 +31,7 @@
 
   onMount( async () => {
     $pagetitle = 'Kódolások a munkalapon'
+    api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_kodolasok where [Munkalap kód] = ${munkalapazonosito} order by [Üzemkód], [Művelet], [Kódolás ideje]`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
     tabledata = result

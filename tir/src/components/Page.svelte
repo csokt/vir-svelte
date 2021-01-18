@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import { debug, pagetitle } from '../stores.js'
+  import api from '../api'
   import Card from '../components/Card.svelte'
 
   export let page
@@ -30,6 +31,9 @@
   onMount(() => {
     if (debug) console.log('Page', page.id, 'mounted')
     $pagetitle = page.name
+    if (page.id !== 'home') {
+      api.log('Oldal', $pagetitle)
+    }
     if (page.hasOwnProperty('onMount')) {
       exec_function(page.onMount, {event: 'mount', pageid: page.id})
     } else {
@@ -42,7 +46,7 @@
   {#each page.cardArray as card}
     <Card
       bind:card={page.cards[card.cardid].card}
-      inpage
+      pagepart
       hidden={page.cards[card.cardid].hidden}
       on:event={(event) => {exec_function(card.onEvent, event.detail) }}
     />

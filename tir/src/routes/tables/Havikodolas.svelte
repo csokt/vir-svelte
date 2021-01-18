@@ -31,6 +31,7 @@
 
   onMount( async () => {
     $pagetitle = 'Aktuális havi kódolások'
+    api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_havikodolas where [Dolgozó kód] = ${dolgozokod} order by [Kódolás ideje] desc`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
     osszperc = Math.round( result.reduce(( acc, curr ) => { return acc + curr['Összes Normaperc'] }, 0))

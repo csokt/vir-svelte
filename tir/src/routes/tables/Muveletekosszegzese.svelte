@@ -21,6 +21,7 @@
 
   onMount( async () => {
     $pagetitle = 'Bekódolt műveletek összegzése'
+    api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_muveletekosszegzese where [Cikkszám] = '${cikkszam}' order by [Művelet], [IT]`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
     tabledata = result

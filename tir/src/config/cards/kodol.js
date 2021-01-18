@@ -102,6 +102,7 @@ export default {
       onClick: async (fields) => {
         let message = ''
         fields.kodolasok.value = []
+        api.log('Kódol', fields.dolgozonev.value.trim())
         for (const muveletkod of fields.muveletkodok.value) {
           const params = {
             funkcio: '99994',
@@ -137,7 +138,7 @@ export default {
           // Log('message', { message: message })
           return
         }
-        api.notifier.notify('Tételek bekódolva!')
+        api.notifier.alert('Tételek bekódolva!')
         fields.mennyiseg.value = ''
 
       },

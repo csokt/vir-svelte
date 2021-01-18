@@ -94,8 +94,10 @@ export default {
           // Log('message', { message: message })
           return
         }
-        api.notifier.notify('Átadva!')
-        fields.mennyiseg.value = ''
+        api.notifier.alert('Átadva!')
+        fields.munkalapazonosito.value = ''
+        fields.kartoninfo.value = ''
+        api.log('Átad', fields.helynev.value.trim())
 
       },
       disabledState: (fields) => {

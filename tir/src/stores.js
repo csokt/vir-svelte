@@ -1,10 +1,12 @@
 import { writable } from 'svelte/store'
 
+export const version = '21.01.15'
 export const debug = false
-export const production = !debug
+// export const production = !debug
+export const production = false
 export const apiURL = production ? '/api2/' : 'http://api2.szefo.local:34000/api2/'
 
-export const data = { user: {}, kodol: {}, munkalap: {}, params: {} }
+export const data = { info: {}, account: {}, user: {}, kodol: {}, munkalap: {}, params: {} }
 
 export const simple_datatables_settings = {
   sortable: false,
@@ -31,4 +33,3 @@ export const simple_datatables_settings = {
 export const snackbar = writable({})
 export const facingmode = writable('')
 export const pagetitle = writable('Page title')
-export const userinfo = writable({})

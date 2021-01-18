@@ -23,6 +23,7 @@
 
   onMount( async () => {
     $pagetitle = 'Konfekció normalapok'
+    api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_cikknormai where [Cikkszám] = '${cikkszam}' order by [Műveletkód]`
     const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
     tabledata = result

@@ -82,12 +82,10 @@
 
   {#if field.type === "time"}
     <TimePicker
-      dense
       label={field.name}
       bind:time={field.value}
       disabled={disabled || field.disabled}
       readonly={field.readonly}
-      error={field.error}
       {...field.attributes}
       on:change={() => dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
     />
@@ -99,7 +97,6 @@
       bind:tags={field.value}
       disabled={disabled || field.disabled}
       readonly={field.readonly}
-      error={field.error}
       attributes={field.attributes}
       on:tags={() => dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
     />

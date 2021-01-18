@@ -10,6 +10,8 @@
 
   export let label
   export let time
+  export let disabled = false   // not implemented yet
+  export let readonly = null    // not implemented yet
   let visible = false
 
   $: _time = time || new Date()

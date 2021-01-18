@@ -9,7 +9,10 @@ export default {
       fields.cikkszam.value = data.params.seasearch
       delete data.params.seasearch
     }
-    if (fields.cikkszam.value) fields.sealist.value = await api.get({url: '/local/seafile/search/'+fields.cikkszam.value})
+    if (fields.cikkszam.value) {
+      api.log('Keresés', fields.cikkszam.value)
+      fields.sealist.value = await api.get({url: '/local/seafile/search/'+fields.cikkszam.value})
+    }
   },
   elements: [
     {
@@ -17,7 +20,7 @@ export default {
       name: 'Cikkszám keresése',
       type: 'text',
       value: '',
-      onChange: async (fields) => { fields.sealist.value = await api.get({url: '/local/seafile/search/'+fields.cikkszam.value}) },
+      onChange: async (fields) => { api.log('Keresés', fields.cikkszam.value); fields.sealist.value = await api.get({url: '/local/seafile/search/'+fields.cikkszam.value}) },
     },
     {
       id: 'sealist',

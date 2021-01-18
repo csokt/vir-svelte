@@ -1,5 +1,5 @@
 import apisauce from 'apisauce'
-import { debug, apiURL, snackbar} from './stores.js'
+import { version, debug, apiURL, data, snackbar } from './stores.js'
 
 const notifier = {
   alert: (message) => snackbar.set({message: message, timeout: 2, bg: 'gray'}),
@@ -65,4 +65,23 @@ async function post({url, expect='array', params={}}) {
   return dataFromResponse(response, expect)
 }
 
-export default { API, checkResponse, get, post, notifier }
+async function log(event, value='') {
+  const message = {
+    esemeny: event,
+    ertek: value,
+    // data_user: data.user,
+    felhasznalo: data.user.name || '',
+    szerepkor: data.user.role || '',
+    uzem: data.user.uzemnev || '',
+    // data_account: data.account,
+    ad_felhasznalo: data.account.fullname || '',
+    // data_info: data.info,
+    ip: data.info.ip || '',
+    verzio: version,
+    // path: router.app._route.path,
+  }
+  console.log('###################')
+  console.log(message)
+}
+
+export default { API, checkResponse, get, post, log, notifier }

@@ -111,6 +111,7 @@ export default {
           api.notifier.alert('A dolgozókód nem található!')
         }
         if (debug) console.log('config Card tirlogin onChange qrcode', '\n  user', data.user, '\n  kodol', data.kodol)
+        api.log('Bejelentkezés', qr)
       },
     },
     {

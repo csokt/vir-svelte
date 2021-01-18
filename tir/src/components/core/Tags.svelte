@@ -21,8 +21,10 @@ export let autoComplete;
 export let name;
 export let id;
 export let allowBlur;
-export let disable;
+export let disabled;
 export let minChars;
+
+export let readonly = null;
 export let attributes = {};
 
 $: tags = tags || [];
@@ -38,7 +40,7 @@ $: autoComplete = autoComplete || false;
 $: name = name || "svelte-tags-input";
 $: id = id || uniqueID();
 $: allowBlur = allowBlur || false;
-$: disable = disable || false;
+$: disabled = disabled || false;
 $: minChars = minChars || 1;
 
 $: matchsID = id + "_matchs";
@@ -260,17 +262,17 @@ function uniqueID() {
 
 </script>
 
-<div class="svelte-tags-input-layout" class:sti-layout-disable={disable}>
+<div class="svelte-tags-input-layout" class:sti-layout-disable={disabled}>
     {#if tags.length > 0}
         {#each tags as tag, i}
             <span class="svelte-tags-input-tag">{tag}
-                {#if !disable}
+                {#if !disabled}
                 <span class="svelte-tags-input-tag-remove" on:click={() => removeTag(i)}> &#215;</span>
                 {/if}
             </span>
         {/each}
     {/if}
-    <input {...attributes} id={id} name={name} bind:value={tag} on:keydown={setTag} on:keyup={getMatchElements} on:paste={onPaste} on:drop={onDrop} on:blur={() => onBlur(tag)} class="svelte-tags-input" placeholder={placeholder} disabled={disable} >
+    <input {...attributes} id={id} name={name} bind:value={tag} on:keydown={setTag} on:keyup={getMatchElements} on:paste={onPaste} on:drop={onDrop} on:blur={() => onBlur(tag)} class="svelte-tags-input" placeholder={placeholder} disabled={disabled} readonly={readonly} >
 </div>
 
 {#if autoComplete && arrelementsmatch.length > 0}

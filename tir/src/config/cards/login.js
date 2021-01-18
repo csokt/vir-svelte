@@ -1,19 +1,14 @@
 import api from '../../api'
 import common from '../common'
-import { userinfo } from '../../stores.js'
-
-let user
-
-userinfo.subscribe(value => {
-  user = value
-})
+import { version, data } from '../../stores.js'
 
 export default {
   id: 'login',
   name: 'Be és kijelentkezés',
   onMount: async (fields) => {
-    fields.username.value = user.username || ''
-    fields.fullname.value = user.fullname || ''
+    fields.username.value = data.account.username || ''
+    fields.fullname.value = data.account.fullname || ''
+    fields.version.value = version
   },
   layout: ['version','username','password','fullname',['belep','kilep']],
   elements: [
@@ -21,7 +16,7 @@ export default {
       id: 'version',
       name: 'Verzió',
       type: 'text',
-      value: '21.01.04',
+      value: '',
       attributes: { readonly: true }
     },
     {
@@ -58,7 +53,7 @@ export default {
           fields.fullname.value = result.fullname || ''
           localStorage.szefo_api2_token = result.accesstoken
           api.API.setHeader('Authorization', result.accesstoken)
-          userinfo.set(await api.get({ url: '/private/account/info', expect: 'object' }))
+          data.account = await api.get({ url: '/private/account/info', expect: 'object' })
         }
       },
       disabledState: (fields) => {
@@ -72,7 +67,7 @@ export default {
       onClick: (fields) => {
         fields.password.value = ''
         fields.fullname.value = ''
-        userinfo.set({})
+        data.account = {}
         delete localStorage.szefo_api2_token
         api.API.setHeader('Authorization', undefined)
       },

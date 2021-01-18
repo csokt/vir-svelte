@@ -5,7 +5,7 @@
   import Field from './Field.svelte'
 
   export let card
-  export let inpage = false
+  export let pagepart = false
   export let hidden = false
   const fields = card.fields  // not reactive
 
@@ -43,7 +43,7 @@
 
   onMount(() => {
     if (debug) console.log('Card', card.id, 'mounted')
-    if (!inpage) $pagetitle = card.name
+    if (!pagepart) $pagetitle = card.name
     if (card.hasOwnProperty('onMount')) {
       exec_function({event: 'mount', func: card.onMount})
     }
@@ -51,7 +51,7 @@
 </script>
 
 <div hidden={hidden} class="Card w-full max-w-sm p-2 mb-6 border shadow-xl">
-  {#if card.name && inpage}
+  {#if card.name && pagepart}
     <div class="text-gray-500 text-lg py-1">{card.name}</div>
     <hr>
   {/if}

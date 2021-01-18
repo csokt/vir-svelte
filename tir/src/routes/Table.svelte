@@ -34,10 +34,10 @@
     varrodaleadas: Varrodaleadas,
   }
 
-function seasearch(params) {
-  data.params.seasearch = params.detail.trim()
-  push('/menu2/seasearch')
-}
+  function seasearch(params) {
+    data.params.seasearch = params.detail.trim()
+    push('/menu2/seasearch')
+  }
 </script>
 
 <svelte:component

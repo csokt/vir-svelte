@@ -5,7 +5,7 @@
   import { Icon, Snackbar } from 'svelte-mui'
 	import Tailwindcss from './Tailwindcss.svelte'
   import routes from './routes'
-  import { debug, production, snackbar, facingmode, pagetitle, userinfo } from './stores.js'
+  import { debug, production, snackbar, facingmode, pagetitle, data } from './stores.js'
   import api from './api'
 
   let snackbarVisible = false
@@ -17,8 +17,9 @@
   onMount(async () => {
     if (debug) console.log('App.svelte mounted')
     $facingmode = (window.screen.width < 800) ? 'environment' : 'user'
+    data.info = await api.get({ url: '/util/info', expect: 'object' })
     if (localStorage.szefo_api2_token) {
-      $userinfo = await api.get({ url: '/private/account/info', expect: 'object' })
+      data.account = await api.get({ url: '/private/account/info', expect: 'object' })
     }
     //// Production verzióban kell
     if (production) {
