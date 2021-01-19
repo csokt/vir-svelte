@@ -82,6 +82,7 @@ export default {
           params.error = parseInt(result.error)
           if (params.error) {
             message = 'Nem sikerült átadni!'
+            api.log('Átad', 'hiba', result.message)
           }
         } else {
           message = 'Kódoló szerver hiba, értesítse a rendszergazdát!'
@@ -97,8 +98,7 @@ export default {
         api.notifier.alert('Átadva!')
         fields.munkalapazonosito.value = ''
         fields.kartoninfo.value = ''
-        api.log('Átad', fields.helynev.value.trim())
-
+        api.log('Átad', 'siker')
       },
       disabledState: (fields) => {
         return !fields.helynev.value || !fields.kartoninfo.value || (fields.hely.value == '90026' && !fields.uzemnev.value)

@@ -102,7 +102,6 @@ export default {
       onClick: async (fields) => {
         let message = ''
         fields.kodolasok.value = []
-        api.log('Kódol', fields.dolgozonev.value.trim())
         for (const muveletkod of fields.muveletkodok.value) {
           const params = {
             funkcio: '99994',
@@ -125,6 +124,7 @@ export default {
             params.error = parseInt(result.error)
             if (params.error) {
               message = 'Nem minden tételt sikerült bekódolni!'
+              api.log('Kódol', 'hiba', result.message)
             }
           } else {
             message = 'Kódoló szerver hiba, értesítse a rendszergazdát!'
@@ -135,12 +135,11 @@ export default {
         }
         if (message) {
           api.notifier.error(message)
-          // Log('message', { message: message })
           return
         }
         api.notifier.alert('Tételek bekódolva!')
         fields.mennyiseg.value = ''
-
+        api.log('Kódol', 'siker')
       },
       disabledState: (fields) => {
         return !fields.dolgozonev.value || !fields.kartoninfo.value || !fields.muveletkodok.value.length || !(fields.mennyiseg.value > 0) ||

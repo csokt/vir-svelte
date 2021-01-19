@@ -65,10 +65,11 @@ async function post({url, expect='array', params={}}) {
   return dataFromResponse(response, expect)
 }
 
-async function log(event, value='') {
-  const message = {
+async function log(event, value, message='') {
+  const params = {
     esemeny: event,
     ertek: value,
+    uzenet: message,
     // data_user: data.user,
     felhasznalo: data.user.name || '',
     szerepkor: data.user.role || '',
@@ -81,7 +82,7 @@ async function log(event, value='') {
     // path: router.app._route.path,
   }
   console.log('###################')
-  console.log(message)
+  console.log(params)
 }
 
 export default { API, checkResponse, get, post, log, notifier }
