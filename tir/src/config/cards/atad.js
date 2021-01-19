@@ -75,7 +75,6 @@ export default {
         fields.atadasok.value.unshift(params)
         if (fields.atadasok.value.length > 20) { fields.atadasok.value.length = 20 }
         // fields.atadasok.value.push(params)
-        // Log('atad', params)
         const result = await api.post({url: '/local/tir/kodol', expect: 'object', params: params})
         if (result.message) {
           params.eredmeny = result.message
@@ -92,7 +91,6 @@ export default {
 
         if (message) {
           api.notifier.error(message)
-          // Log('message', { message: message })
           return
         }
         api.notifier.alert('Átadva!')

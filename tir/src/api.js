@@ -81,7 +81,7 @@ async function log(event, value, message='') {
     verzio: version,
     // path: router.app._route.path,
   }
-  console.log('###################')
+  // console.log('###################')
   console.log(params)
 }
 

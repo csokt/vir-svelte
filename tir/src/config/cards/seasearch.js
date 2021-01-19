@@ -29,7 +29,7 @@ export default {
       rows: [{ field: 'name' }],
       value: [],
       onSelect: (fields, params) => {
-        // Log('show', { file: fields.sealist.selected.fullpath })
+        api.log('Megtekint', params.selected.name)
         const publicUrl = 'https://mobilszefo.hopto.org:19540/d/a5008cf7b7484ef6b34e/'
         const win = window.open(publicUrl + 'files/?p=' + params.selected.fullpath, '_blank')
         if (win) {

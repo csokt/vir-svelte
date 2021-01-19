@@ -117,7 +117,6 @@ export default {
           }
           // fields.kodolasok.value.unshift(params)
           fields.kodolasok.value.push(params)
-          // Log('kodol', params)
           const result = await api.post({url: '/local/tir/kodol', expect: 'object', params: params})
           if (result.message) {
             params.eredmeny = result.message
