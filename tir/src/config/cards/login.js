@@ -9,6 +9,7 @@ export default {
     fields.username.value = data.account.username || ''
     fields.fullname.value = data.account.fullname || ''
     fields.version.value = version
+    api.log('Oldal', 'Be és kijelentkezés')
   },
   layout: ['version','username','password','fullname',['belep','kilep']],
   elements: [
@@ -54,6 +55,7 @@ export default {
           localStorage.szefo_api2_token = result.accesstoken
           api.API.setHeader('Authorization', result.accesstoken)
           data.account = await api.get({ url: '/private/account/info', expect: 'object' })
+          api.log('AD bejelentkezés', fields.username.value)
         }
       },
       disabledState: (fields) => {
@@ -65,6 +67,7 @@ export default {
       name: 'Kilép',
       type: 'button',
       onClick: (fields) => {
+        api.log('AD kijelentkezés', fields.username.value)
         fields.password.value = ''
         fields.fullname.value = ''
         data.account = {}

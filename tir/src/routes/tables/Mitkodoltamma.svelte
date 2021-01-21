@@ -32,7 +32,7 @@
     $pagetitle = 'Mit kódoltam ma?'
     api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_napikodolas where [Kódoló kód] = ${dolgozokod} order by [Kódolás ideje] desc`
-    const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
+    const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     tabledata = result
     spinner=false
     tablewidth = 'w-full'

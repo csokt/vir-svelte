@@ -49,7 +49,7 @@
     $pagetitle = 'Gyártási terv - aktuális hét'
     api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_aktualishetigyartasiterv order by [Cikkszám], [IT szám], [Szín]`
-    const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
+    const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     for (const field in osszesen) {
       osszesen[field] = Math.round( result.reduce(( acc, curr ) => { return acc + curr[field] }, 0))
     }

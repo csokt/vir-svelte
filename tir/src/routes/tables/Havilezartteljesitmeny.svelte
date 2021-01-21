@@ -15,7 +15,7 @@
     $pagetitle = 'Teljesítmény % (havi lezárt)'
     api.log('Oldal', $pagetitle)
     const sql = `select top 60 * from monitor_havilezartteljesitmeny where [Dolgozó kód] = ${dolgozokod} order by [Év] desc, [Hónap] desc`
-    const result = await api.post({url: '/local/tir/query', params: {sql: sql}})
+    const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     tabledata = result
     spinner=false
   })

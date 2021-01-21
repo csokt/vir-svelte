@@ -25,11 +25,30 @@ function checkResponse (response) {
 
 function dataFromResponse(response, expect) {
   if (!checkResponse(response)) {
+    if (expect === 'string') return ''
+    if (expect === 'number') return 0
     if (expect === 'array') return []
     if (expect === 'object') return {}
     return null
   }
   const data = response.data
+  if (!expect) {
+    return data
+  }
+  if (expect === 'string') {
+    if (typeof data === 'string') {
+      return data
+    } else {
+      return ''
+    }
+  }
+  if (expect === 'number') {
+    if (typeof data === 'number') {
+      return data
+    } else {
+      return 0
+    }
+  }
   if (expect === 'array') {
     if (Array.isArray(data)) {
       return data
@@ -49,7 +68,7 @@ function dataFromResponse(response, expect) {
   return null
 }
 
-async function get({url, expect='array', params=null}) {
+async function get({url, expect=null, params=null}) {
   let parstr = ''
   if (params) {
     parstr = '?params=' + JSON.stringify(params)
@@ -59,7 +78,7 @@ async function get({url, expect='array', params=null}) {
   return dataFromResponse(response, expect)
 }
 
-async function post({url, expect='array', params={}}) {
+async function post({url, expect=null, params={}}) {
   const response = await API.post(url, params)
   if (debug) console.log('api.post', url,  '\n  params:', params, '\n  response:', response)
   return dataFromResponse(response, expect)
@@ -67,22 +86,25 @@ async function post({url, expect='array', params={}}) {
 
 async function log(event, value, message='') {
   const params = {
-    esemeny: event,
-    ertek: value,
-    uzenet: message,
-    // data_user: data.user,
     felhasznalo: data.user.name || '',
     szerepkor: data.user.role || '',
     uzem: data.user.uzemnev || '',
-    // data_account: data.account,
+    esemeny: event,
+    ertek: value,
+    uzenet: message,
     ad_felhasznalo: data.account.fullname || '',
-    // data_info: data.info,
     ip: data.info.ip || '',
     verzio: version,
-    // path: router.app._route.path,
   }
   // console.log('###################')
-  console.log(params)
+  // console.log(params)
+  // const result = await post({ url: '/private/vir2/create/naplo.tir', expect: 'number', params })
+  const sql = `
+    INSERT INTO naplo_tir (create_date, felhasznalo, szerepkor, uzem, esemeny, ertek, uzenet, ad_felhasznalo, ip, verzio)
+    VALUES (now() at time zone 'utc', '${params.felhasznalo}', '${params.szerepkor}', '${params.uzem}', '${params.esemeny}',
+      '${params.ertek}', '${params.uzenet}', '${params.ad_felhasznalo}', '${params.ip}', '${params.verzio}')
+  `
+  const result = await post({url: '/local/vir2/query', params: {sql: sql}})
 }
 
 export default { API, checkResponse, get, post, log, notifier }
