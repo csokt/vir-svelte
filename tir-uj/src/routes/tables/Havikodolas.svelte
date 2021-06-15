@@ -5,12 +5,12 @@
   import api from '../../api'
   import Spinner from '../../components/core/Spinner.svelte'
 
-  let spinner = true
 	const dispatch = createEventDispatcher()
+  let spinner = true
 
   export let dolgozokod = data.user.belepokod || -1
 
-  let tablewidth = 'w-9/12'
+  let tablewidth = 'w-11/12'
   let tabledata = [{
     'Cikkszám': '',
     'IT': '',
@@ -30,9 +30,9 @@
   let osszperc = ''
 
   onMount( async () => {
-    $pagetitle = 'Mai napi kódolások'
+    $pagetitle = 'Aktuális havi kódolások'
     api.log('Oldal', $pagetitle)
-    const sql = `select top 500 * from monitor_napikodolas where [Dolgozó kód] = ${dolgozokod} order by [Kódolás ideje] desc`
+    const sql = `select top 500 * from monitor_havikodolas where [Dolgozó kód] = ${dolgozokod} order by [Kódolás ideje] desc`
     const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     osszperc = Math.round( result.reduce(( acc, curr ) => { return acc + curr['Összes Normaperc'] }, 0))
     tabledata = result

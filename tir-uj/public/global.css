@@ -1,0 +1,22 @@
+.disabled,
+[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.disabled .disabled,
+.disabled [disabled],
+[disabled] .disabled,
+[disabled] [disabled] {
+  opacity: 1;
+}
+
+.simple-datatables-full-height {
+  height: calc(100vh - 60px);
+}
+.datatable article table tbody tr td{
+  text-align:center;
+}
+.datatable article table tbody tr:nth-child(odd) {
+  background-color: #E8E8E8;
+}

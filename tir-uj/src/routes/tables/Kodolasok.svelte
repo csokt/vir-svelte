@@ -5,14 +5,16 @@
   import api from '../../api'
   import Spinner from '../../components/core/Spinner.svelte'
 
-  let spinner = true
 	const dispatch = createEventDispatcher()
+  let spinner = true
 
-  export let dolgozokod = data.user.belepokod || -1
+  export let munkalapazonosito = data.munkalap.munkalapazonosito || -1
 
-  let tablewidth = 'w-9/12'
+  let tablewidth = 'w-11/12'
   let tabledata = [{
-    'Cikkszám': '',
+    'Üzemnév': '',
+    'Munkalap kód': '',
+    'Cikk': '',
     'IT': '',
     'Diszpó': '',
     'Szín': '',
@@ -21,20 +23,17 @@
     'darab': '',
     'Művelet': '',
     'Művelet név': '',
-    'Normaperc': '',
-    'Összes Normaperc': '',
-    'Megjegyzés': '',
-    'Kódoló': '',
+    'Norma perc': '',
+    'Dolgozó név': '',
     'Kódolás ideje': '',
+    'Kódoló': '',
   }]
-  let osszperc = ''
 
   onMount( async () => {
-    $pagetitle = 'Mai napi kódolások'
+    $pagetitle = 'Kódolások a munkalapon'
     api.log('Oldal', $pagetitle)
-    const sql = `select top 500 * from monitor_napikodolas where [Dolgozó kód] = ${dolgozokod} order by [Kódolás ideje] desc`
+    const sql = `select top 500 * from monitor_kodolasok where [Munkalap kód] = ${munkalapazonosito} order by [Üzemkód], [Művelet], [Kódolás ideje]`
     const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
-    osszperc = Math.round( result.reduce(( acc, curr ) => { return acc + curr['Összes Normaperc'] }, 0))
     tabledata = result
     spinner=false
     tablewidth = 'w-full'
@@ -45,8 +44,10 @@
 <div class="simple-datatables-full-height {tablewidth}">
   <Datatable settings={simple_datatables_settings} data={tabledata}>
     <thead>
-      <th data-key="Cikkszám">Cikkszám</th>
-      <th data-key="IT">IT</th>
+      <th data-key="Üzemnév">Üzemnév</th>
+      <th data-key="Munkalap kód">Munkalap</th>
+      <th data-key="Cikk">Cikk</th>
+      <th data-key="IT">IT szám</th>
       <th data-key="Diszpó">Diszpó</th>
       <th data-key="Szín">Szín</th>
       <th data-key="csomag">Csomag</th>
@@ -54,32 +55,17 @@
       <th data-key="darab">Darab</th>
       <th data-key="Művelet">Művelet</th>
       <th data-key="Művelet név">Művelet név</th>
-      <th data-key="Normaperc">Norma<br>perc</th>
-      <th data-key="Összes Normaperc">Összes<br>normaperc</th>
-      <th data-key="Megjegyzés">Megjegyzés</th>
-      <th data-key="Kódoló">Kódoló</th>
+      <th data-key="Norma perc">Norma perc</th>
+      <th data-key="Dolgozó név">Dolgozó név</th>
       <th data-key="Kódolás ideje">Kódolás ideje</th>
+      <th data-key="Kódoló">Kódoló</th>
     </thead>
     <tbody>
-      <tr class="text-blue-700" >
-        <td>Összesen</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>{osszperc}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
     {#each $rows as row}
       <tr>
-        <td class="text-blue-800" on:click={e => dispatch('seasearch', row['Cikkszám'])}>{row['Cikkszám']}</td>
+        <td>{row['Üzemnév']}</td>
+        <td>{row['Munkalap kód']}</td>
+        <td class="text-blue-800" on:click={e => dispatch('seasearch', row['Cikk'])}>{row['Cikk']}</td>
         <td>{row['IT']}</td>
         <td>{row['Diszpó']}</td>
         <td>{row['Szín']}</td>
@@ -88,11 +74,10 @@
         <td>{row['darab']}</td>
         <td>{row['Művelet']}</td>
         <td class="textleft">{row['Művelet név']}</td>
-        <td>{row['Normaperc']}</td>
-        <td>{row['Összes Normaperc']}</td>
-        <td>{row['Megjegyzés']}</td>
-        <td>{row['Kódoló']}</td>
+        <td>{row['Norma perc']}</td>
+        <td>{row['Dolgozó név']}</td>
         <td>{row['Kódolás ideje'].substring(0,10)+' '+row['Kódolás ideje'].substring(11,19)}</td>
+        <td>{row['Kódoló']}</td>
       </tr>
     {/each}
     </tbody>
