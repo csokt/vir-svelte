@@ -94,17 +94,10 @@ async function log(event, value, message='') {
     uzenet: message,
     ad_felhasznalo: data.account.fullname || '',
     ip: data.info.ip || '',
+    felbontas: window.screen.width + 'x' + window.screen.height,
     verzio: version,
   }
-  // console.log('###################')
-  // console.log(params)
-  // const result = await post({ url: '/private/vir2/create/naplo.tir', expect: 'number', params })
-  const sql = `
-    INSERT INTO naplo_tir (create_date, felhasznalo, szerepkor, uzem, esemeny, ertek, uzenet, ad_felhasznalo, ip, verzio)
-    VALUES (now() at time zone 'utc', '${params.felhasznalo}', '${params.szerepkor}', '${params.uzem}', '${params.esemeny}',
-      '${params.ertek}', '${params.uzenet}', '${params.ad_felhasznalo}', '${params.ip}', '${params.verzio}')
-  `
-  const result = await post({url: '/local/vir2/query', params: {sql: sql}})
+  await post({ url: '/local/vir2/log/naplo_tir', params })
 }
 
 export default { API, checkResponse, get, post, log, notifier }
