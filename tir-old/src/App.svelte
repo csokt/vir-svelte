@@ -3,6 +3,7 @@
   import Router from 'svelte-spa-router'
   import { push, pop } from 'svelte-spa-router'
   import { Icon, Snackbar } from 'svelte-mui'
+	import Tailwindcss from './Tailwindcss.svelte'
   import routes from './routes'
   import { debug, production, snackbar, facingmode, pagetitle, data } from './stores.js'
   import api from './api'
@@ -31,6 +32,7 @@
 	})
 </script>
 
+<Tailwindcss/>
 <main>
   <div class="bg-blue-600 text-white flex flex-row justify-between items-center py-1">
     <div class="text-2xl px-2" on:click={() => pop()}>&#9668;</div>
@@ -52,3 +54,23 @@
     {$snackbar.message}
   </Snackbar>
 </main>
+
+<style global>
+  .simple-datatables-full-height {
+    height: calc(100vh - 60px);
+  }
+  .datatable article table tbody tr td{
+    text-align:center;
+  }
+  .datatable article table tbody tr:nth-child(odd) {
+    background-color: #E8E8E8;
+  }
+</style>
+<!--
+  /* purgecss start ignore */
+  @tailwind base;
+  @tailwind components;
+  /* purgecss end ignore */
+
+  @tailwind utilities;
+ -->
