@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte'
   import { Datatable, rows } from 'svelte-simple-datatables'
+  import common from '../../config/common'
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import api from '../../api'
   import Spinner from '../../components/core/Spinner.svelte'
@@ -8,7 +9,8 @@
 	const dispatch = createEventDispatcher()
   let spinner = true
 
-  export let cikkszam = data.munkalap.cikkszam || -1
+  // export let cikkszam = data.munkalap.cikkszam || -1
+  export let cikkszam = common.cikkszam.value || ''
 
   let tablewidth = 'w-11/12'
   let tabledata = [{
@@ -22,6 +24,7 @@
   }]
 
   onMount( async () => {
+    console.log(cikkszam)
     $pagetitle = 'Konfekció normalapok'
     api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_cikknormai where [Cikkszám] = '${cikkszam}' order by [Műveletkód]`

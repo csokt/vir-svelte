@@ -4,9 +4,9 @@ import { data } from '../../stores.js'
 export default {
   id: 'munkalap',
   name: '',
-  onMount: (fields) => {
-    fields.munkalap.value = data.munkalap
-  },
+  // onMount: (fields) => {
+  //   fields.munkalap.value = data.munkalap
+  // },
   elements: [
     common.munkalapazonosito,
     common.kartoninfo,

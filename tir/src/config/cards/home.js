@@ -5,6 +5,13 @@ export default {
   name: '',
   elements: [
     {
+      id: 'fullname',
+      name: 'Felhasználó',
+      type: 'text',
+      value: '',
+      attributes: {readonly: true}
+    },
+    {
       id: 'kodol',
       name: 'Kódolás',
       type: 'menu',
@@ -19,16 +26,18 @@ export default {
       hiddenState: (fields) => { return !['kódoló'].includes(data.user.role) }
     },
     {
-      id: 'munkalap',
-      name: 'Munkalap információk',
+      id: 'napikodolas',
+      name: 'Mai napi kódolások',
       type: 'menu',
-      path: '/menu1/munkalap',
+      path: '/table/napikodolas',
+      hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2', 'varrodavezető'].includes(data.user.role) }
     },
     {
-      id: 'seasearch',
-      name: 'Dokumentációk',
+      id: 'mitkodoltamma',
+      name: 'Mit kódoltam ma?',
       type: 'menu',
-      path: '/menu1/seasearch',
+      path: '/table/mitkodoltamma',
+      hiddenState: (fields) => { return !['kódoló'].includes(data.user.role) }
     },
     {
       id: 'norma',
@@ -45,30 +54,28 @@ export default {
       hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2', 'varrodavezető'].includes(data.user.role) }
     },
     {
-      id: 'havilezartteljesitmeny',
-      name: 'Teljesítmény % (havi lezárt)',
+      id: 'seasearch',
+      name: 'Dokumentációk',
       type: 'menu',
-      path: '/table/havilezartteljesitmeny',
-      hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2', 'varrodavezető'].includes(data.user.role) }
+      path: '/menu1/seasearch',
+    },
+    {
+      id: 'munkalap',
+      name: 'Munkalap információk',
+      type: 'menu',
+      path: '/menu1/munkalap',
     },
     {
       id: 'tablazatok',
-      name: 'Táblázatok',
+      name: 'Termelési információk',
       type: 'menu',
       path: '/menu1/tablazatok',
     },
-    {
-      id: 'fullname',
-      name: 'Dolgozó',
-      type: 'text',
-      value: '',
-      attributes: {readonly: true}
-    },
-    {
-      id: 'logout',
-      name: 'Másik dolgozó választása',
-      type: 'button',
-      onClick: (fields) => { fields.fullname.value = '' },
-    },
+    // {
+    //   id: 'logout',
+    //   name: 'Másik dolgozó választása',
+    //   type: 'button',
+    //   onClick: (fields) => { fields.fullname.value = '' },
+    // },
   ],
 }

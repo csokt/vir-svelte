@@ -2,7 +2,7 @@ import { push } from 'svelte-spa-router'
 import api from '../api'
 import { debug, data } from '../stores.js'
 
-export default {
+const common = {
   munkalapazonosito: {
     id: 'munkalapazonosito',
     name: 'Munkalap',
@@ -10,6 +10,7 @@ export default {
     value: '',
     attributes: {type: 'number'},
     onChange: async (fields) => {
+      console.log(common)
       const kellek = Math.floor(fields.munkalapazonosito.value / 10000000) === 3
       const munkalapazonosito = kellek ? fields.munkalapazonosito.value - 10000000 : fields.munkalapazonosito.value
       const sql = `
@@ -21,17 +22,19 @@ export default {
       const result = await api.post({url: '/local/tir/query', expect: 'object', params: {sql: sql}})
       if (result.munkalapazonosito) {
         if (kellek) {
-          fields.kartoninfo.value = result.cikkszam.trim() + '/' + parseInt(result.rendelesszam.trim().slice(-4).toString()) + ' ' + result.mennyiseg.toString() + ' db'
+          common.kartoninfo.value = result.cikkszam.trim() + '/' + parseInt(result.rendelesszam.trim().slice(-4).toString()) + ' ' + result.mennyiseg.toString() + ' db'
         }
         else {
-          fields.kartoninfo.value = result.cikkszam.trim() + '/' + parseInt(result.rendelesszam.trim().slice(-4).toString()) + ' ' + result.kartonszam.trim() + ' ' + result.db.toString() + ' db'
+          common.kartoninfo.value = result.cikkszam.trim() + '/' + parseInt(result.rendelesszam.trim().slice(-4).toString()) + ' ' + result.kartonszam.trim() + ' ' + result.db.toString() + ' db'
         }
+        common.cikkszam.value = result.cikkszam.trim()
+        common.cikkmegnevezes.value = result.cikkmegnevezes.trim()
       } else {
-        fields.kartoninfo.value = ''
+        common.kartoninfo.value = ''
       }
       data.munkalap = result
-      if (fields.munkalap) { fields.munkalap.value = result }
-      if (debug) console.log('config Card kodol onChange munkalapazonosito', '\n  result', result)
+      common.munkalap.value = result
+      if (debug) console.log('config common onChange munkalapazonosito', '\n  result', result)
     },
   },
 
@@ -70,6 +73,29 @@ export default {
         push('/menu2/seasearch')
       }
     },
+  },
+
+  cikkszam: {
+    id: 'cikkszam',
+    name: 'Cikkszám',
+    type: 'text',
+    value: '',
+    onChange: async (fields) => {
+      const sql = `
+        select top 1 tcikkszam, megnevezes from cikktorzs where aktiv = 'A' and tcikkszam = '${fields.cikkszam.value}'
+      `
+      const result = await api.post({url: '/local/tir/query', expect: 'object', params: {sql: sql}})
+      common.cikkmegnevezes.value = result.megnevezes
+      if (debug) console.log('config common onChange cikkszam', '\n  result', result)
+    },
+  },
+
+  cikkmegnevezes: {
+    id: 'cikkmegnevezes',
+    name: 'Cikknév',
+    type: 'text',
+    value: '',
+    readonly: true,
   },
 
   text_field: {
@@ -118,3 +144,4 @@ export default {
     },
   },
 }
+export default common

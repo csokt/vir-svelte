@@ -5,42 +5,11 @@ export default {
   id: 'tablazatok',
   name: '',
   elements: [
-    common.munkalapazonosito,
-    common.kartoninfo,
-    {
-      id: 'kodolasok',
-      name: 'Kódolások a munkalapon',
-      type: 'menu',
-      path: '/table/kodolasok',
-      hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2',  'kódoló',  'meo',  'varrodavezető'].includes(data.user.role) }
-    },
-    {
-      id: 'napikodolas',
-      name: 'Mai napi kódolások',
-      type: 'menu',
-      path: '/table/napikodolas',
-      hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2', 'varrodavezető'].includes(data.user.role) }
-    },
-    {
-      id: 'mitkodoltamma',
-      name: 'Mit kódoltam ma?',
-      type: 'menu',
-      path: '/table/mitkodoltamma',
-      hiddenState: (fields) => { return !['kódoló'].includes(data.user.role) }
-    },
     {
       id: 'havikodolas',
       name: 'Aktuális havi kódolások',
       type: 'menu',
       path: '/table/havikodolas',
-      hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2', 'varrodavezető'].includes(data.user.role) }
-    },
-
-    {
-      id: 'napiteljesitmeny',
-      name: 'Teljesítmény % (napi becsült)',
-      type: 'menu',
-      path: '/table/napiteljesitmeny',
       hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2', 'varrodavezető'].includes(data.user.role) }
     },
     {
@@ -49,14 +18,6 @@ export default {
       type: 'menu',
       path: '/table/havilezartteljesitmeny',
       hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2', 'varrodavezető'].includes(data.user.role) }
-    },
-
-    {
-      id: 'cikknormai',
-      name: 'Konfekció normalapok',
-      type: 'menu',
-      path: '/table/cikknormai',
-      hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2',  'kódoló',  'meo',  'varrodavezető'].includes(data.user.role) }
     },
     {
       id: 'szabaszatleadas',
@@ -99,6 +60,26 @@ export default {
       type: 'menu',
       path: '/table/muveletekosszegzese',
       hiddenState: (fields) => { return !['varrodavezető'].includes(data.user.role) }
+    },
+    common.munkalapazonosito,
+    common.kartoninfo,
+    {
+      id: 'kodolasok',
+      name: 'Kódolások a munkalapon',
+      type: 'menu',
+      path: '/table/kodolasok',
+      // hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2',  'kódoló',  'meo',  'varrodavezető'].includes(data.user.role) }
+      hiddenState: (fields) => { return !fields.kartoninfo.value }
+    },
+    common.cikkszam,
+    common.cikkmegnevezes,
+    {
+      id: 'cikknormai',
+      name: 'Konfekció normalapok',
+      type: 'menu',
+      path: '/table/cikknormai',
+      // hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2',  'kódoló',  'meo',  'varrodavezető'].includes(data.user.role) }
+      hiddenState: (fields) => { return !fields.cikkmegnevezes.value }
     },
   ],
 }
