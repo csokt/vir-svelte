@@ -54,13 +54,6 @@ export default {
       path: '/table/kovetkezohetigyartasiterv',
       hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'meo',  'varrodavezető'].includes(data.user.role) }
     },
-    {
-      id: 'muveletekosszegzese',
-      name: 'Bekódolt műveletek összegzése',
-      type: 'menu',
-      path: '/table/muveletekosszegzese',
-      hiddenState: (fields) => { return !['varrodavezető'].includes(data.user.role) }
-    },
     common.munkalapazonosito,
     common.kartoninfo,
     {
@@ -80,6 +73,13 @@ export default {
       path: '/table/cikknormai',
       // hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2',  'kódoló',  'meo',  'varrodavezető'].includes(data.user.role) }
       hiddenState: (fields) => { return !fields.cikkmegnevezes.value }
+    },
+    {
+      id: 'muveletekosszegzese',
+      name: 'Bekódolt műveletek összegzése',
+      type: 'menu',
+      path: '/table/muveletekosszegzese',
+      hiddenState: (fields) => { return !['varrodavezető'].includes(data.user.role) }
     },
   ],
 }

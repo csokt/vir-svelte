@@ -1,14 +1,15 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte'
   import { Datatable, rows } from 'svelte-simple-datatables'
-  import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
-  import api from '../../api'
   import Spinner from '../../components/core/Spinner.svelte'
+  import api from '../../api'
+  import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
+  import common from '../../config/common'
 
 	const dispatch = createEventDispatcher()
   let spinner = true
 
-  export let munkalapazonosito = data.munkalap.munkalapazonosito || -1
+  export let munkalapazonosito = common.munkalapazonosito.value || ''
 
   let tablewidth = 'w-11/12'
   let tabledata = [{

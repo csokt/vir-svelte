@@ -32,7 +32,6 @@ const common = {
       } else {
         common.kartoninfo.value = ''
       }
-      data.munkalap = result
       common.munkalap.value = result
       if (debug) console.log('config common onChange munkalapazonosito', '\n  result', result)
     },
