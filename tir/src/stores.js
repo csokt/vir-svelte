@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-export const version = '21.06.28'
+export const version = '21.06.29'
 export const debug = false
 // export const production = !debug
 export const production = false

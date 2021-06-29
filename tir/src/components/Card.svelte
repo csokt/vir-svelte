@@ -11,7 +11,7 @@
 
   $: if (debug) console.log('Card changed', card)
 
-	const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher()
   let disableFields = false
 
   $: {

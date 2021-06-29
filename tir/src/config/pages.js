@@ -5,16 +5,18 @@ export default {
     cardArray: [
       {
         cardid: 'tirlogin',
-        onEvent: (cards) => {cards.home.card.fields.fullname.value = cards.tirlogin.card.fields.fullname.value},
+        // érvényes QR kód megadásakor
+        onEvent: (cards, params) => {cards.home.card.fields.fullname.value = cards.tirlogin.card.fields.fullname.value},
         hiddenState: (cards) => { return !!cards.tirlogin.card.fields.fullname.value }
       },
       {
         cardid: 'home',
-        onEvent: (cards) => {
-          if (cards.home.card.fields.fullname.value) return
-          cards.tirlogin.card.fields.qrcode.value = ''
-          cards.tirlogin.card.fields.fullname.value = ''
-        },
+        // // logout button kattintásakor
+        // onEvent: (cards, params) => {
+        //   if (cards.home.card.fields.fullname.value) return
+        //   cards.tirlogin.card.fields.qrcode.value = ''
+        //   cards.tirlogin.card.fields.fullname.value = ''
+        // },
         hiddenState: (cards) => { return !cards.tirlogin.card.fields.fullname.value }
       },
     ],

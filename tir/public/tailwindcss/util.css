@@ -46,6 +46,10 @@
   text-align: left
 }
 
+.font-bold {
+  font-weight: 700
+}
+
 .bg-blue-600 {
   --bg-opacity: 1;
   background-color: #3182ce;
