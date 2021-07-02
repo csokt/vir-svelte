@@ -62,8 +62,12 @@
       disabled={disabled || field.disabled}
       readonly={field.readonly}
       error={field.error}
+      id={field.id}
       {...field.attributes}
-      on:change={() => dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })}
+      on:change={() => {
+        dispatch('event', { event: 'change', fieldid: field.id, value: field.value, func: field.onChange })
+        if (field.blurOnChange) { document.getElementById(field.id).blur() }
+        }}
     />
   {/if}
 

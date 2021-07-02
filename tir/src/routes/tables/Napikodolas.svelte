@@ -6,7 +6,7 @@
   import Spinner from '../../components/core/Spinner.svelte'
 
   let spinner = true
-	const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher()
 
   export let dolgozokod = data.user.belepokod || -1
 
@@ -31,7 +31,7 @@
 
   onMount( async () => {
     $pagetitle = 'Mai napi kódolások'
-    api.log('Oldal', $pagetitle)
+    await api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_napikodolas where [Dolgozó kód] = ${dolgozokod} order by [Kódolás ideje] desc`
     const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     osszperc = Math.round( result.reduce(( acc, curr ) => { return acc + curr['Összes Normaperc'] }, 0))

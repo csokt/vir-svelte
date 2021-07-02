@@ -6,7 +6,7 @@
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import common from '../../config/common'
 
-	const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher()
   let spinner = true
 
   export let cikkszam = common.cikkszam.value || ''
@@ -25,7 +25,7 @@
   onMount( async () => {
     console.log(cikkszam)
     $pagetitle = 'Konfekció normalapok'
-    api.log('Oldal', $pagetitle)
+    await api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_cikknormai where [Cikkszám] = '${cikkszam}' order by [Műveletkód]`
     const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     tabledata = result

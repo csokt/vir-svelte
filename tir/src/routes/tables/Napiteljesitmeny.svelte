@@ -13,7 +13,7 @@
 
   onMount( async () => {
     $pagetitle = 'Teljesítmény % (napi becsült)'
-    api.log('Oldal', $pagetitle)
+    await api.log('Oldal', $pagetitle)
     const sql = `select top 300 * from monitor_napiteljesitmeny where [Dolgozó kód] = ${dolgozokod} order by [Dátum] desc`
     const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     tabledata = result

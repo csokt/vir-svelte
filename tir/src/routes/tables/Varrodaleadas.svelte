@@ -5,7 +5,7 @@
   import api from '../../api'
   import Spinner from '../../components/core/Spinner.svelte'
 
-	const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher()
   let spinner = true
 
   let tablewidth = 'w-11/12'
@@ -35,7 +35,7 @@
 
   onMount( async () => {
     $pagetitle = 'Szeged varroda napi leadás'
-    api.log('Oldal', $pagetitle)
+    await api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_szegedvarrodaleadas order by [Cikkszám]`
     const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     for (const field in osszesen) {

@@ -54,6 +54,13 @@ export default {
       path: '/table/kovetkezohetigyartasiterv',
       hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'meo',  'varrodavezető'].includes(data.user.role) }
     },
+    {
+      id: 'ram',
+      name: 'Rendelés állapot monitor',
+      type: 'menu',
+      path: '/table/ram',
+      hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'meo',  'varrodavezető'].includes(data.user.role) }
+    },
     common.munkalapazonosito,
     common.kartoninfo,
     {
@@ -74,12 +81,14 @@ export default {
       // hiddenState: (fields) => { return !['szabó',  'logisztikus',  'varró',  'varró2',  'kódoló',  'meo',  'varrodavezető'].includes(data.user.role) }
       hiddenState: (fields) => { return !fields.cikkmegnevezes.value }
     },
+    common.itszam,
     {
       id: 'muveletekosszegzese',
       name: 'Bekódolt műveletek összegzése',
       type: 'menu',
       path: '/table/muveletekosszegzese',
-      hiddenState: (fields) => { return !['varrodavezető'].includes(data.user.role) }
+      // hiddenState: (fields) => { return !['varrodavezető'].includes(data.user.role) }
+      hiddenState: (fields) => { return !fields.cikkmegnevezes.value || !fields.itszam.value || !['varró'].includes(data.user.role)}
     },
   ],
 }

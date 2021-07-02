@@ -1,6 +1,6 @@
 import api from '../../api'
 import common from '../common'
-import { debug, data } from '../../stores.js'
+import { debug, production, data } from '../../stores.js'
 
 export default {
   id: 'tirlogin',
@@ -12,6 +12,7 @@ export default {
       name: 'Dolgozó kód',
       type: 'qrtext',
       value: '',
+      readonly: production,
       attributes: {type: 'number'},
       onChange: async (fields) => {
         data.user = {}

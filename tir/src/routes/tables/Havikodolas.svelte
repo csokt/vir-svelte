@@ -5,7 +5,7 @@
   import api from '../../api'
   import Spinner from '../../components/core/Spinner.svelte'
 
-	const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher()
   let spinner = true
 
   export let dolgozokod = data.user.belepokod || -1
@@ -31,7 +31,7 @@
 
   onMount( async () => {
     $pagetitle = 'Aktuális havi kódolások'
-    api.log('Oldal', $pagetitle)
+    await api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_havikodolas where [Dolgozó kód] = ${dolgozokod} order by [Kódolás ideje] desc`
     const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     osszperc = Math.round( result.reduce(( acc, curr ) => { return acc + curr['Összes Normaperc'] }, 0))

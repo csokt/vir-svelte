@@ -88,6 +88,7 @@ export default {
       name: 'Mennyiség',
       type: 'text',
       value: '',
+      blurOnChange: true,
       attributes: {type: 'number'},
       errorState: (fields) => {
         if (fields.mennyiseg.value === '') return false

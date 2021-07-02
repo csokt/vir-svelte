@@ -6,7 +6,7 @@
   import { debug, data, simple_datatables_settings, pagetitle } from '../../stores.js'
   import common from '../../config/common'
 
-	const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher()
   let spinner = true
 
   export let munkalapazonosito = common.munkalapazonosito.value || ''
@@ -32,7 +32,7 @@
 
   onMount( async () => {
     $pagetitle = 'Kódolások a munkalapon'
-    api.log('Oldal', $pagetitle)
+    await api.log('Oldal', $pagetitle)
     const sql = `select top 500 * from monitor_kodolasok where [Munkalap kód] = ${munkalapazonosito} order by [Üzemkód], [Művelet], [Kódolás ideje]`
     const result = await api.post({url: '/local/tir/query', expect: 'array', params: {sql: sql}})
     tabledata = result

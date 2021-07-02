@@ -70,6 +70,7 @@ text:
   label: megjelenítendő név
   value: string
   attributes{}: Minden itt megadott attribútum át lesz adva a komponensnek.
+  blurOnChange: számított attribútum, alapértelmezetten false.
   disabled: számított attribútum, alapértelmezetten false.
   disabledState(fields): a disabled státuszt állítja be, csak szinkron lehet, bool visszatérő értékkel.
   readonly: számított attribútum, alapértelmezetten undefined.

@@ -43,6 +43,7 @@ for (const key in config.cards) {
     checkProp('type', card, element)
     element.hidden = element.hidden || false
     if (['button', 'checkbox', 'text', 'qrtext'].includes(element.type)) {
+      element.blurOnChange = element.blurOnChange || false
       element.disabled = element.disabled || false
     }
     if (['text', 'qrtext'].includes(element.type)) {

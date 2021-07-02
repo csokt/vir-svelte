@@ -15,6 +15,7 @@
   import Szabaszatleadas from './tables/Szabaszatleadas.svelte'
   import Utovasaloleadas from './tables/Utovasaloleadas.svelte'
   import Varrodaleadas from './tables/Varrodaleadas.svelte'
+  import Ram from './tables/Ram.svelte'
 
   export let params = {}
 
@@ -32,6 +33,7 @@
     szabaszatleadas: Szabaszatleadas,
     utovasaloleadas: Utovasaloleadas,
     varrodaleadas: Varrodaleadas,
+    ram: Ram,
   }
 
   function seasearch(params) {

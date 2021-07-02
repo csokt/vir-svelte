@@ -1,6 +1,10 @@
 import apisauce from 'apisauce'
 import { version, debug, apiURL, data, snackbar } from './stores.js'
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 const notifier = {
   alert: (message) => snackbar.set({message: message, timeout: 2, bg: 'gray'}),
   error: (message) => snackbar.set({message: message, timeout: 5, bg: 'red'})
@@ -8,7 +12,7 @@ const notifier = {
 
 const API = apisauce.create({
   baseURL: apiURL,
-  timeout: 15000,
+  timeout: 30000,
   headers: {
     Authorization: localStorage.szefo_api2_token
   }
@@ -97,7 +101,7 @@ async function log(event, value, message='') {
     felbontas: window.screen.width + 'x' + window.screen.height,
     verzio: version,
   }
-  await post({ url: '/local/vir2/log/naplo_tir', params })
+  return await post({ url: '/local/vir2/log/naplo_tir', params })
 }
 
-export default { API, checkResponse, get, post, log, notifier }
+export default { API, checkResponse, get, post, log, notifier, sleep }

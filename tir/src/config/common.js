@@ -97,6 +97,14 @@ const common = {
     readonly: true,
   },
 
+  itszam: {
+    id: 'itszam',
+    name: 'IT szám',
+    type: 'text',
+    value: '',
+    blurOnChange: true,
+  },
+
   alert_fields_button: {
     id: 'alert_fields_button',
     name: 'Alert fields',

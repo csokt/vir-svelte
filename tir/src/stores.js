@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-export const version = '21.06.29'
+export const version = '21.07.02'
 export const debug = false
 // export const production = !debug
 export const production = false
@@ -12,7 +12,7 @@ export const data = { info: {}, account: {}, user: {}, kodol: {}, params: {} }
 export const simple_datatables_settings = {
   sortable: false,
   pagination: true,
-  rowPerPage: 50,
+  rowPerPage: 200,
   columnFilter: false,
   scrollY: true,
   css: true,
